@@ -1,6 +1,6 @@
 package ch.uniteit.yahtzee;
 
-import ch.uniteit.yahtzee.backend.Dice;
+import ch.uniteit.yahtzee.logic.Dice;
 
 public class Main {
 
