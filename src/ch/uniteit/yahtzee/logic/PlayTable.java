@@ -10,6 +10,7 @@
 package ch.uniteit.yahtzee.logic;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 //TODO würfeln und befüllen und so
 public class PlayTable {
@@ -54,4 +55,22 @@ public class PlayTable {
 		}
 		System.out.println("Ergebnis ist " + this.wuerfelScore);
 	}
+	// commong methods and functions
+	public int getWuerfelAnzahl() {
+		return wuerfelAnzahl;
+	}
+
+	public void setWuerfelAnzahl(int wuerfelAnzahl) {
+		this.wuerfelAnzahl = wuerfelAnzahl;
+	}
+
+	public int getWuerfelScore() {
+		return wuerfelScore;
+	}
+
+	public void setWuerfelScore(int wuerfelScore) {
+		this.wuerfelScore = wuerfelScore;
+	}
+
+
 }

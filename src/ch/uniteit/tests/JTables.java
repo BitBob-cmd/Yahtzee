@@ -1,14 +1,18 @@
 package ch.uniteit.tests;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class JTables extends JPanel {
+class SimpleTableDemo extends JPanel {
 	private boolean DEBUG = false;
 
-	public JTables() {
+	public SimpleTableDemo() {
 		super(new GridLayout(1,0));
 
 		String[] columnNames = {"First Name",
@@ -76,7 +80,7 @@ public class JTables extends JPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//Create and set up the content pane.
-		JTables newContentPane = new JTables();
+		SimpleTableDemo newContentPane = new SimpleTableDemo();
 		newContentPane.setOpaque(true); //content panes must be opaque
 		frame.setContentPane(newContentPane);
 
