@@ -1,8 +1,10 @@
 package ch.uniteit.yahtzee;
 
+import ch.uniteit.yahtzee.backend.Dice;
+
 public class Main {
 
 	public static void main(String[] args) {
-		GUI ng = new GUI();
+		new Dice().roll();
 	}
 }
