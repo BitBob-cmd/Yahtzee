@@ -4,7 +4,7 @@
  * @autor: Besnik Istrefi
  * @version: 2018.01
  */
-package ch.uniteit.yahtzee.logic;
+package ch.uniteit.tests;
 
 import java.util.Objects;
 import java.util.Random;
@@ -61,8 +61,8 @@ public class Dice {
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
-		if (!(o instanceof Dice)) return false;
-		Dice dice = (Dice) o;
+		if (!(o instanceof Dices)) return false;
+		Dices dice = (Dices) o;
 		return getRollScore() == dice.getRollScore() &&
 				getAugen() == dice.getAugen() &&
 				Objects.equals(rnd, dice.rnd);

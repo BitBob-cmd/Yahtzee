@@ -1,4 +1,5 @@
 package ch.uniteit.yahtzee.gui;
+import ch.uniteit.yahtzee.logic.*;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
@@ -6,8 +7,11 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Random;
 
 import javax.swing.JButton;
@@ -20,7 +24,7 @@ import javax.swing.JTable;
  * @author Besnik Istrefi & Fernando Maniglio 
  */
 
-public class GUI extends JFrame {
+public class GUI extends JFrame implements MouseListener {
 
 	// JPanel Attribute hallo
 	private JPanel panelCenter;
@@ -43,8 +47,13 @@ public class GUI extends JFrame {
 
 	// Dices Attribute
 
-	private Dice[] wuerfelAkt;
-	private Dice[] wuerfelDeakt;
+	private Dices[] wuerfelAkt;
+
+	
+	
+
+	
+	
 
 	public GUI() {
 		// Defaultkonstruktor für erst Initialiseriung
@@ -85,7 +94,7 @@ public class GUI extends JFrame {
 		this.tabelle = new JTable(20, 4);
 		this.tabelle.setGridColor(Color.black);
 
-		this.wuerfelAkt = new Dice[5];
+		this.wuerfelAkt = new Dices[5];
 
 		initGui();
 
@@ -109,13 +118,29 @@ public class GUI extends JFrame {
 		buttons.add(wuerfeln);
 		buttons.add(neuesSpiel);
 		buttons.add(besteListe);
+		
+		//ActionListener Buttons 
+		
+		wuerfeln.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				for(int count = 0 ; count < wuerfelAkt.length ; count++) {
+					
+					repaint();
+					
+				}
+				
+			}
+		});
 
 		for (int count = 0; count < panelWuerfelAktivFlow.length; count++) {
 
 			panelWuerfelAktivFlow[count] = new JPanel();
 			panelWuerfelAktivFlow[count].setLayout(new FlowLayout());
 			panelWuerfelAktivFlow[count].setBackground(Color.GREEN);
-
+			
 			panelWuerfelAktiv.add(panelWuerfelAktivFlow[count]);
 
 		}
@@ -130,34 +155,71 @@ public class GUI extends JFrame {
 
 		}
 
-		
 		int index = 0;
 		while (index < wuerfelAkt.length) {
 
-			wuerfelAkt[index] = new Dice();
+			wuerfelAkt[index] = new Dices(index);
 
 			panelWuerfelAktivFlow[index].add(wuerfelAkt[index]);
 
-			wuerfelAkt[index].addMouseListener(new MouseAdapter() {
+			wuerfelAkt[index].addMouseListener(this); 
 
-				@SuppressWarnings("deprecation")
-				@Override
-				public void mouseClicked(MouseEvent e) {
-
-					
-					Dice x = (Dice) e.getSource();
-
-					panelWuerfelAktivFlow[1].remove(x);
-					panelWuerfelDeaktivFlow[0].add(x);
-
-				}
-			});
-			
 			index++;
 		}
-		
 
 	}
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+		Dices x = ((Dices)e.getSource());
+		
+		
+		
+		if(panelWuerfelAktivFlow[x.getFlowIndex()] == x.getParent()) {
+			
+			System.out.println("würde in aktiv rein machen");
+			x.getParent().remove(x);
+			panelWuerfelDeaktivFlow[x.getFlowIndex()].add(x);
+			
+		}
+		else if(panelWuerfelDeaktivFlow[x.getFlowIndex()] == x.getParent()) {
+			
+			System.out.println("würde in deaktiv rein machebn");
+			x.getParent().remove(x);
+			panelWuerfelAktivFlow[x.getFlowIndex()].add(x);
+			
+		}
+		
+		
+		
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	/*
 	 * Interne Klasse für die Instanzierung und Zeichnung der Würfel
@@ -165,87 +227,12 @@ public class GUI extends JFrame {
 	 * 
 	 */
 
-	public class Dice extends Canvas {
+	
 
-		private static final long serialVersionUID = 1L;
-		private int value;
-		private Random r;
-		private int height;
-		private int width;
-		private int eyeSize;
-
-		public Dice() {
-			this.r = new Random();
-			this.height = 50;
-			this.width = 50;
-			this.eyeSize = height / 5;
-			this.value = this.generateRandomValue();
-
-			setSize(this.width, this.height);
-
-			setBackground(Color.WHITE);
-
-		}
-
-		private int generateRandomValue() {
-			return this.r.nextInt(6) + 1;
-		}
-
-		@Override
-		public void paint(Graphics g) {
-			// Setzen der Zeichnungsfarbe
-			g.setColor(Color.RED);
-			// Zeichne ein Oval (also auch einen Kreis)
-			switch (this.value) {
-			case 1:
-				g.fillOval(this.width / 2 - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize,
-						this.eyeSize);
-				break;
-			case 2:
-				g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
-						this.eyeSize, this.eyeSize);
-				break;
-			case 3:
-				g.fillOval(this.width / 2 - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize,
-						this.eyeSize);
-				g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
-						this.eyeSize, this.eyeSize);
-				break;
-			case 4:
-				g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-				g.fillOval(this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2, this.eyeSize, this.eyeSize);
-				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
-						this.eyeSize, this.eyeSize);
-				break;
-			case 5:
-				g.fillOval(this.width / 2 - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize,
-						this.eyeSize);
-				g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-				g.fillOval(this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2, this.eyeSize, this.eyeSize);
-				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
-						this.eyeSize, this.eyeSize);
-				break;
-			case 6:
-				g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-				g.fillOval(this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize, this.eyeSize);
-				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2,
-						this.eyeSize, this.eyeSize);
-				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-				g.fillOval(this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2, this.eyeSize, this.eyeSize);
-				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
-						this.eyeSize, this.eyeSize);
-				break;
-			}
-
-		}
-
-	}
 	public static void main(String[] args) {
-		
+
 		GUI temp = new GUI();
 	}
+
+	
 }

@@ -15,7 +15,7 @@ import java.util.Objects;
 //TODO würfeln und befüllen und so
 public class PlayTable {
 	protected int wuerfelAnzahl;
-	protected ArrayList<Dice> dieWuerfel;
+	protected ArrayList<Dices> dieWuerfel;
 	protected int wuerfelScore;
 	/**
 	 * Konstruktor default.
@@ -25,11 +25,11 @@ public class PlayTable {
 		this.wuerfelAnzahl = 5;
 		this.dieWuerfel = new ArrayList<>();
 		//TODO prüfen ob 0 oder 1 richtig ist
-		int i = 0;
-		while(i <= wuerfelAnzahl){
-			dieWuerfel.add(new Dice());
-			i++;
-		}
+		//int i = 0;
+		//while(i <= wuerfelAnzahl){
+		//	dieWuerfel.add(new Dices(index));
+		//	i++;
+		//}
 
 		String[] columnNames = {"Oberer Teil",
 				"Du", "Gegner"};
@@ -91,12 +91,12 @@ public class PlayTable {
 	}
 	// Würfeln, für jeden gespielten Würfel einmal würfeln
 	public void wuerfeln () {
-		for(Dice d: dieWuerfel) d.roll();
+		for(Dices d: dieWuerfel) d.roll();
 		this.berechneTisch();
 	}
 	// Rechnet alle Würfel zusammen
 	public void berechneTisch(){
-		for(Dice d: dieWuerfel){
+		for(Dices d: dieWuerfel){
 			this.wuerfelScore = this.wuerfelScore + d.getRollScore();
 		}
 		System.out.println("Ergebnis ist " + this.wuerfelScore);
