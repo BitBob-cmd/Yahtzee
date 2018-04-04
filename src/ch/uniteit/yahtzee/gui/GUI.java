@@ -104,7 +104,7 @@ public class GUI extends JFrame {
 
 		panelEast.add(buttons, BorderLayout.SOUTH);
 		panelEast.add(panelWuerfelAktiv, BorderLayout.WEST);
-		panelEast.add(panelWuerfelDeaktiv, BorderLayout.EAST);
+		panelEast.add(panelWuerfelDeaktiv, BorderLayout.CENTER);
 
 		buttons.add(wuerfeln);
 		buttons.add(neuesSpiel);
@@ -147,7 +147,7 @@ public class GUI extends JFrame {
 					
 					Dice x = (Dice) e.getSource();
 
-					panelWuerfelAktivFlow[index].remove(x);
+					panelWuerfelAktivFlow[1].remove(x);
 					panelWuerfelDeaktivFlow[0].add(x);
 
 				}
@@ -243,5 +243,9 @@ public class GUI extends JFrame {
 
 		}
 
+	}
+	public static void main(String[] args) {
+		
+		GUI temp = new GUI();
 	}
 }
