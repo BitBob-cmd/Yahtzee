@@ -1,4 +1,4 @@
-package ch.uniteit.tests;
+package ch.uniteit.yahtzee.gui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;

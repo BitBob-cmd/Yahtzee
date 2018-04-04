@@ -1,5 +1,7 @@
 package ch.uniteit.yahtzee.gui;
 
+import ch.uniteit.yahtzee.logic.PlayTable;
+
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -22,6 +24,7 @@ import javax.swing.JTable;
 
 public class GUI extends JFrame{
 
+	protected PlayTable playTable;
 	//JPanel Attribute hallo
 	private JPanel panelCenter;
 	private JPanel panelEast;
@@ -40,7 +43,7 @@ public class GUI extends JFrame{
 	//JTable Attribute
 	
 	private JTable tabelle;
-	
+
 	
 	// Dices Attribute 
 	
@@ -91,7 +94,9 @@ public class GUI extends JFrame{
 		this.tabelle.setGridColor(Color.black);
 		
 		this.wuerfel = new Dice[5];
-		
+		this.playTable = new PlayTable();
+		this.tabelle = new JTable(playTable.getTableData(), playTable.getTableHeader());
+
 		initGui();
 		
 		this.setVisible(true);
@@ -251,8 +256,10 @@ public class GUI extends JFrame{
 		}
 		
 	}
-	
+	}
+
+	public static void main(String[] args) {
+		GUI gui = new GUI();
+		gui.initGui();
 	}
 }
-	
-
