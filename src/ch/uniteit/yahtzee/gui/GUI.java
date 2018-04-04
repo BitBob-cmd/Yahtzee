@@ -22,7 +22,7 @@ import javax.swing.JTable;
 
 public class GUI extends JFrame{
 
-	//JPanel Attribute 
+	//JPanel Attribute hallo
 	private JPanel panelCenter;
 	private JPanel panelEast;
 	private JPanel[] panelWuerfelAktivFlow;
