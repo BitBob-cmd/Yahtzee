@@ -15,26 +15,30 @@ class SimpleTableDemo extends JPanel {
 	public SimpleTableDemo() {
 		super(new GridLayout(1,0));
 
-		String[] columnNames = {"First Name",
-				"Last Name",
-				"Sport",
-				"# of Years",
-				"Vegetarian"};
+		String[] columnNames = {"Oberer Teil",
+				"Du", "Gegner"};
 
 		Object[][] data = {
-				{"Kathy", "Smith",
-						"Snowboarding", new Integer(5), new Boolean(false)},
-				{"John", "Doe",
-						"Rowing", new Integer(3), new Boolean(true)},
-				{"Sue", "Black",
-						"Knitting", new Integer(2), new Boolean(false)},
-				{"Jane", "White",
-						"Speed reading", new Integer(20), new Boolean(true)},
-				{"Joe", "Brown",
-						"Pool", new Integer(10), new Boolean(false)}
+				{"Einer",new Integer(-1),new Integer(-1)},
+				{"Zweier",new Integer(-1),new Integer(-1)},
+				{"Dreier",new Integer(-1),new Integer(-1)},
+				{"Vierer",new Integer(-1),new Integer(-1)},
+				{"Fünfer",new Integer(-1),new Integer(-1)},
+				{"Sechser",new Integer(-1),new Integer(-1)},
+				{"Bonus (62)",new Integer(-1),new Integer(-1)},
+				{"Zwischensumme Oben",new Integer(-1),new Integer(-1)},
+				{"Unterer Teil",new Integer(-1),new Integer(-1)},
+				{"Viererparsch",new Integer(-1),new Integer(-1)},
+				{"Full-House",new Integer(-1),new Integer(-1)},
+				{"Kleine Strasse",new Integer(-1),new Integer(-1)},
+				{"Grosse Strasse",new Integer(-1),new Integer(-1)},
+				{"Yahtzee",new Integer(-1),new Integer(-1)},
+				{"Chance",new Integer(-1),new Integer(-1)},
+				{"Zwischensumme Unten",new Integer(-1),new Integer(-1)},
+				{"Gesamtpunktzahl",new Integer(-1),new Integer(-1)}
 		};
 
-		final JTable table = new JTable(data, columnNames);
+		Table table = new JTable(data, columnNames);
 		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
 		table.setFillsViewportHeight(true);
 
@@ -57,7 +61,6 @@ class SimpleTableDemo extends JPanel {
 		int numRows = table.getRowCount();
 		int numCols = table.getColumnCount();
 		javax.swing.table.TableModel model = table.getModel();
-
 		System.out.println("Value of data: ");
 		for (int i=0; i < numRows; i++) {
 			System.out.print("    row " + i + ":");
