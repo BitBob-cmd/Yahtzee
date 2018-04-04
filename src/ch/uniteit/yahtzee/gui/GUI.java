@@ -138,21 +138,22 @@ public class GUI extends JFrame {
 
 			panelWuerfelAktivFlow[index].add(wuerfelAkt[index]);
 
+			int finalIndex = index;
 			wuerfelAkt[index].addMouseListener(new MouseAdapter() {
 
 				@SuppressWarnings("deprecation")
 				@Override
 				public void mouseClicked(MouseEvent e) {
 
-					
+
 					Dice x = (Dice) e.getSource();
 
-					panelWuerfelAktivFlow[1].remove(x);
+					panelWuerfelAktivFlow[finalIndex].remove(x);
 					panelWuerfelDeaktivFlow[0].add(x);
 
 				}
 			});
-			
+
 			index++;
 		}
 		
