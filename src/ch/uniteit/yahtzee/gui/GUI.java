@@ -31,6 +31,8 @@ public class GUI extends JFrame implements MouseListener {
 	private JPanel panelNorth;
 	private JPanel panelSouth;
 	
+	private JPanel panelSpielTisch;
+	
 	private JPanel[] panelWuerfelAktivFlow;
 	private JPanel[] panelWuerfelDeaktivFlow;
 	private JPanel panelWuerfelAktiv;
@@ -89,6 +91,9 @@ public class GUI extends JFrame implements MouseListener {
 		this.panelEast.setLayout(new BorderLayout());
 		this.panelEast.setBackground(new Color(28, 124, 11));
 		
+		this.panelSpielTisch = new JPanel();
+		this.panelSpielTisch.setLayout(new BorderLayout());
+		
 		
 		this.panelNorth = new JPanel();
 		this.panelNorth.setLayout(new FlowLayout());
@@ -121,7 +126,6 @@ public class GUI extends JFrame implements MouseListener {
 		this.iconSpieler1 = new ImageIcon(getClass().getResource("spieler1.png"));
 		this.spieler1 = new JLabel(iconSpieler1);
 		spieler1.setLayout(new FlowLayout());
-		
 		spieler1.setSize(200,200);
 		
 		
@@ -181,8 +185,9 @@ public class GUI extends JFrame implements MouseListener {
 		
 		
 		panelEast.add(buttons, BorderLayout.SOUTH);
-		panelEast.add(panelWuerfelAktiv, BorderLayout.WEST);
-		panelEast.add(panelWuerfelDeaktiv, BorderLayout.CENTER);
+		panelEast.add(panelSpielTisch, BorderLayout.CENTER);
+		panelSpielTisch.add(panelWuerfelAktiv, BorderLayout.WEST);
+		panelSpielTisch.add(panelWuerfelDeaktiv, BorderLayout.CENTER);
 		
 
 		deaktivePanelErstellen();
