@@ -26,7 +26,7 @@ public class PlayTable {
 	 * Setzt die Anzahl Würfel die im Spiel sind, und generiert diese in einem array..
 	 */
 	public PlayTable() {
-		this.wuerfelAnzahl = 4;
+		this.wuerfelAnzahl = 5;
 		this.dieWuerfel = new ArrayList<>();
 
 		int i = 0;
@@ -87,7 +87,14 @@ public class PlayTable {
 	}
 
 	public void alleWuerfeln(){
-		for(Dices d: dieWuerfel) d.roll();
+		
+		for(Dices d: dieWuerfel) {
+			if(d.getOnHold() == false) {
+				d.roll();
+			}
+		}
+		
+		
 		this.berechneTisch();
 	}
 	// Rechnet alle Würfel zusammen
@@ -144,11 +151,6 @@ public class PlayTable {
 		else return null;
 	}
 
-	public static void main(String[] args) throws Exception{
-		PlayTable pt = new PlayTable(-1);
-		pt.alleWuerfeln();
-		for(Dices d: pt.dieWuerfel){
-			System.out.println(d.getRollScore());
-		}
-	}
+	
+	
 }

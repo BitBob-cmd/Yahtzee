@@ -9,6 +9,8 @@ import java.util.Random;
 public class Dices extends Canvas {
 
 	private static final long serialVersionUID = 1L;
+	private int roll;
+
 	protected int rollScore, augen;
 	protected Random rnd;
 
@@ -16,20 +18,26 @@ public class Dices extends Canvas {
 	private int width;
 	private int eyeSize;
 	private int flowIndex;
+	private boolean onHold;
 
+	
 	public Dices(int flowIndex) {
-		this.rollScore = 0;
-		this.augen = 7;
-		this.rnd = new Random();
-		this.height = 50;
-		this.width = 50;
-		this.eyeSize = height / 5;
-		this.flowIndex = flowIndex;
+			
+			
 
-		setSize(this.width, this.height);
+			this.augen = 7;
+			this.rnd = new Random();
+			this.height = 50;
+			this.width = 50;
+			this.eyeSize = height / 5;
+			this.flowIndex = flowIndex;
+			this.onHold = false;
+			
+			setSize(this.width, this.height);
+			setBackground(Color.WHITE);
 
-		setBackground(Color.WHITE);
 
+	
 	}
 	public Dices(){
 		this.rollScore = 0;
@@ -45,8 +53,10 @@ public class Dices extends Canvas {
 
 	// Würfeln
 	public int roll() {
-		while (this.rollScore == 0) this.rollScore = rnd.nextInt(augen);
+		
+		this.rollScore = rnd.nextInt(augen-1)+1;
 		return this.rollScore;
+	
 	}
 
 	// Gibt das Result des gewürfelten zurück
@@ -70,8 +80,29 @@ public class Dices extends Canvas {
 	}
 
 
+		
+		// Setzt den würfel onHold 
+		
+		public void setHoldDice() {
+			
+			this.onHold = true;
+			
+		}
+		
+		public void setNoHoldDice() {
+			
+			this.onHold = false;
+		}
+		
+		public boolean getOnHold() {
+			
+			return onHold;
+		}
+		
+
 	@Override
 	public int hashCode() {
+
 
 		return Objects.hash(getRollScore(), getAugen(), rnd);
 	}
@@ -80,66 +111,62 @@ public class Dices extends Canvas {
 		return flowIndex;
 	}
 
-	@Override
-	public void paint(Graphics g) {
-		// Setzen der Zeichnungsfarbe
-		g.setColor(Color.RED);
-		// Zeichne ein Oval (also auch einen Kreis)
-		//TODO wieso nöd eifach immer de glich Würfel zeige?
-		/** Nik uskommentiert
-		 switch (roll) {
-		 case 1:
-		 g.fillOval(this.width / 2 - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize,
-		 this.eyeSize);
-		 break;
-		 case 2:
-		 g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-		 g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
-		 this.eyeSize, this.eyeSize);
-		 break;
-		 case 3:
-		 g.fillOval(this.width / 2 - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize,
-		 this.eyeSize);
-		 g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-		 g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
-		 this.eyeSize, this.eyeSize);
-		 break;
-		 case 4:
-		 g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-		 g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-		 g.fillOval(this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2, this.eyeSize, this.eyeSize);
-		 g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
-		 this.eyeSize, this.eyeSize);
-		 break;
-		 case 5:
-		 g.fillOval(this.width / 2 - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize,
-		 this.eyeSize);
-		 g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-		 g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-		 g.fillOval(this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2, this.eyeSize, this.eyeSize);
-		 g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
-		 this.eyeSize, this.eyeSize);
-		 break;
-		 case 6:
-		 g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-		 g.fillOval(this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize, this.eyeSize);
-		 g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2,
-		 this.eyeSize, this.eyeSize);
-		 g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-		 g.fillOval(this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2, this.eyeSize, this.eyeSize);
-		 g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
-		 this.eyeSize, this.eyeSize);
-		 break;
-		 }
-		 */
 
-		g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-		g.fillOval(this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize, this.eyeSize);
-		g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2,
-				this.eyeSize, this.eyeSize);
-		g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-		g.fillOval(this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2, this.eyeSize, this.eyeSize);
-		g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
-				this.eyeSize, this.eyeSize);
-	}
+		@Override
+		public void paint(Graphics g) {
+			// Setzen der Zeichnungsfarbe
+			g.setColor(Color.RED);
+			// Zeichne ein Oval (also auch einen Kreis)
+			//TODO wieso nöd eifach immer de glich Würfel zeige?
+			
+			switch (this.rollScore) {
+			case 1:
+				g.fillOval(this.width / 2 - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize,
+						this.eyeSize);
+				break;
+			case 2:
+				g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
+				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
+						this.eyeSize, this.eyeSize);
+				break;
+			case 3:
+				g.fillOval(this.width / 2 - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize,
+						this.eyeSize);
+				g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
+				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
+						this.eyeSize, this.eyeSize);
+				break;
+			case 4:
+				g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
+				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
+				g.fillOval(this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2, this.eyeSize, this.eyeSize);
+				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
+						this.eyeSize, this.eyeSize);
+				break;
+			case 5:
+				g.fillOval(this.width / 2 - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize,
+						this.eyeSize);
+				g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
+				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
+				g.fillOval(this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2, this.eyeSize, this.eyeSize);
+				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
+						this.eyeSize, this.eyeSize);
+				break;
+			case 6:
+				g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
+				g.fillOval(this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize, this.eyeSize);
+				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2,
+						this.eyeSize, this.eyeSize);
+				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
+				g.fillOval(this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2, this.eyeSize, this.eyeSize);
+				g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
+						this.eyeSize, this.eyeSize);
+				break;
+			}
+			 
+
+			
+		}
+
+	
 }
