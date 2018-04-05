@@ -3,8 +3,19 @@ package ch.uniteit.yahtzee.logic;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Insets;
+import java.awt.Shape;
 import java.util.Objects;
 import java.util.Random;
+
+import javax.swing.border.AbstractBorder;
+
+import com.apple.laf.AquaButtonExtendedTypes.SegmentedNamedBorder;
+import com.sun.javafx.geom.RoundRectangle2D;
+import com.sun.xml.internal.ws.api.Component;
+
+import javafx.scene.canvas.GraphicsContext;
 
 public class Dices extends Canvas {
 
@@ -19,6 +30,8 @@ public class Dices extends Canvas {
 	private int eyeSize;
 	private int flowIndex;
 	private boolean onHold;
+	
+	
 
 	
 	public Dices(int flowIndex) {
@@ -33,12 +46,19 @@ public class Dices extends Canvas {
 			this.flowIndex = flowIndex;
 			this.onHold = false;
 			
+			
 			setSize(this.width, this.height);
+			
+			
 			setBackground(Color.WHITE);
 
 
 	
 	}
+	
+	
+	
+	
 	public Dices(){
 		this.rollScore = 0;
 		this.augen = 7;
@@ -46,6 +66,8 @@ public class Dices extends Canvas {
 		this.height = 50;
 		this.width = 50;
 		this.eyeSize = height / 5;
+		
+		
 		setSize(this.width, this.height);
 
 		setBackground(Color.WHITE);
@@ -167,6 +189,8 @@ public class Dices extends Canvas {
 
 			
 		}
+		
+
 
 	
 }

@@ -25,7 +25,12 @@ public class GUI extends JFrame implements MouseListener {
 	// JPanel Attribute 
 	
 	private JPanel panelCenter;
+	private JPanel panelTabelle;
+	
 	private JPanel panelEast;
+	private JPanel panelNorth;
+	private JPanel panelSouth;
+	
 	private JPanel[] panelWuerfelAktivFlow;
 	private JPanel[] panelWuerfelDeaktivFlow;
 	private JPanel panelWuerfelAktiv;
@@ -41,6 +46,14 @@ public class GUI extends JFrame implements MouseListener {
 	// JTable Attribute
 
 	private JTable tabelle;
+	
+	
+	// JLabel Attribute für Bilder
+	
+	private JLabel spieler1;
+	private JLabel spieler2;
+	private Icon iconSpieler1;
+	private Icon iconSpieler2;
 
 
 	// Attribut für Playtabel
@@ -69,12 +82,30 @@ public class GUI extends JFrame implements MouseListener {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		this.panelCenter = new JPanel();
-		this.panelCenter.setLayout(new FlowLayout());
+		this.panelCenter.setLayout(new BorderLayout());
 		this.panelCenter.setBackground(new Color(28, 124, 11));
-
+		
 		this.panelEast = new JPanel();
 		this.panelEast.setLayout(new BorderLayout());
 		this.panelEast.setBackground(new Color(28, 124, 11));
+		
+		
+		this.panelNorth = new JPanel();
+		this.panelNorth.setLayout(new FlowLayout());
+		this.panelNorth.setBackground(new Color(28, 124, 11));
+		
+		this.panelSouth = new JPanel();
+		this.panelSouth.setLayout(new FlowLayout());
+		this.panelSouth.setBackground(new Color(28, 124, 11));
+		
+		
+		
+		this.panelTabelle = new JPanel();
+		this.panelTabelle.setLayout(new FlowLayout());
+		this.panelTabelle.setBackground(new Color(28, 124, 11));
+		
+
+
 
 		this.panelWuerfelAktiv = new JPanel();
 		this.panelWuerfelAktiv.setLayout(new GridLayout(5, 1));
@@ -86,6 +117,19 @@ public class GUI extends JFrame implements MouseListener {
 		this.panelWuerfelDeaktiv = new JPanel();
 		this.panelWuerfelDeaktiv.setLayout(new GridLayout(5, 1));
 		this.panelWuerfelDeaktiv.setBackground(new Color(28,124,11));
+		
+		this.iconSpieler1 = new ImageIcon(getClass().getResource("spieler1.png"));
+		this.spieler1 = new JLabel(iconSpieler1);
+		spieler1.setLayout(new FlowLayout());
+		
+		spieler1.setSize(200,200);
+		
+		
+		this.iconSpieler2 = new ImageIcon(getClass().getResource("spieler2.png"));
+		this.spieler2 = new JLabel(iconSpieler2);
+		spieler2.setLayout(new FlowLayout());
+		spieler2.setSize(200,200);
+		
 
 		this.buttons = new JPanel();
 		this.buttons.setLayout(new GridLayout(3, 1));
@@ -124,8 +168,18 @@ public class GUI extends JFrame implements MouseListener {
 
 		this.add(panelCenter, BorderLayout.CENTER);
 		this.add(panelEast, BorderLayout.EAST);
-		panelCenter.add(tabelle);
-
+		
+		panelCenter.add(panelNorth, BorderLayout.NORTH);
+		panelCenter.add(panelSouth, BorderLayout.SOUTH);
+	
+		
+		panelNorth.add(spieler1);
+		panelSouth.add(spieler2);
+		
+		panelTabelle.add(tabelle);
+		panelCenter.add(panelTabelle);
+		
+		
 		panelEast.add(buttons, BorderLayout.SOUTH);
 		panelEast.add(panelWuerfelAktiv, BorderLayout.WEST);
 		panelEast.add(panelWuerfelDeaktiv, BorderLayout.CENTER);
@@ -215,12 +269,14 @@ public class GUI extends JFrame implements MouseListener {
 	
 	public void deaktivePanelErstellen() {
 		
+		
+		
 		for (int count = 0; count < panelWuerfelDeaktivFlow.length; count++) {
 
 			panelWuerfelDeaktivFlow[count] = new JPanel();
 			panelWuerfelDeaktivFlow[count].setLayout(new FlowLayout());
 			panelWuerfelDeaktivFlow[count].setBackground(new Color(28, 124, 11));
-
+			
 			panelWuerfelDeaktiv.add(panelWuerfelDeaktivFlow[count]);
 
 		}
