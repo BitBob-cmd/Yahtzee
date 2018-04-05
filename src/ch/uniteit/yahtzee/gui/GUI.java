@@ -54,26 +54,26 @@ public class GUI extends JFrame implements MouseListener {
 	
 	
 
-	public GUI() throws Exception {
+	public GUI() {
 		// Defaultkonstruktor für erst Initialiseriung
 
 		super("Yathzee");
 		this.setSize(1024, 768);
 		this.setLayout(new BorderLayout());
-		this.getContentPane().setBackground(Color.GREEN);
+		this.getContentPane().setBackground(new Color(28, 124, 11));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		this.panelCenter = new JPanel();
 		this.panelCenter.setLayout(new FlowLayout());
-		this.panelCenter.setBackground(Color.GREEN);
+		this.panelCenter.setBackground(new Color(28, 124, 11));
 
 		this.panelEast = new JPanel();
 		this.panelEast.setLayout(new BorderLayout());
-		this.panelEast.setBackground(Color.GREEN);
+		this.panelEast.setBackground(new Color(28, 124, 11));
 
 		this.panelWuerfelAktiv = new JPanel();
 		this.panelWuerfelAktiv.setLayout(new GridLayout(5, 1));
-		this.panelWuerfelAktiv.setBackground(Color.GREEN);
+		this.panelWuerfelAktiv.setBackground(new Color(28, 124, 11));
 
 		this.panelWuerfelAktivFlow = new JPanel[5];
 		this.panelWuerfelDeaktivFlow = new JPanel[5];
@@ -84,7 +84,7 @@ public class GUI extends JFrame implements MouseListener {
 
 		this.buttons = new JPanel();
 		this.buttons.setLayout(new GridLayout(3, 1));
-		this.buttons.setBackground(Color.GREEN);
+		this.buttons.setBackground(new Color(28, 124, 11));
 
 		this.wuerfeln = new JButton("Würfeln");
 		this.neuesSpiel = new JButton("Neues Spiel");
@@ -183,7 +183,7 @@ public class GUI extends JFrame implements MouseListener {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				System.out.println(new Rules().einerResultat());
 				
 			}
 		});
