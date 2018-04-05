@@ -145,7 +145,6 @@ public class GUI extends JFrame implements MouseListener {
 			public void actionPerformed(ActionEvent e) {
 
 				spielTisch.alleWuerfeln();
-				System.out.println(spielTisch.getWuerfelScore());
 				repaint();
 			}
 		});
@@ -173,7 +172,7 @@ public class GUI extends JFrame implements MouseListener {
 			}
 		});
 	
-		spielTisch.alleWuerfeln();
+		
 		
 	}
 	
