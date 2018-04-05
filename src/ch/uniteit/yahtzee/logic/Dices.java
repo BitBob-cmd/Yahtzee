@@ -39,6 +39,17 @@ public class Dices extends Canvas {
 
 	
 	}
+	public Dices(){
+		this.rollScore = 0;
+		this.augen = 7;
+		this.rnd = new Random();
+		this.height = 50;
+		this.width = 50;
+		this.eyeSize = height / 5;
+		setSize(this.width, this.height);
+
+		setBackground(Color.WHITE);
+	}
 
 	// Würfeln
 	public int roll() {
