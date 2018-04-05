@@ -8,19 +8,20 @@ import java.util.Random;
 
 public class Dices extends Canvas {
 
-		private static final long serialVersionUID = 1L;
-		private int roll;
-		
-		protected int rollScore, augen;
-		protected Random rnd;
-		
-		private int height;
-		private int width;
-		private int eyeSize;
-		private int flowIndex;
-		private boolean onHold;
+	private static final long serialVersionUID = 1L;
+	private int roll;
 
-		public Dices(int flowIndex) {
+	protected int rollScore, augen;
+	protected Random rnd;
+
+	private int height;
+	private int width;
+	private int eyeSize;
+	private int flowIndex;
+	private boolean onHold;
+
+	
+	public Dices(int flowIndex) {
 			
 			
 			this.rollScore = 0;
@@ -34,32 +35,36 @@ public class Dices extends Canvas {
 			
 			setSize(this.width, this.height);
 
-			setBackground(Color.WHITE);
 
-		}
-		
-		// Würfeln
-		public int roll(){
-			while(this.rollScore == 0) this.rollScore = rnd.nextInt(augen);
-			return this.rollScore;
-		}
-		// Gibt das Result des gewürfelten zurück
-		public int getRollScore() {
-			return rollScore;
-		}
-		// Resultat des rolls setzen || cheat ;P
-		public void setRollScore(int rollScore) {
-			this.rollScore = rollScore;
-		}
+	
+	}
 
-		// Gibt zürck wiviel Augen ein Würfel hat
-		public int getAugen() {
-			return augen;
-		}
-		// Setzt wiviel Augen ein Würfel haben soll || cheat
-		public void setAugen(int augen) {
-			this.augen = augen;
-		}
+	// Würfeln
+	public int roll() {
+		while (this.rollScore == 0) this.rollScore = rnd.nextInt(augen);
+		return this.rollScore;
+	}
+
+	// Gibt das Result des gewürfelten zurück
+	public int getRollScore() {
+		return rollScore;
+	}
+
+	// Resultat des rolls setzen || cheat ;P
+	public void setRollScore(int rollScore) {
+		this.rollScore = rollScore;
+	}
+
+	// Gibt zürck wiviel Augen ein Würfel hat
+	public int getAugen() {
+		return augen;
+	}
+
+	// Setzt wiviel Augen ein Würfel haben soll || cheat
+	public void setAugen(int augen) {
+		this.augen = augen;
+	}
+
 
 		
 		// Setzt den würfel onHold 
@@ -75,15 +80,17 @@ public class Dices extends Canvas {
 			return this.onHold = false;
 		}
 
-		@Override
-		public int hashCode() {
+	@Override
+	public int hashCode() {
 
-			return Objects.hash(getRollScore(), getAugen(), rnd);
-		}
 
-		public int getFlowIndex() {
-			return flowIndex;
-		}
+		return Objects.hash(getRollScore(), getAugen(), rnd);
+	}
+
+	public int getFlowIndex() {
+		return flowIndex;
+	}
+
 
 		@Override
 		public void paint(Graphics g) {
@@ -141,4 +148,5 @@ public class Dices extends Canvas {
 			
 		}
 
-	}
+	
+}

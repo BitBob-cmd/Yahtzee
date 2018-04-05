@@ -100,7 +100,7 @@ public class GUI extends JFrame implements MouseListener {
 		this.tabelle.setGridColor(Color.black);
 
 		this.wuerfelAkt = new ArrayList<>();
-		this.spielTisch = new PlayTable();
+		this.spielTisch = new PlayTable(-1);
 		
 		
 		
@@ -178,7 +178,7 @@ public class GUI extends JFrame implements MouseListener {
 		});
 	
 		
-		this.spielTisch.wuerfeln();
+		this.spielTisch.alleWuerfeln();
 	}
 	
 		
@@ -221,7 +221,7 @@ public class GUI extends JFrame implements MouseListener {
 	
 	public void wuerfelErstellen() {
 		
-		for(Dices d : spielTisch.wuerfeln() ) {
+		for(Dices d : spielTisch.gibWuerfel()) {
 			
 			wuerfelAkt.add(d);
 			
@@ -255,12 +255,11 @@ public class GUI extends JFrame implements MouseListener {
 		if(panelWuerfelAktivFlow[x.getFlowIndex()] == x.getParent()) {
 			x.getParent().remove(x);
 			panelWuerfelDeaktivFlow[x.getFlowIndex()].add(x);
-			System.out.println(x.holdDice());		
+			
 		}
 		else if(panelWuerfelDeaktivFlow[x.getFlowIndex()] == x.getParent()) {
 			x.getParent().remove(x);
 			panelWuerfelAktivFlow[x.getFlowIndex()].add(x);
-			System.out.println(x.noHoldDice());
 		}
 		
 		
