@@ -81,11 +81,14 @@ public class PlayTable {
 		this.tableData = data;
 	}
 	// Würfeln, für jeden gespielten Würfel. Alle Würfel als ArrayList zurückliefert
-	public ArrayList<Dices> wuerfeln () {
-		for(Dices d: dieWuerfel) d.roll();
-		this.berechneTisch();
+	public ArrayList<Dices> gibWuerfel () {
 		if(dieWuerfel != null) return dieWuerfel;
 		else return null;
+	}
+
+	public void alleWuerfeln(){
+		for(Dices d: dieWuerfel) d.roll();
+		this.berechneTisch();
 	}
 	// Rechnet alle Würfel zusammen
 	public void berechneTisch(){
@@ -143,7 +146,7 @@ public class PlayTable {
 
 	public static void main(String[] args) throws Exception{
 		PlayTable pt = new PlayTable(-1);
-		pt.wuerfeln();
+		pt.alleWuerfeln();
 		for(Dices d: pt.dieWuerfel){
 			System.out.println(d.getRollScore());
 		}
