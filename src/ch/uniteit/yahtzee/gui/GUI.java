@@ -102,7 +102,7 @@ public class GUI extends JFrame implements MouseListener {
 		this.wuerfelAkt = new ArrayList<>();
 		this.spielTisch = new PlayTable();
 		
-		
+		this.tabelle = new ScoreTable().gibTabelle();
 		
 		
 		
