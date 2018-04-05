@@ -46,7 +46,7 @@ public class Dices extends Canvas {
 		public int getRollScore() {
 			return rollScore;
 		}
-		// Resultat des rolls setzen
+		// Resultat des rolls setzen || cheat ;P
 		public void setRollScore(int rollScore) {
 			this.rollScore = rollScore;
 		}
@@ -55,34 +55,17 @@ public class Dices extends Canvas {
 		public int getAugen() {
 			return augen;
 		}
-		// Setzt wiviel Augen ein Wüfel haben soll
+		// Setzt wiviel Augen ein Würfel haben soll || cheat
 		public void setAugen(int augen) {
 			this.augen = augen;
 		}
 
-		@Override
-		public boolean equals(Object o) {
-			if (this == o) return true;
-			if (!(o instanceof Dices)) return false;
-			Dices dice = (Dices) o;
-			return getRollScore() == dice.getRollScore() &&
-					getAugen() == dice.getAugen() &&
-					Objects.equals(rnd, dice.rnd);
-		}
+
 
 		@Override
 		public int hashCode() {
 
 			return Objects.hash(getRollScore(), getAugen(), rnd);
-		}
-
-		@Override
-		public String toString() {
-			return "Dice{" +
-					"rollScore=" + rollScore +
-					", augen=" + augen +
-					", rnd=" + rnd +
-					'}';
 		}
 
 		public int getFlowIndex() {
@@ -94,6 +77,8 @@ public class Dices extends Canvas {
 			// Setzen der Zeichnungsfarbe
 			g.setColor(Color.RED);
 			// Zeichne ein Oval (also auch einen Kreis)
+			//TODO wieso nöd eifach immer de glich Würfel zeige?
+			/** Nik uskommentiert
 			switch (roll) {
 			case 1:
 				g.fillOval(this.width / 2 - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize,
@@ -138,7 +123,16 @@ public class Dices extends Canvas {
 						this.eyeSize, this.eyeSize);
 				break;
 			}
+			 */
 
+			g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
+			g.fillOval(this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize, this.eyeSize);
+			g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2,
+					this.eyeSize, this.eyeSize);
+			g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
+			g.fillOval(this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2, this.eyeSize, this.eyeSize);
+			g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
+					this.eyeSize, this.eyeSize);
 		}
 
 	}

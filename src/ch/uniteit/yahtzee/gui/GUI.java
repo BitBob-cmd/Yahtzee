@@ -102,7 +102,7 @@ public class GUI extends JFrame implements MouseListener {
 
 	}
 
-	// Positioniert alle Elemente auf dem JFramme und setzt den Layoutmgr
+	// Positioniert alle Elemente auf dem JFrame und setzt den Layoutmgr
 
 	public void initGui() {
 
@@ -122,16 +122,15 @@ public class GUI extends JFrame implements MouseListener {
 		//ActionListener Buttons 
 		
 		wuerfeln.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				for(int count = 0 ; count < wuerfelAkt.length ; count++) {
-					
+
+				for(int count = 0 ; count < wuerfelAkt.length ; count++) {7
 					repaint();
-					
+
 				}
-				
+
 			}
 		});
 
@@ -177,18 +176,13 @@ public class GUI extends JFrame implements MouseListener {
 		
 		
 		if(panelWuerfelAktivFlow[x.getFlowIndex()] == x.getParent()) {
-			
-			System.out.println("würde in aktiv rein machen");
 			x.getParent().remove(x);
 			panelWuerfelDeaktivFlow[x.getFlowIndex()].add(x);
 			
 		}
 		else if(panelWuerfelDeaktivFlow[x.getFlowIndex()] == x.getParent()) {
-			
-			System.out.println("würde in deaktiv rein machebn");
 			x.getParent().remove(x);
 			panelWuerfelAktivFlow[x.getFlowIndex()].add(x);
-			
 		}
 		
 		
