@@ -27,7 +27,8 @@ import javax.swing.JTable;
 
 public class GUI extends JFrame implements MouseListener {
 
-	// JPanel Attribute hallo
+	// JPanel Attribute 
+	
 	private JPanel panelCenter;
 	private JPanel panelEast;
 	private JPanel[] panelWuerfelAktivFlow;
@@ -53,6 +54,10 @@ public class GUI extends JFrame implements MouseListener {
 	// Attribut für Playtabel
 	
 	private PlayTable spielTisch;
+	
+	// Attribut für Würfel Counter
+	
+	private int counterAnzahlWuerfeln;
 
 	
 	
@@ -103,7 +108,7 @@ public class GUI extends JFrame implements MouseListener {
 		this.spielTisch = new PlayTable();
 		
 		this.tabelle = new ScoreTable().gibTabelle();
-		
+		this.counterAnzahlWuerfeln = 0;
 		
 		
 		initGui();
@@ -143,15 +148,22 @@ public class GUI extends JFrame implements MouseListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-
-				spielTisch.alleWuerfeln();
 				
 				
+				if(counterAnzahlWuerfeln <3) {
+					
+					spielTisch.alleWuerfeln();
+					spielTisch.berechneTisch();
+					counterAnzahlWuerfeln++;
+					
+				}
+				else {
+					((JButton)e.getSource()).setEnabled(false);
+				}
 				
 				for(Dices d : wuerfelAkt) {
 					
-					System.out.println(d.getRollScore());
+					//System.out.println(d.getRollScore());
 					d.repaint();
 				}
 			
@@ -164,8 +176,9 @@ public class GUI extends JFrame implements MouseListener {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				
+				counterAnzahlWuerfeln = 0;
+				wuerfeln.setEnabled(true);
 			}
 		});
 	
@@ -182,7 +195,7 @@ public class GUI extends JFrame implements MouseListener {
 		});
 	
 		
-		spielTisch.alleWuerfeln();
+
 	}
 	
 		
@@ -254,20 +267,25 @@ public class GUI extends JFrame implements MouseListener {
 		
 		Dices x = ((Dices)e.getSource());
 		
-		
-		
-		if(panelWuerfelAktivFlow[x.getFlowIndex()] == x.getParent()) {
-			x.getParent().remove(x);
-			panelWuerfelDeaktivFlow[x.getFlowIndex()].add(x);
-			x.setHoldDice();
+		if(counterAnzahlWuerfeln<3) {
+			
+			if(panelWuerfelAktivFlow[x.getFlowIndex()] == x.getParent()) {
+				x.getParent().remove(x);
+				panelWuerfelDeaktivFlow[x.getFlowIndex()].add(x);
+				x.setHoldDice();
+				
+				
+			}
+			else if(panelWuerfelDeaktivFlow[x.getFlowIndex()] == x.getParent()) {
+				x.getParent().remove(x);
+				panelWuerfelAktivFlow[x.getFlowIndex()].add(x);
+				x.setNoHoldDice();
+			}
 			
 			
 		}
-		else if(panelWuerfelDeaktivFlow[x.getFlowIndex()] == x.getParent()) {
-			x.getParent().remove(x);
-			panelWuerfelAktivFlow[x.getFlowIndex()].add(x);
-			x.setNoHoldDice();
-		}
+		
+		
 		
 		
 		
