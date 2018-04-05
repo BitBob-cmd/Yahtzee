@@ -47,10 +47,7 @@ public class GUI extends JFrame implements MouseListener {
 
 	private JTable tabelle;
 
-	// Dices Attribute
 
-	private ArrayList<Dices> wuerfelAkt;
-	
 	// Attribut für Playtabel
 	
 	private PlayTable spielTisch;
@@ -101,13 +98,15 @@ public class GUI extends JFrame implements MouseListener {
 		this.neuesSpiel = new JButton("Neues Spiel");
 		this.besteListe = new JButton("Bestenliste");
 
-		this.tabelle = new JTable(20, 4);
-		this.tabelle.setGridColor(Color.black);
 
-		this.wuerfelAkt = new ArrayList<>();
+
+
+		
 		this.spielTisch = new PlayTable();
 		
 		this.tabelle = new ScoreTable().gibTabelle();
+		this.tabelle.setGridColor(Color.BLACK);
+	
 		this.counterAnzahlWuerfeln = 0;
 		
 		
@@ -136,7 +135,7 @@ public class GUI extends JFrame implements MouseListener {
 		
 		deaktivePanelErstellen();
 		aktivePanelErstelle();
-		wuerfelErstellen();
+		indexUndMouseListenerADD();
 
 		buttons.add(wuerfeln);
 		buttons.add(neuesSpiel);
@@ -161,7 +160,7 @@ public class GUI extends JFrame implements MouseListener {
 					((JButton)e.getSource()).setEnabled(false);
 				}
 				
-				for(Dices d : wuerfelAkt) {
+				for(Dices d : spielTisch.gibWuerfel()) {
 					
 					//System.out.println(d.getRollScore());
 					d.repaint();
@@ -198,7 +197,16 @@ public class GUI extends JFrame implements MouseListener {
 
 	}
 	
+	// Methode die den Aktiven Spieltisch retournieret
+	
+	public PlayTable getSpielTisch() {
 		
+		if(spielTisch != null) {
+			
+			return spielTisch;
+		}
+		return null;
+	}
 		
 		
 	// Diese Methode erstellt neue JPanel für den Deaktiven Bereich der Würfel
@@ -234,34 +242,25 @@ public class GUI extends JFrame implements MouseListener {
 		
 	}
 	
-	// Würfel erstellen und MouseListener Hinzufügen
+	//  MouseListener Hinzufügen und Indexiieren 
 	
-	public void wuerfelErstellen() {
+	public void indexUndMouseListenerADD() {
 		
-		for(Dices d : spielTisch.gibWuerfel()) {
-			
-			wuerfelAkt.add(d);
-			
-		}
 		
 		int index = 0;
 		while (index < spielTisch.getWuerfelAnzahl()) {
  
 
-			panelWuerfelAktivFlow[index].add(wuerfelAkt.get(index));
+			panelWuerfelAktivFlow[index].add(spielTisch.gibWuerfel().get(index));
 
-			wuerfelAkt.get(index).addMouseListener(this); 
+			spielTisch.gibWuerfel().get(index).addMouseListener(this); 
 
 			index++;
 		}
 
 	}
 		
-	
-	
-	
 
-	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
