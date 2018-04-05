@@ -30,11 +30,11 @@ public class PlayTable {
 		this.dieWuerfel = new ArrayList<>();
 
 
-		//int i = 0;
-		//while(i <= wuerfelAnzahl){
-		//	dieWuerfel.add(new Dices(index));
-		//	i++;
-		//}
+		int i = 0;
+		while(i <= wuerfelAnzahl){
+			dieWuerfel.add(new Dices(-1));
+			i++;
+		}
 	}
 
 	/**

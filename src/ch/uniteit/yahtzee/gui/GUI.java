@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JButton;
@@ -47,7 +48,11 @@ public class GUI extends JFrame implements MouseListener {
 
 	// Dices Attribute
 
-	private Dices[] wuerfelAkt;
+	private ArrayList<Dices> wuerfelAkt;
+	
+	// Attribut für Playtabel
+	
+	private PlayTable spielTisch;
 
 	
 	
@@ -55,7 +60,7 @@ public class GUI extends JFrame implements MouseListener {
 	
 	
 
-	public GUI() {
+	public GUI() throws Exception {
 		// Defaultkonstruktor für erst Initialiseriung
 
 		super("Yathzee");
@@ -94,10 +99,14 @@ public class GUI extends JFrame implements MouseListener {
 		this.tabelle = new JTable(20, 4);
 		this.tabelle.setGridColor(Color.black);
 
-		this.wuerfelAkt = new Dices[5];
-
+		this.wuerfelAkt = new ArrayList<>();
+		this.spielTisch = new PlayTable(5);
+		
+		
+		
 		initGui();
 
+		
 		this.setVisible(true);
 
 	}
@@ -114,6 +123,12 @@ public class GUI extends JFrame implements MouseListener {
 		panelEast.add(buttons, BorderLayout.SOUTH);
 		panelEast.add(panelWuerfelAktiv, BorderLayout.WEST);
 		panelEast.add(panelWuerfelDeaktiv, BorderLayout.CENTER);
+		
+		
+		
+		deaktivePanelErstellen();
+		aktivePanelErstelle();
+		wuerfelErstellen();
 
 		buttons.add(wuerfeln);
 		buttons.add(neuesSpiel);
@@ -126,24 +141,47 @@ public class GUI extends JFrame implements MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				for(int count = 0 ; count < wuerfelAkt.length ; count++) {7
+				for(Dices d : wuerfelAkt) {
+					
 					repaint();
 
 				}
 
 			}
 		});
-
-		for (int count = 0; count < panelWuerfelAktivFlow.length; count++) {
-
-			panelWuerfelAktivFlow[count] = new JPanel();
-			panelWuerfelAktivFlow[count].setLayout(new FlowLayout());
-			panelWuerfelAktivFlow[count].setBackground(Color.GREEN);
+	
+	
+	
+		neuesSpiel.addActionListener(new ActionListener() {
 			
-			panelWuerfelAktiv.add(panelWuerfelAktivFlow[count]);
-
-		}
-
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	
+	
+		
+		
+		besteListe.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	
+	}
+	
+		
+		
+		
+	// Diese Methode erstellt neue JPanel für den Deaktiven Bereich der Würfel
+	
+	public void deaktivePanelErstellen() {
+		
 		for (int count = 0; count < panelWuerfelDeaktivFlow.length; count++) {
 
 			panelWuerfelDeaktivFlow[count] = new JPanel();
@@ -153,20 +191,48 @@ public class GUI extends JFrame implements MouseListener {
 			panelWuerfelDeaktiv.add(panelWuerfelDeaktivFlow[count]);
 
 		}
+		
+	}
+	
+	
+	// Diese Methode erstellt neue JPanel für den Aktiven Bereich der Würfel
+	
+	public void aktivePanelErstelle() {
+		
+		for (int count = 0; count < panelWuerfelAktivFlow.length; count++) {
 
+			panelWuerfelAktivFlow[count] = new JPanel();
+			panelWuerfelAktivFlow[count].setLayout(new FlowLayout());
+			panelWuerfelAktivFlow[count].setBackground(Color.GREEN);
+			
+			panelWuerfelAktiv.add(panelWuerfelAktivFlow[count]);
+
+		}
+		
+	}
+	
+	// Würfel erstellen und MouseListener Hinzufügen
+	
+	public void wuerfelErstellen() {
+		
 		int index = 0;
-		while (index < wuerfelAkt.length) {
+		while (index < spielTisch.getWuerfelAnzahl()) {
 
-			wuerfelAkt[index] = new Dices(index);
+			wuerfelAkt.add(new Dices(index)); 
 
-			panelWuerfelAktivFlow[index].add(wuerfelAkt[index]);
+			panelWuerfelAktivFlow[index].add(wuerfelAkt.get(index));
 
-			wuerfelAkt[index].addMouseListener(this); 
+			wuerfelAkt.get(index).addMouseListener(this); 
 
 			index++;
 		}
 
 	}
+		
+	
+	
+	
+
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -223,10 +289,11 @@ public class GUI extends JFrame implements MouseListener {
 
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		GUI temp = new GUI();
 	}
+}
 
 	
-}
+
