@@ -34,6 +34,7 @@ public class Dices extends Canvas {
 			this.onHold = false;
 			
 			setSize(this.width, this.height);
+			setBackground(Color.WHITE);
 
 
 	
@@ -99,7 +100,7 @@ public class Dices extends Canvas {
 			// Zeichne ein Oval (also auch einen Kreis)
 			//TODO wieso nöd eifach immer de glich Würfel zeige?
 			
-			switch (this.roll) {
+			switch (this.rollScore) {
 			case 1:
 				g.fillOval(this.width / 2 - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize,
 						this.eyeSize);
