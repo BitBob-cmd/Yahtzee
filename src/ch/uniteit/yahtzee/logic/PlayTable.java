@@ -94,15 +94,16 @@ public class PlayTable {
 			}
 		}
 		
-		
-		this.berechneTisch();
 	}
 	// Rechnet alle Würfel zusammen
 	public void berechneTisch(){
 		for(Dices d: dieWuerfel){
-			this.wuerfelScore = this.wuerfelScore + d.getRollScore();
+			if(d.getOnHold() == true) {
+				this.wuerfelScore = this.wuerfelScore+d.getRollScore();
+				System.out.println(getWuerfelScore());
+			}
 		}
-		System.out.println("Ergebnis ist " + this.wuerfelScore);
+		//System.out.println("Ergebnis ist " + this.wuerfelScore);
 	}
 	// commong methods and functions
 	public int getWuerfelAnzahl() {

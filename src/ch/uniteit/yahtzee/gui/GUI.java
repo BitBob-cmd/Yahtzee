@@ -27,7 +27,8 @@ import javax.swing.JTable;
 
 public class GUI extends JFrame implements MouseListener {
 
-	// JPanel Attribute hallo
+	// JPanel Attribute 
+	
 	private JPanel panelCenter;
 	private JPanel panelEast;
 	private JPanel[] panelWuerfelAktivFlow;
@@ -146,12 +147,13 @@ public class GUI extends JFrame implements MouseListener {
 
 
 				spielTisch.alleWuerfeln();
+				spielTisch.berechneTisch();
 				
 				
 				
 				for(Dices d : wuerfelAkt) {
 					
-					System.out.println(d.getRollScore());
+					//System.out.println(d.getRollScore());
 					d.repaint();
 				}
 			
