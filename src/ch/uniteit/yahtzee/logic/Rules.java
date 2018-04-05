@@ -16,7 +16,7 @@ public class Rules extends PlayTable {
 	private static final long serialVersionUID = 1L;
 
 	// Attribute für Resultate oben
-	private int einerResultat;
+	protected int einerResultat;
 	private int zweierResultat;
 	private int dreierResultat;
 	private int viererResultat;
@@ -47,9 +47,11 @@ public class Rules extends PlayTable {
 	
 	private int gesamtsumme;
 	private int bonus;
+	private ArrayList<Dices> dice;
 
 	public Rules(){
 
+		this.dice = gibWuerfel();
 		this.einerResultat = 0;
 		this.zweierResultat = 0;
 		this.dreierResultat = 0;
@@ -73,14 +75,16 @@ public class Rules extends PlayTable {
 
 	}
 
+	
+
 	// Prüft ob die ausgewählten Würfel 1ner sind.
 
 	public boolean einerPruefung() {
 
 		boolean x = false;
 
-		for (Dices d : gibWuerfel()) {
-
+		for (Dices d : dice) {
+			
 			if (d.getRollScore() == 1 && d.getOnHold() == true) {
 
 				x = true;
@@ -98,7 +102,7 @@ public class Rules extends PlayTable {
 
 		if (einerPruefung() == true) {
 
-			for (Dices d : gibWuerfel()) {
+			for (Dices d : dice) {
 
 				if (d.getOnHold() == true) {
 

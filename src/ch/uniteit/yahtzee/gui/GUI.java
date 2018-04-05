@@ -181,7 +181,10 @@ public class GUI extends JFrame implements MouseListener {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				
 				System.out.println(new Rules().einerResultat());
+				
 				
 			}
 		});
@@ -314,6 +317,9 @@ public class GUI extends JFrame implements MouseListener {
 	public static void main(String[] args) throws Exception {
 
 		GUI temp = new GUI();
+		
+		
+		
 	}
 }
 
