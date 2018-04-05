@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import ch.uniteit.yahtzee.gui.GUI;
 
-public class Rules extends GUI {
+public class Rules extends PlayTable {
 
 	/**
 	 * Diese Klasse ist für die Überprüfung der Regel zuständig
@@ -48,7 +48,7 @@ public class Rules extends GUI {
 	private int gesamtsumme;
 	private int bonus;
 
-	public Rules() throws Exception {
+	public Rules(){
 
 		this.einerResultat = 0;
 		this.zweierResultat = 0;
@@ -79,7 +79,7 @@ public class Rules extends GUI {
 
 		boolean x = false;
 
-		for (Dices d : getSpielTisch().gibWuerfel()) {
+		for (Dices d : gibWuerfel()) {
 
 			if (d.getRollScore() == 1 && d.getOnHold() == true) {
 
@@ -98,7 +98,7 @@ public class Rules extends GUI {
 
 		if (einerPruefung() == true) {
 
-			for (Dices d : getSpielTisch().gibWuerfel()) {
+			for (Dices d : gibWuerfel()) {
 
 				if (d.getOnHold() == true) {
 
@@ -115,7 +115,7 @@ public class Rules extends GUI {
 
 		boolean x = false;
 
-		for (Dices d : getSpielTisch().gibWuerfel()) {
+		for (Dices d : gibWuerfel()) {
 
 			if (d.getRollScore() == 2 && d.getOnHold() == true) {
 
@@ -134,7 +134,7 @@ public class Rules extends GUI {
 
 		if (zweierPruefung() == true) {
 
-			for (Dices d : getSpielTisch().gibWuerfel()) {
+			for (Dices d : gibWuerfel()) {
 
 				if (d.getOnHold() == true) {
 
@@ -151,7 +151,7 @@ public class Rules extends GUI {
 
 		boolean x = false;
 
-		for (Dices d : getSpielTisch().gibWuerfel()) {
+		for (Dices d : gibWuerfel()) {
 
 			if (d.getRollScore() == 3 && d.getOnHold() == true) {
 
@@ -170,7 +170,7 @@ public class Rules extends GUI {
 
 		if (dreierPruefung() == true) {
 
-			for (Dices d : getSpielTisch().gibWuerfel()) {
+			for (Dices d : gibWuerfel()) {
 
 				if (d.getOnHold() == true) {
 
@@ -187,7 +187,7 @@ public class Rules extends GUI {
 
 		boolean x = false;
 
-		for (Dices d : getSpielTisch().gibWuerfel()) {
+		for (Dices d : gibWuerfel()) {
 
 			if (d.getRollScore() == 4 && d.getOnHold() == true) {
 
@@ -206,7 +206,7 @@ public class Rules extends GUI {
 
 		if (viererPruefung() == true) {
 
-			for (Dices d : getSpielTisch().gibWuerfel()) {
+			for (Dices d : gibWuerfel()) {
 
 				if (d.getOnHold() == true) {
 
@@ -223,7 +223,7 @@ public class Rules extends GUI {
 
 		boolean x = false;
 
-		for (Dices d : getSpielTisch().gibWuerfel()) {
+		for (Dices d : gibWuerfel()) {
 
 			if (d.getRollScore() == 5 && d.getOnHold() == true) {
 
@@ -242,7 +242,7 @@ public class Rules extends GUI {
 
 		if (fuenferPruefung() == true) {
 
-			for (Dices d : getSpielTisch().gibWuerfel()) {
+			for (Dices d : gibWuerfel()) {
 
 				if (d.getOnHold() == true) {
 
@@ -259,7 +259,7 @@ public class Rules extends GUI {
 
 		boolean x = false;
 
-		for (Dices d : getSpielTisch().gibWuerfel()) {
+		for (Dices d : gibWuerfel()) {
 
 			if (d.getRollScore() == 6 && d.getOnHold() == true) {
 
@@ -278,7 +278,7 @@ public class Rules extends GUI {
 
 		if (sechserPruefung() == true) {
 
-			for (Dices d : getSpielTisch().gibWuerfel()) {
+			for (Dices d : gibWuerfel()) {
 
 				if (d.getOnHold() == true) {
 
@@ -328,7 +328,7 @@ public class Rules extends GUI {
 
 		boolean x = false;
 
-		for (Dices d : getSpielTisch().gibWuerfel()) {
+		for (Dices d : gibWuerfel()) {
 
 			int tempScore;
 
@@ -355,7 +355,7 @@ public class Rules extends GUI {
 
 		if (dreierPaschPruefung() == true) {
 
-			for (Dices d : getSpielTisch().gibWuerfel()) {
+			for (Dices d : gibWuerfel()) {
 
 				if (d.getOnHold() == true) {
 
@@ -372,7 +372,7 @@ public class Rules extends GUI {
 
 		boolean x = false;
 
-		for (Dices d : getSpielTisch().gibWuerfel()) {
+		for (Dices d : gibWuerfel()) {
 
 			int tempScore;
 
@@ -399,7 +399,7 @@ public class Rules extends GUI {
 
 		if (viererPaschPruefung() == true) {
 
-			for (Dices d : getSpielTisch().gibWuerfel()) {
+			for (Dices d : gibWuerfel()) {
 
 				if (d.getOnHold() == true) {
 
@@ -418,7 +418,7 @@ public class Rules extends GUI {
 
 		int[] temp = new int[6];
 
-		for (Dices d : getSpielTisch().gibWuerfel()) {
+		for (Dices d : gibWuerfel()) {
 
 			if (d.getOnHold() == true) {
 				int s = d.getRollScore();
@@ -473,7 +473,7 @@ public class Rules extends GUI {
 
 		int[] temp = new int[6];
 
-		for (Dices d : getSpielTisch().gibWuerfel()) {
+		for (Dices d : gibWuerfel()) {
 
 			if (d.getOnHold() == true) {
 				int s = d.getRollScore();
@@ -549,7 +549,7 @@ public class Rules extends GUI {
 
 		int[] temp = new int[6];
 
-		for (Dices d : getSpielTisch().gibWuerfel()) {
+		for (Dices d : gibWuerfel()) {
 
 			if (d.getOnHold() == true) {
 				int s = d.getRollScore();
@@ -615,9 +615,9 @@ public class Rules extends GUI {
 	public boolean yathzeeKniffelPruefung() {
 
 		boolean x = true;
-		int tempDice = getSpielTisch().gibWuerfel().get(0).getRollScore();
+		int tempDice = gibWuerfel().get(0).getRollScore();
 		
-		for (Dices d : getSpielTisch().gibWuerfel()) {
+		for (Dices d : gibWuerfel()) {
 			
 			if (d.getOnHold() == true) {
 				
@@ -656,7 +656,7 @@ public class Rules extends GUI {
 
 		int resultat = 0;
 
-		for (Dices d : getSpielTisch().gibWuerfel()) {
+		for (Dices d : gibWuerfel()) {
 
 			this.chanceResulat = resultat + d.getRollScore();
 
