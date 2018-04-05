@@ -101,4 +101,5 @@ class SimpleTableDemo extends JPanel {
 			}
 		});
 	}
+
 }

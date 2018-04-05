@@ -1,12 +1,7 @@
 package ch.uniteit.yahtzee.gui;
 import ch.uniteit.yahtzee.logic.*;
 
-import java.awt.BorderLayout;
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -15,10 +10,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTable;
+import javax.swing.*;
 
 /*
  * Diese Klasse ist für die Visualisierung des spieles zuständig
@@ -66,7 +58,7 @@ public class GUI extends JFrame implements MouseListener {
 		// Defaultkonstruktor für erst Initialiseriung
 
 		super("Yathzee");
-		this.setSize(500, 500);
+		this.setSize(1024, 768);
 		this.setLayout(new BorderLayout());
 		this.getContentPane().setBackground(Color.GREEN);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -104,11 +96,16 @@ public class GUI extends JFrame implements MouseListener {
 		
 		this.spielTisch = new PlayTable();
 		
+		// tabellen zeugs
 		this.tabelle = new ScoreTable().gibTabelle();
+
 		this.tabelle.setGridColor(Color.BLACK);
 	
+
+
+
 		this.counterAnzahlWuerfeln = 0;
-		
+
 		
 		initGui();
 
@@ -124,15 +121,13 @@ public class GUI extends JFrame implements MouseListener {
 
 		this.add(panelCenter, BorderLayout.CENTER);
 		this.add(panelEast, BorderLayout.EAST);
-
 		panelCenter.add(tabelle);
 
 		panelEast.add(buttons, BorderLayout.SOUTH);
 		panelEast.add(panelWuerfelAktiv, BorderLayout.WEST);
 		panelEast.add(panelWuerfelDeaktiv, BorderLayout.CENTER);
 		
-		
-		
+
 		deaktivePanelErstellen();
 		aktivePanelErstelle();
 		indexUndMouseListenerADD();
