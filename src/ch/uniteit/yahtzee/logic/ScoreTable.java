@@ -1,15 +1,14 @@
 package ch.uniteit.yahtzee.logic;
 
 import javax.swing.*;
+import java.awt.*;
 
-public class ScoreTable {
-	protected String[] tableHeader;
-	protected Object[][] tableData;
+public class ScoreTable extends JPanel {
 	protected JTable table;
 	public ScoreTable() {
-		String[] tableHeader = {"Oberer Teil",
+		super(new GridLayout(1,0));
+		String[] columnNames = {"Oberer Teil",
 				"Du", "Gegner"};
-		this.tableHeader = tableHeader;
 
 		Object[][] data = {
 				{"Einer",new Integer(-1),new Integer(-1)},
@@ -28,15 +27,18 @@ public class ScoreTable {
 				{"Yahtzee",new Integer(-1),new Integer(-1)},
 				{"Chance",new Integer(-1),new Integer(-1)},
 				{"Zwischensumme Unten",new Integer(-1),new Integer(-1)},
-				{"Gesamtpunktzahl",new Integer(0),new Integer(0)}
+				{"Gesamtpunktzahl",new Integer(-1),new Integer(-1)}
 		};
-		this.tableData = data;
 
-		this.table = new JTable(tableData, tableHeader);
+		this.table = new JTable(data, columnNames);
+		table.setFillsViewportHeight(true);
+		table.setSelectionMode(0);
+		int rc = table.getRowCount();
 	}
 
 	public JTable gibTabelle(){
 		if(table != null) return table;
 		else return null;
 	}
+
 }
