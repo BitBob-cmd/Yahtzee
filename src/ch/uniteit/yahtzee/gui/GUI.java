@@ -144,8 +144,17 @@ public class GUI extends JFrame implements MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+
 				spielTisch.alleWuerfeln();
-				repaint();
+				
+				
+				
+				for(Dices d : wuerfelAkt) {
+					
+					System.out.println(d.getRollScore());
+					d.repaint();
+				}
+			
 			}
 		});
 	
@@ -173,7 +182,7 @@ public class GUI extends JFrame implements MouseListener {
 		});
 	
 		
-		
+		spielTisch.alleWuerfeln();
 	}
 	
 		
@@ -250,13 +259,14 @@ public class GUI extends JFrame implements MouseListener {
 		if(panelWuerfelAktivFlow[x.getFlowIndex()] == x.getParent()) {
 			x.getParent().remove(x);
 			panelWuerfelDeaktivFlow[x.getFlowIndex()].add(x);
-			System.out.println(x.holdDice());
+			x.setHoldDice();
+			
 			
 		}
 		else if(panelWuerfelDeaktivFlow[x.getFlowIndex()] == x.getParent()) {
 			x.getParent().remove(x);
 			panelWuerfelAktivFlow[x.getFlowIndex()].add(x);
-			System.out.println(x.noHoldDice());
+			x.setNoHoldDice();
 		}
 		
 		

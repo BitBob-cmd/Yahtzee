@@ -87,7 +87,14 @@ public class PlayTable {
 	}
 
 	public void alleWuerfeln(){
-		for(Dices d: dieWuerfel) d.roll();
+		
+		for(Dices d: dieWuerfel) {
+			if(d.getOnHold() == false) {
+				d.roll();
+			}
+		}
+		
+		
 		this.berechneTisch();
 	}
 	// Rechnet alle Würfel zusammen

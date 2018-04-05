@@ -24,7 +24,7 @@ public class Dices extends Canvas {
 	public Dices(int flowIndex) {
 			
 			
-			this.rollScore = 0;
+
 			this.augen = 7;
 			this.rnd = new Random();
 			this.height = 50;
@@ -42,8 +42,10 @@ public class Dices extends Canvas {
 
 	// Würfeln
 	public int roll() {
-		while (this.rollScore == 0) this.rollScore = rnd.nextInt(augen);
+		
+		this.rollScore = rnd.nextInt(augen-1)+1;
 		return this.rollScore;
+	
 	}
 
 	// Gibt das Result des gewürfelten zurück
@@ -70,16 +72,22 @@ public class Dices extends Canvas {
 		
 		// Setzt den würfel onHold 
 		
-		public boolean holdDice() {
+		public void setHoldDice() {
 			
-			return this.onHold = true;
+			this.onHold = true;
 			
 		}
 		
-		public boolean noHoldDice() {
+		public void setNoHoldDice() {
 			
-			return this.onHold = false;
+			this.onHold = false;
 		}
+		
+		public boolean getOnHold() {
+			
+			return onHold;
+		}
+		
 
 	@Override
 	public int hashCode() {
