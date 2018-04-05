@@ -17,7 +17,7 @@ public class TableModel extends AbstractTableModel {
 			{"Sechser",new Integer(0),new Integer(0)},
 			{"Bonus erreicht (62)","Nein","Nein"},
 			{"Zwischensumme Oben",new Integer(0),new Integer(0)},
-			{"","",""},
+			{"-","-","-"},
 			{"Viererparsch",new Integer(0),new Integer(0)},
 			{"Full-House",new Integer(0),new Integer(0)},
 			{"Kleine Strasse",new Integer(0),new Integer(0)},

@@ -15,11 +15,11 @@ public class ScoreTable extends JPanel {
 		this.table = new JTable(tm);
 		this.table.setFillsViewportHeight(true);
 		this.table.setSelectionMode(1);
-		Dimension td = new Dimension(800,540);
+		Dimension td = new Dimension(600,540);
 		this.table.setPreferredSize(td);
 		this.table.setRowHeight(30);
 		//this.table.setShowGrid(false);
-
+		System.out.println(table.getSelectedRow());
 	}
 
 	public JTable gibTabelle() {

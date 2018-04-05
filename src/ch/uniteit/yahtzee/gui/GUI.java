@@ -80,7 +80,7 @@ public class GUI extends JFrame implements MouseListener {
 
 		this.panelWuerfelDeaktiv = new JPanel();
 		this.panelWuerfelDeaktiv.setLayout(new GridLayout(5, 1));
-		this.panelWuerfelDeaktiv.setBackground(Color.GREEN);
+		this.panelWuerfelDeaktiv.setBackground(new Color(28,124,11));
 
 		this.buttons = new JPanel();
 		this.buttons.setLayout(new GridLayout(3, 1));
@@ -99,8 +99,6 @@ public class GUI extends JFrame implements MouseListener {
 		// tabellen zeugs
 		this.tabelle = new ScoreTable().gibTabelle();
 
-		this.tabelle.setGridColor(Color.BLACK);
-	
 
 
 
@@ -135,7 +133,7 @@ public class GUI extends JFrame implements MouseListener {
 		buttons.add(wuerfeln);
 		buttons.add(neuesSpiel);
 		buttons.add(besteListe);
-		
+
 		//ActionListener Buttons 
 		
 		wuerfeln.addActionListener(new ActionListener() {
@@ -176,7 +174,7 @@ public class GUI extends JFrame implements MouseListener {
 			}
 		});
 	
-	
+
 		
 		
 		besteListe.addActionListener(new ActionListener() {
@@ -212,7 +210,7 @@ public class GUI extends JFrame implements MouseListener {
 
 			panelWuerfelDeaktivFlow[count] = new JPanel();
 			panelWuerfelDeaktivFlow[count].setLayout(new FlowLayout());
-			panelWuerfelDeaktivFlow[count].setBackground(Color.GREEN);
+			panelWuerfelDeaktivFlow[count].setBackground(new Color(28, 124, 11));
 
 			panelWuerfelDeaktiv.add(panelWuerfelDeaktivFlow[count]);
 
@@ -229,7 +227,7 @@ public class GUI extends JFrame implements MouseListener {
 
 			panelWuerfelAktivFlow[count] = new JPanel();
 			panelWuerfelAktivFlow[count].setLayout(new FlowLayout());
-			panelWuerfelAktivFlow[count].setBackground(Color.GREEN);
+			panelWuerfelAktivFlow[count].setBackground(new Color(28, 124, 11));
 			
 			panelWuerfelAktiv.add(panelWuerfelAktivFlow[count]);
 
@@ -278,12 +276,6 @@ public class GUI extends JFrame implements MouseListener {
 			
 			
 		}
-		
-		
-		
-		
-		
-		
 	}
 
 	@Override
