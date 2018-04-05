@@ -25,7 +25,7 @@ public class Dices extends Canvas {
 			this.rollScore = 0;
 			this.augen = 7;
 			this.rnd = new Random();
-			this.roll = 
+			this.roll = 6;
 			this.height = 50;
 			this.width = 50;
 			this.eyeSize = height / 5;
