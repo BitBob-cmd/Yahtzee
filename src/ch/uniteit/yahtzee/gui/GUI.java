@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.MouseInputListener;
 
 /*
  * Diese Klasse ist für die Visualisierung des spieles zuständig
@@ -42,11 +45,13 @@ public class GUI extends JFrame implements MouseListener {
 
 	// Attribut für Playtabel
 	
-	private PlayTable spielTisch;
+	private Rules spielTisch;
 	
 	// Attribut für Würfel Counter
 	
 	private int counterAnzahlWuerfeln;
+	
+	
 
 	
 	
@@ -94,10 +99,10 @@ public class GUI extends JFrame implements MouseListener {
 
 
 		
-		this.spielTisch = new PlayTable();
+		this.spielTisch = new Rules();
 		
 		// tabellen zeugs
-		this.tabelle = new ScoreTable().gibTabelle();
+		this.tabelle = new ScoreTable(this.spielTisch).gibTabelle();
 
 
 
@@ -134,7 +139,7 @@ public class GUI extends JFrame implements MouseListener {
 		buttons.add(neuesSpiel);
 		buttons.add(besteListe);
 
-		//ActionListener Buttons 
+		//ActionListener für Buttons
 		
 		wuerfeln.addActionListener(new ActionListener() {
 
@@ -182,16 +187,17 @@ public class GUI extends JFrame implements MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				
-				System.out.println(new Rules().einerResultat());
-				
+				System.out.println(spielTisch.dreierResultat());
 				
 			}
 		});
 	
+	
 		
 
 	}
+	
+	
 	
 	// Methode die den Aktiven Spieltisch retournieret
 	
@@ -317,6 +323,7 @@ public class GUI extends JFrame implements MouseListener {
 	public static void main(String[] args) throws Exception {
 
 		GUI temp = new GUI();
+		
 		
 		
 		

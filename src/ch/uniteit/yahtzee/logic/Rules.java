@@ -16,7 +16,7 @@ public class Rules extends PlayTable {
 	private static final long serialVersionUID = 1L;
 
 	// Attribute für Resultate oben
-	protected int einerResultat;
+	private int einerResultat;
 	private int zweierResultat;
 	private int dreierResultat;
 	private int viererResultat;
@@ -47,11 +47,14 @@ public class Rules extends PlayTable {
 	
 	private int gesamtsumme;
 	private int bonus;
-	private ArrayList<Dices> dice;
 
+	//Staticfield zu Testzwecke
+	
+	
+	
 	public Rules(){
 
-		this.dice = gibWuerfel();
+
 		this.einerResultat = 0;
 		this.zweierResultat = 0;
 		this.dreierResultat = 0;
@@ -83,7 +86,7 @@ public class Rules extends PlayTable {
 
 		boolean x = false;
 
-		for (Dices d : dice) {
+		for (Dices d : gibWuerfel()) {
 			
 			if (d.getRollScore() == 1 && d.getOnHold() == true) {
 
@@ -98,15 +101,15 @@ public class Rules extends PlayTable {
 
 	public int einerResultat() {
 
-		int resultat = 0;
+		this.einerResultat = 0;
 
 		if (einerPruefung() == true) {
 
-			for (Dices d : dice) {
+			for (Dices d : gibWuerfel()) {
 
 				if (d.getOnHold() == true) {
 
-					this.einerResultat = resultat + d.getRollScore();
+					this.einerResultat += d.getRollScore();
 				}
 			}
 		}
@@ -134,7 +137,7 @@ public class Rules extends PlayTable {
 
 	public int zweierResultat() {
 
-		int resultat = 0;
+		this.zweierResultat = 0;
 
 		if (zweierPruefung() == true) {
 
@@ -142,7 +145,7 @@ public class Rules extends PlayTable {
 
 				if (d.getOnHold() == true) {
 
-					this.zweierResultat = resultat + d.getRollScore();
+					this.zweierResultat += d.getRollScore();
 				}
 			}
 		}
@@ -170,7 +173,7 @@ public class Rules extends PlayTable {
 
 	public int dreierResultat() {
 
-		int resultat = 0;
+		this.dreierResultat = 0;
 
 		if (dreierPruefung() == true) {
 
@@ -178,7 +181,7 @@ public class Rules extends PlayTable {
 
 				if (d.getOnHold() == true) {
 
-					this.dreierResultat = resultat + d.getRollScore();
+					this.dreierResultat += d.getRollScore();
 				}
 			}
 		}
@@ -206,7 +209,7 @@ public class Rules extends PlayTable {
 
 	public int viererResultat() {
 
-		int resultat = 0;
+		this.viererResultat = 0;
 
 		if (viererPruefung() == true) {
 
@@ -214,7 +217,7 @@ public class Rules extends PlayTable {
 
 				if (d.getOnHold() == true) {
 
-					this.viererResultat = resultat + d.getRollScore();
+					this.viererResultat += d.getRollScore();
 				}
 			}
 		}
@@ -242,7 +245,7 @@ public class Rules extends PlayTable {
 
 	public int fuenferResultat() {
 
-		int resultat = 0;
+		this.fuenferResultat = 0;
 
 		if (fuenferPruefung() == true) {
 
@@ -250,7 +253,7 @@ public class Rules extends PlayTable {
 
 				if (d.getOnHold() == true) {
 
-					this.fuenferResultat = resultat + d.getRollScore();
+					this.fuenferResultat += d.getRollScore();
 				}
 			}
 		}
@@ -278,7 +281,7 @@ public class Rules extends PlayTable {
 
 	public int sechserResultat() {
 
-		int resultat = 0;
+		this.secherResultat = 0;
 
 		if (sechserPruefung() == true) {
 
@@ -286,7 +289,7 @@ public class Rules extends PlayTable {
 
 				if (d.getOnHold() == true) {
 
-					this.secherResultat = resultat + d.getRollScore();
+					this.secherResultat += d.getRollScore();
 				}
 			}
 		}

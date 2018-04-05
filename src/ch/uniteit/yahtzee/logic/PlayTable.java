@@ -76,10 +76,10 @@ public class PlayTable {
 		for(Dices d: dieWuerfel){
 			if(d.getOnHold() == true) {
 				this.wuerfelScore = this.wuerfelScore+d.getRollScore();
-				System.out.println(getWuerfelScore());
+				
 			}
 		}
-		//System.out.println("Ergebnis ist " + this.wuerfelScore);
+		
 	}
 	// commong methods and functions
 	public int getWuerfelAnzahl() {
