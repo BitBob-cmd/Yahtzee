@@ -18,6 +18,7 @@ public class Dices extends Canvas {
 		private int width;
 		private int eyeSize;
 		private int flowIndex;
+		private boolean onHold;
 
 		public Dices(int flowIndex) {
 			
@@ -25,11 +26,11 @@ public class Dices extends Canvas {
 			this.rollScore = 0;
 			this.augen = 7;
 			this.rnd = new Random();
-			this.roll = 6;
 			this.height = 50;
 			this.width = 50;
 			this.eyeSize = height / 5;
 			this.flowIndex = flowIndex;
+			this.onHold = false;
 			
 			setSize(this.width, this.height);
 
@@ -60,7 +61,19 @@ public class Dices extends Canvas {
 			this.augen = augen;
 		}
 
-
+		
+		// Setzt den würfel onHold 
+		
+		public boolean holdDice() {
+			
+			return this.onHold = true;
+			
+		}
+		
+		public boolean noHoldDice() {
+			
+			return this.onHold = false;
+		}
 
 		@Override
 		public int hashCode() {
@@ -78,8 +91,8 @@ public class Dices extends Canvas {
 			g.setColor(Color.RED);
 			// Zeichne ein Oval (also auch einen Kreis)
 			//TODO wieso nöd eifach immer de glich Würfel zeige?
-			/** Nik uskommentiert
-			switch (roll) {
+			
+			switch (this.roll) {
 			case 1:
 				g.fillOval(this.width / 2 - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize,
 						this.eyeSize);
@@ -123,16 +136,9 @@ public class Dices extends Canvas {
 						this.eyeSize, this.eyeSize);
 				break;
 			}
-			 */
+			 
 
-			g.fillOval(this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-			g.fillOval(this.eyeSize / 2, this.height / 2 - this.eyeSize / 2, this.eyeSize, this.eyeSize);
-			g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height / 2 - this.eyeSize / 2,
-					this.eyeSize, this.eyeSize);
-			g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.eyeSize / 2, this.eyeSize, this.eyeSize);
-			g.fillOval(this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2, this.eyeSize, this.eyeSize);
-			g.fillOval(this.width - this.eyeSize - this.eyeSize / 2, this.height - this.eyeSize - this.eyeSize / 2,
-					this.eyeSize, this.eyeSize);
+			
 		}
 
 	}

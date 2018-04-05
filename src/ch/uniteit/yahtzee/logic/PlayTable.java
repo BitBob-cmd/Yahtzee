@@ -26,7 +26,7 @@ public class PlayTable {
 	 * Setzt die Anzahl Würfel die im Spiel sind, und generiert diese in einem array..
 	 */
 	public PlayTable() {
-		this.wuerfelAnzahl = 4;
+		this.wuerfelAnzahl = 5;
 		this.dieWuerfel = new ArrayList<>();
 
 
