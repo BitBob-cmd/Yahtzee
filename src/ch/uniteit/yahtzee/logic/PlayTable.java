@@ -25,13 +25,13 @@ public class PlayTable {
 	 * Konstruktor default.
 	 * Setzt die Anzahl Würfel die im Spiel sind, und generiert diese in einem array..
 	 */
-	public PlayTable(int index) {
+	public PlayTable() {
 		this.wuerfelAnzahl = 4;
 		this.dieWuerfel = new ArrayList<>();
 
 		int i = 0;
 		while(i <= wuerfelAnzahl) {
-			dieWuerfel.add(new Dices(index));
+			dieWuerfel.add(new Dices(i));
 			i++;
 		}
 	}
