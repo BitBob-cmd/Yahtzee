@@ -126,7 +126,7 @@ public class GUI extends JFrame implements MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				for(int count = 0 ; count < wuerfelAkt.length ; count++) {7
+				for(int count = 0 ; count < wuerfelAkt.length ; count++) {
 					repaint();
 
 				}
@@ -170,11 +170,8 @@ public class GUI extends JFrame implements MouseListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
 		Dices x = ((Dices)e.getSource());
-		
-		
-		
+
 		if(panelWuerfelAktivFlow[x.getFlowIndex()] == x.getParent()) {
 			x.getParent().remove(x);
 			panelWuerfelDeaktivFlow[x.getFlowIndex()].add(x);
@@ -184,10 +181,6 @@ public class GUI extends JFrame implements MouseListener {
 			x.getParent().remove(x);
 			panelWuerfelAktivFlow[x.getFlowIndex()].add(x);
 		}
-		
-		
-		
-		
 	}
 
 	@Override

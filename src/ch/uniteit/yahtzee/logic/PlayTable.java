@@ -9,7 +9,6 @@
  */
 package ch.uniteit.yahtzee.logic;
 
-import ch.uniteit.yahtzee.gui.GUIOld;
 
 import java.util.ArrayList;
 
@@ -21,20 +20,20 @@ public class PlayTable {
 	protected int wuerfelScore;
 	protected String[] tableHeader;
 	protected Object[][] tableData;
+
 	/**
 	 * Konstruktor default.
 	 * Setzt die Anzahl Würfel die im Spiel sind, und generiert diese in einem array..
 	 */
-	public PlayTable() {
-		this.wuerfelAnzahl = 5;
+	public PlayTable(int index) {
+		this.wuerfelAnzahl = 4;
 		this.dieWuerfel = new ArrayList<>();
 
-
-		//int i = 0;
-		//while(i <= wuerfelAnzahl){
-		//	dieWuerfel.add(new Dices(index));
-		//	i++;
-		//}
+		int i = 0;
+		while(i <= wuerfelAnzahl) {
+			dieWuerfel.add(new Dices(index));
+			i++;
+		}
 	}
 
 	/**
@@ -42,13 +41,19 @@ public class PlayTable {
 	 * Ermöglicht das Definieren der Anzahl Würfel die im Spiel sind..
 	 * @param wuerfelAnzahl
 	 */
-	public PlayTable(int wuerfelAnzahl) throws Exception {
+	public PlayTable(int wuerfelAnzahl, int index) throws Exception {
 		if(wuerfelAnzahl <= 0){
 			//TODO GUI handling?
 			String expStr = "Sie wollen ohne Würfel spielen? Like magic, haa? Leider nicht möglich.";
 			throw new Exception(expStr);
 		}
 		else {	this.wuerfelAnzahl = wuerfelAnzahl; }
+
+		int i = 0;
+		while(i <= wuerfelAnzahl) {
+			dieWuerfel.add(new Dices(index));
+			i++;
+		}
 
 		String[] tableHeader = {"Oberer Teil",
 				"Du", "Gegner"};
@@ -134,5 +139,13 @@ public class PlayTable {
 		};
 		if(tableData != null) return tableData;
 		else return null;
+	}
+
+	public static void main(String[] args) throws Exception{
+		PlayTable pt = new PlayTable(-1);
+		pt.wuerfeln();
+		for(Dices d: pt.dieWuerfel){
+			System.out.println(d.getRollScore());
+		}
 	}
 }
