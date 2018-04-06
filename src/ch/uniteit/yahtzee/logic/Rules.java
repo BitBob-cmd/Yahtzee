@@ -1,8 +1,5 @@
 package ch.uniteit.yahtzee.logic;
 
-import java.util.ArrayList;
-
-import ch.uniteit.yahtzee.gui.GUI;
 
 public class Rules extends PlayTable {
 
@@ -659,7 +656,7 @@ public class Rules extends PlayTable {
 	
 	// Liefert das Resultat der Chance
 
-	public int ResultatChance() {
+	public int resultatChance() {
 
 		int resultat = 0;
 

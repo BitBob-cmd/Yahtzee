@@ -190,12 +190,6 @@ public class GUI extends JFrame implements MouseListener {
 		
 		
 		
-
-
-
-
-
-
 		this.counterAnzahlWuerfeln = 0;
 
 		
@@ -449,9 +443,9 @@ public class GUI extends JFrame implements MouseListener {
 
 	public static void main(String[] args) throws Exception {
 
-		GUI temp = new GUI();
+		new GUI();
 		
-		
+
 		
 		
 	}

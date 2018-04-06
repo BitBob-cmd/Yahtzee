@@ -28,7 +28,6 @@ public class PlayTable {
 		this.wuerfelAnzahl = 5;
 		this.dieWuerfel = new ArrayList<Dices>();
 
-
 		int i = 0;
 		while (i <= wuerfelAnzahl) {
 			dieWuerfel.add(new Dices(i));
