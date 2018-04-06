@@ -2,12 +2,13 @@ package ch.uniteit.yahtzee.logic;
 
 
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 
 public class ScoreTableModel extends AbstractTableModel {
-	private String[] columnNames = {"Yahtzee",
+	protected String[] columnNames = {"Yahtzee",
 			"Du", "Gegner","Verspielt"};
 
-	private Object[][] data = {
+	protected Object[][] data = {
 			{"Einer",new Integer(0),new Integer(0), new Boolean(false)}, //0
 			{"Zweier",new Integer(0),new Integer(0),new Boolean(false)}, //1
 			{"Dreier",new Integer(0),new Integer(0),new Boolean(false)}, //2
@@ -53,7 +54,10 @@ public class ScoreTableModel extends AbstractTableModel {
 	}
 	// definiert welche Spalten editiert werden dürfen
 	public boolean isCellEditable(int row, int col) {
-		return false;
+		if(col < 1){
+			return false;
+		}
+		else { return true; }
 	}
 	// Wert setzen in Tabelle
 	public void setValueAt(Object value, int row, int col) {
