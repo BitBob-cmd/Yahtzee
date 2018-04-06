@@ -235,35 +235,89 @@ public class Rules extends PlayTable {
 	}
 
 
-	public Object ruleCheck(String prüfe){
+	public int ruleCheck(String prüfe){
 
 		int[] dices = new int[7];
 		for(Dices d: gibWuerfel()){
 			int score = d.getRollScore();
 			switch (score){
 				case 1:
-					dices[1] = d.getRollScore();
+					dices[1] = dices[1]++;
 					break;
 				case 2:
-					dices[2] = d.getRollScore();
+					dices[2] = dices[2]++;
 					break;
 				case 3:
-					dices[3] = d.getRollScore();
+					dices[3] = dices[3]++;
 					break;
 				case 4:
-					dices[4] = d.getRollScore();
+					dices[4] = dices[4]++;
 					break;
 				case 5:
-					dices[5] = d.getRollScore();
+					dices[5] = dices[5]++;
 					break;
 				case 6:
-					dices[6] = d.getRollScore();
+					dices[6] = dices[6]++;
 				default:
-					dices[0] = d.getRollScore();
+					dices[0] = 0;
+					break;
 			}
 		}
-		// check
-		return null;
+		// prüfe die verschiednen Spezialfälle sie equals String für ref.
+		if(prüfe.equals("Dreierpasch")){
+			if(dices[3] == 3) return 3*3;
+			return 0;
+		}
+		if(prüfe.equals("Vierpasch")){
+			if(dices[4] ==4) return 4*4;
+			return 0;
+		}
+		boolean two = false;
+		boolean three = false;
+		if(prüfe.equals("FullHouse")){
+			for(int d: dices){
+				if(d == 2) two = true;
+				if(d == 3) three = true;
+			}
+			if(two == true && three == true) return 25;
+			else return 0;
+		}
+		int str = 0;
+		if(prüfe.equals("KleineStrasse")){
+			for(int d: dices) {
+				if(d != 0) str++;
+			}
+			if(str == 4) return 30;
+			else return 0;
+		}
+
+		int str5 = 0;
+		if(prüfe.equals("GrosseStrasse")){
+			for(int d: dices) {
+				if(d != 0) str++;
+			}
+			if(str == 5) return 40;
+			else return 0;
+		}
+
+		if(prüfe.equals("Kniffel")){
+			int ref = dices[1];
+			boolean chk = true;
+			for(int d: dices){
+				if(d != ref) chk = false;
+			}
+			if(chk == true) return 50;
+			else return 0;
+		}
+
+		if(prüfe.equals("Chance")){
+			int c = 0;
+			for(int d: dices){
+				c += d;
+			}
+			return c;
+		}
+		return 0;
 	}
 
 }
