@@ -10,7 +10,7 @@ import java.awt.*;
  */
 
 public class ScoreTable extends Rules {
-	
+
 	protected JTable scoreTable;
 	protected JTable sumTable;
 	protected JTable rankTable;
@@ -19,7 +19,7 @@ public class ScoreTable extends Rules {
 
 
 	public ScoreTable() {
-		
+
 		//this.regeln = regeln;
 
 		ScoreTableModel tm = new ScoreTableModel();
@@ -60,77 +60,75 @@ public class ScoreTable extends Rules {
 		this.cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
 
 
-
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 
+				if (!e.getValueIsAdjusting()) {
 
-
-				if(!e.getValueIsAdjusting()) {
-					
-					
-				
-				int selectedData = 0;
-
-		        int sr = scoreTable.getSelectedRow();
-		        int sc = scoreTable.getSelectedColumn();
-				String selRule = scoreTable.getValueAt(sr,0 ).toString();
-				boolean isLocked = (boolean) scoreTable.getValueAt(sr,3);
-					System.out.println(isLocked + " " + sr + " " + sc);
-				int punktzahl;
-				switch (sc){
-					case 0:
-						punktzahl = einerResultat();
-						break;
-					case 1:
-						punktzahl = zweierResultat();
-						break;
-					case 2:
-						punktzahl = dreierResultat();
-						break;
-					case 3:
-						punktzahl = viererResultat();
-						break;
-					case 4:
-						punktzahl = fuenferResultat();
-						break;
-					case 5:
-						punktzahl = sechserResultat();
-						break;
-					case 6:
-						punktzahl = resultatViererPasch();
-						break;
-					case 7:
-						punktzahl = fullhouseResultat();
-						break;
-					case 8:
-						punktzahl = kleineStrasseResultat();
-						break;
-					case 9:
-						punktzahl= grosseStrasseResultat();
-						break;
-					case 10:
-						punktzahl = yathzeeKniffelResultat();
-						break;
-					case 11:
-						punktzahl = 999;
-						break;
-					default: punktzahl = 0;
-					break;
-				}
+					int sr = scoreTable.getSelectedRow();
+					int sc = scoreTable.getSelectedColumn();
+					String selRule = scoreTable.getValueAt(sr, 0).toString();
+					Object isLocked = scoreTable.getValueAt(sr, 3);
+					System.out.println(isLocked.toString());
+					System.out.println(isLocked + " " + sr + " " + sc + " " + selRule);
+					int punktzahl;
+					switch (sc) {
+						case 0:
+							punktzahl = einerResultat();
+							break;
+						case 1:
+							punktzahl = zweierResultat();
+							break;
+						case 2:
+							punktzahl = dreierResultat();
+							break;
+						case 3:
+							punktzahl = viererResultat();
+							break;
+						case 4:
+							punktzahl = fuenferResultat();
+							break;
+						case 5:
+							punktzahl = sechserResultat();
+							break;
+						case 6:
+							punktzahl = resultatViererPasch();
+							break;
+						case 7:
+							punktzahl = fullhouseResultat();
+							break;
+						case 8:
+							punktzahl = kleineStrasseResultat();
+							break;
+						case 9:
+							punktzahl = grosseStrasseResultat();
+							break;
+						case 10:
+							punktzahl = yathzeeKniffelResultat();
+							break;
+						case 11:
+							punktzahl = resultatChance();
+							break;
+						default:
+							punktzahl = 0;
+							break;
+					}
 					System.out.println("Rules liefert " + punktzahl);
+					scoreTable.setValueAt(punktzahl, sr, sc);
+/**
+					if (isLocked != false) {
+						scoreTable.setValueAt(punktzahl, sr, 1);
 
-				if(isLocked != false) {
-					scoreTable.setValueAt(punktzahl, sr, 1);
+					} else {
+						System.out.println(selRule + " ist gesperrt..");
+					}
 
+*/
 				}
-				else {System.out.println(selRule + " ist gesperrt..");}
 
+			}
+		});
 
-		      }
-
-			}});
-			
 	}
 
 	public JTable gibScoreTable() {
@@ -140,6 +138,7 @@ public class ScoreTable extends Rules {
 			return null;
 
 	}
+
 	public JTable gibSumTable() {
 		if (sumTable != null)
 			return sumTable;
@@ -147,6 +146,7 @@ public class ScoreTable extends Rules {
 			return null;
 
 	}
+
 	public JTable gibRankingTable() {
 		if (rankTable != null)
 			return rankTable;

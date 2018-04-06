@@ -1,6 +1,6 @@
 package ch.uniteit.yahtzee.gui;
 
-import ch.uniteit.tests.Test1;
+
 import ch.uniteit.yahtzee.logic.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
