@@ -70,12 +70,58 @@ public class ScoreTable extends JPanel {
 		        int sr = scoreTable.getSelectedRow();
 		        int sc = scoreTable.getSelectedColumn();
 				String selRule = scoreTable.getValueAt(sr,0 ).toString();
+				boolean isLocked = (boolean) scoreTable.getValueAt(sr,3);
+					System.out.println(isLocked + " " + sr + " " + sc);
+				int punktzahl;
+				switch (sc){
+					case 0:
+						punktzahl = regeln.einerResultat();
+						break;
+					case 1:
+						punktzahl = regeln.zweierResultat();
+						break;
+					case 2:
+						punktzahl = regeln.dreierResultat();
+						break;
+					case 3:
+						punktzahl = regeln.viererResultat();
+						break;
+					case 4:
+						punktzahl = regeln.fuenferResultat();
+						break;
+					case 5:
+						punktzahl = regeln.sechserResultat();
+						break;
+					case 6:
+						punktzahl = regeln.resultatViererPasch();
+						break;
+					case 7:
+						punktzahl = regeln.fullhouseResultat();
+						break;
+					case 8:
+						punktzahl = regeln.kleineStrasseResultat();
+						break;
+					case 9:
+						punktzahl= regeln.grosseStrasseResultat();
+						break;
+					case 10:
+						punktzahl = regeln.yathzeeKniffelResultat();
+						break;
+					case 11:
+						punktzahl = 999;
+						break;
+					default: punktzahl = 0;
+					break;
+				}
+					System.out.println("Rules liefert " + punktzahl);
+
+				if(isLocked != false) {
+					scoreTable.setValueAt(punktzahl, sr, 1);
+
+				}
+				else {System.out.println(selRule + " ist gesperrt..");}
 
 
-
-
-
-		        System.out.println(selRule + " " + selectedData);
 		      }
 
 			}});
