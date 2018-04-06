@@ -6,7 +6,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 
-public class ScoreTable extends JPanel {
+public class ScoreTable extends Rules {
+	
 	protected JTable scoreTable;
 	protected JTable sumTable;
 	protected JTable rankTable;
@@ -14,8 +15,9 @@ public class ScoreTable extends JPanel {
 	private Rules regeln;
 
 
-	public ScoreTable(Rules regeln) {
-		this.regeln = regeln;
+	public ScoreTable() {
+		
+		//this.regeln = regeln;
 
 		ScoreTableModel tm = new ScoreTableModel();
 		this.scoreTable = new JTable(tm);
@@ -75,37 +77,37 @@ public class ScoreTable extends JPanel {
 				int punktzahl;
 				switch (sc){
 					case 0:
-						punktzahl = regeln.einerResultat();
+						punktzahl = einerResultat();
 						break;
 					case 1:
-						punktzahl = regeln.zweierResultat();
+						punktzahl = zweierResultat();
 						break;
 					case 2:
-						punktzahl = regeln.dreierResultat();
+						punktzahl = dreierResultat();
 						break;
 					case 3:
-						punktzahl = regeln.viererResultat();
+						punktzahl = viererResultat();
 						break;
 					case 4:
-						punktzahl = regeln.fuenferResultat();
+						punktzahl = fuenferResultat();
 						break;
 					case 5:
-						punktzahl = regeln.sechserResultat();
+						punktzahl = sechserResultat();
 						break;
 					case 6:
-						punktzahl = regeln.resultatViererPasch();
+						punktzahl = resultatViererPasch();
 						break;
 					case 7:
-						punktzahl = regeln.fullhouseResultat();
+						punktzahl = fullhouseResultat();
 						break;
 					case 8:
-						punktzahl = regeln.kleineStrasseResultat();
+						punktzahl = kleineStrasseResultat();
 						break;
 					case 9:
-						punktzahl= regeln.grosseStrasseResultat();
+						punktzahl= grosseStrasseResultat();
 						break;
 					case 10:
-						punktzahl = regeln.yathzeeKniffelResultat();
+						punktzahl = yathzeeKniffelResultat();
 						break;
 					case 11:
 						punktzahl = 999;

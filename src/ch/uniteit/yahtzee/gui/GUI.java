@@ -72,13 +72,16 @@ public class GUI extends JFrame implements MouseListener {
 	private JLabel spieler2;
 	private Icon iconSpieler1;
 	private Icon iconSpieler2;
+	
+	
 		
 
 	// Attribut für Playtabel
 	
-	private Rules spielTisch;
+	private ScoreTable spielTisch;
 	
 	// Attribut für Würfel Counter
+	
 	
 	private int counterAnzahlWuerfeln;
 	
@@ -103,6 +106,7 @@ public class GUI extends JFrame implements MouseListener {
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
+		this.spielTisch = new ScoreTable();
 
 		this.panelCenter = new JPanel(); 
 		this.panelCenter.setLayout(new BorderLayout());
@@ -131,10 +135,6 @@ public class GUI extends JFrame implements MouseListener {
 		this.panelEastNorthplatzhalter = new JPanel();
 		this.panelEastNorthplatzhalter.setLayout(new FlowLayout());
 		this.panelEastNorthplatzhalter.setBackground(new Color(98, 69, 11));
-
-		
-		//panelEast.setLayout(new FlowLayout());
-		//panelEast.add(spielTischlabel);
 		
 		
 		this.panelNorth = new JPanel();
@@ -159,10 +159,10 @@ public class GUI extends JFrame implements MouseListener {
 
 
 		this.panelTabelle.setBackground(new Color(28, 124, 11));
-
-		this.tabelle = new ScoreTable(this.spielTisch).gibScoreTable();
-		this.sumTabelle = new ScoreTable(this.spielTisch).gibSumTable();
-		this.rankTabelle = new ScoreTable(this.spielTisch).gibRankingTable();
+		
+		this.tabelle = spielTisch.gibScoreTable();
+		this.sumTabelle = spielTisch.gibSumTable();
+		this.rankTabelle = spielTisch.gibRankingTable();
 		this.tabelle.setFillsViewportHeight(true);
 		this.spTabelle = new JScrollPane(this.tabelle);
 		this.sumTabelle.setFillsViewportHeight(true);
@@ -173,22 +173,20 @@ public class GUI extends JFrame implements MouseListener {
 
 		this.panelWuerfelAktiv = new JPanel();
 		this.panelWuerfelAktiv.setLayout(new GridLayout(5, 1));
-		//this.panelWuerfelAktiv.setBackground(new Color(28, 124, 11));
 
 		this.panelWuerfelAktivFlow = new JPanel[5];
 		this.panelWuerfelDeaktivFlow = new JPanel[5];
 
 		this.panelWuerfelDeaktiv = new JPanel();
 		this.panelWuerfelDeaktiv.setLayout(new GridLayout(5, 1));
-		//this.panelWuerfelDeaktiv.setBackground(new Color(28,124,11));
+
 		
 		this.iconSpieler1 = new ImageIcon(getClass().getResource("spieler1.png"));
 		this.spieler1 = new JLabel(iconSpieler1);
 		spieler1.setLayout(new FlowLayout());
 
 		
-		
-		this.iconSpieler2 = new ImageIcon(getClass().getResource("spieler2.png"));
+			this.iconSpieler2 = new ImageIcon(getClass().getResource("spieler2.png"));
 		this.spieler2 = new JLabel(iconSpieler2);
 		spieler2.setLayout(new FlowLayout());
 
@@ -205,7 +203,7 @@ public class GUI extends JFrame implements MouseListener {
 
 
 		
-		this.spielTisch = new Rules();
+		
 		
 
 
@@ -234,9 +232,6 @@ public class GUI extends JFrame implements MouseListener {
 		this	.add(panelCenter, BorderLayout.CENTER);
 		this.add(panelEastFrame, BorderLayout.EAST);
 
-		
-
-		
 		panelCenter.add(panelNorth, BorderLayout.NORTH);
 		panelCenter.add(panelSouth, BorderLayout.SOUTH);
 	
@@ -248,10 +243,11 @@ public class GUI extends JFrame implements MouseListener {
 		panelCenter.add(panelTabelle);
 
 		
-
-	
-		panelEastFrame.add(buttons, BorderLayout.SOUTH);
+		panelEastNorthplatzhalter.add(spieler1);
 		panelEastFrame.add(panelEastNorthplatzhalter, BorderLayout.NORTH);
+		
+		
+		panelEastFrame.add(buttons, BorderLayout.SOUTH);
 		panelEast.add(wuerfel);
 		panelEastFrame.add(panelEast, BorderLayout.EAST);
 
