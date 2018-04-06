@@ -70,7 +70,7 @@ public class ScoreTable extends Rules {
 					
 					
 				
-				int selectedData = 0;
+				
 
 		        int sr = scoreTable.getSelectedRow();
 		        int sc = scoreTable.getSelectedColumn();

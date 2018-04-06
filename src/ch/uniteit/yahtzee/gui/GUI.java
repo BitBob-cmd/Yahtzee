@@ -1,6 +1,6 @@
 package ch.uniteit.yahtzee.gui;
 
-import ch.uniteit.tests.Test1;
+
 import ch.uniteit.yahtzee.logic.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -37,7 +37,6 @@ public class GUI extends JFrame implements MouseListener {
 	
 	private JPanel panelCenter;
 	private JPanel panelTabelle;
-	
 	private JPanel panelEastFrame;
 	private JPanel panelEast;
 	private JPanel  panelEastNorthplatzhalter;
@@ -99,8 +98,6 @@ public class GUI extends JFrame implements MouseListener {
 		// GUI elemente und Buttons und Listener
 		super("Yathzee");
 		
-
-		
 		this.setSize(1024, 768);
 		this.setLayout(new BorderLayout());
 		this.getContentPane().setBackground(new Color(28, 124, 11));
@@ -111,17 +108,9 @@ public class GUI extends JFrame implements MouseListener {
 
 		this.panelCenter = new JPanel(); 
 		this.panelCenter.setLayout(new BorderLayout());
-
-		//this.panelCenter.setBackground(new Color(28, 124, 11));
-		
 		
 		this.panelEastFrame = new JPanel();
 		this.panelEastFrame.setLayout(new BorderLayout());
-		//this.panelEastFrame.setOpaque(false);
-		//this.panelEastFrame.setBackground(new Color(28, 124, 11));
-		
-		
-		
 
 		this.panelCenter.setBackground(new Color(28, 124, 11));
 		this.panelCenter.setOpaque(true);
@@ -140,20 +129,15 @@ public class GUI extends JFrame implements MouseListener {
 		
 		this.panelNorth = new JPanel();
 		this.panelNorth.setLayout(new FlowLayout());
-		//this.panelNorth.setBackground(new Color(28, 124, 11));
-		
+
 		this.panelSouth = new JPanel();
 		this.panelSouth.setLayout(new FlowLayout());
-		//this.panelSouth.setBackground(new Color(28, 124, 11));
-		
-		
-		
+
+				
 		this.panelTabelle = new JPanel();
 		this.panelTabelle.setLayout(new FlowLayout());
 
-		//this.panelTabelle.setBackground(new Color(28, 124, 11));
-		
-		
+				
 		this.wuerfel = new JPanel();
 		this.wuerfel.setLayout(new GridLayout(1, 2));
 		this.wuerfel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
