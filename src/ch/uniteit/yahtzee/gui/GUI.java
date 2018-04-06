@@ -75,6 +75,8 @@ public class GUI extends JFrame implements MouseListener {
 	private Icon iconSpieler2;
 	
 	private JLabel aktuellerSpieler;
+	
+	private JLabel klickCounter;
 
 
 	// Attribut für Playtabel
@@ -171,6 +173,8 @@ public class GUI extends JFrame implements MouseListener {
 		
 		this.aktuellerSpieler = new JLabel("Legen Wir Loos!!");
 		aktuellerSpieler.setLayout(new FlowLayout());
+		
+
 
 
 		this.buttons = new JPanel();
@@ -261,7 +265,7 @@ public class GUI extends JFrame implements MouseListener {
 			public void actionPerformed(ActionEvent e) {
 
 
-				if (counterAnzahlWuerfeln < 100) {
+				if (counterAnzahlWuerfeln < 2) {
 
 					spielTisch.alleWuerfeln();
 					spielTisch.berechneTisch();
@@ -271,7 +275,7 @@ public class GUI extends JFrame implements MouseListener {
 					((JButton) e.getSource()).setEnabled(false);
 					if (getSpielTisch().getSpielerZug() == 1) {
 						
-						aktuellerSpieler.setText("Dein Gegner ist an der Reihe");
+						aktuellerSpieler.setText("Dein Gegner ist an der Reihe er hat noch "+counterAnzahlWuerfeln+"klicks");
 						
 						getSpielTisch().setSpielerZug(3);
 						
@@ -281,7 +285,8 @@ public class GUI extends JFrame implements MouseListener {
 						aktuellerSpieler.setText("Du bist an der Reihe");
 					}
 					
-					
+					((JButton) e.getSource()).setEnabled(true);
+					counterAnzahlWuerfeln = 0;
 				}
 
 				for (Dices d : spielTisch.gibWuerfel()) {

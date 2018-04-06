@@ -66,5 +66,7 @@ public class ScoreTableModel extends AbstractTableModel {
 		data[row][col] = value;
 		fireTableCellUpdated(row, col);
 	}
+	
+	
 }
 

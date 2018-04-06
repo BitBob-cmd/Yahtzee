@@ -149,6 +149,8 @@ public class ScoreTable extends Rules {
 							break;
 					}
 					
+				
+					
 					if(getSpielerZug() ==1) {
 						
 						
