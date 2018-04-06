@@ -86,14 +86,17 @@ public class Rules extends PlayTable {
 		
 		for (Dices d : gibWuerfel()){
 			
+
 			if(d.getRollScore() == 1) {
 				
 				x[0] += d.getRollScore();
+
+		
 			}
+
 		}
-			this.einerResultat = x[0];
-			return x[0];
-			
+		this.einerResultat =  x[0];
+		return x[0];
 	}
 
 
@@ -572,7 +575,4 @@ public class Rules extends PlayTable {
 		this.gesamtsumme = summeOben+summeUnten+bonus;
 		return this.gesamtsumme;
 	}
-	
-	
-
 }

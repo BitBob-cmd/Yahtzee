@@ -19,10 +19,11 @@ public class ScoreTableModel extends AbstractTableModel {
 			//{"Bonus erreicht (62)","Nein","Nein"},
 			//{"Zwischensumme Oben",new Integer(0),new Integer(0)},new Boolean(false),
 
-			{"Viererparsch",new Integer(0),new Integer(0),new Boolean(false)}, //6
-			{"Full-House",new Integer(0),new Integer(0),new Boolean(false)}, //7
-			{"Kleine Strasse",new Integer(0),new Integer(0),new Boolean(false)}, //8
-			{"Grosse Strasse",new Integer(0),new Integer(0),new Boolean(false)}, //9
+			{"dreierpasch",new Integer(0),new Integer(0),new Boolean(false)}, //6
+			{"Viererpasch",new Integer(0),new Integer(0),new Boolean(false)}, //7
+			{"Full-House",new Integer(0),new Integer(0),new Boolean(false)}, //8
+			{"Kleine Strasse",new Integer(0),new Integer(0),new Boolean(false)}, //9
+			{"Grosse Strasse",new Integer(0),new Integer(0),new Boolean(false)}, //10
 			{"Yahtzee",new Integer(0),new Integer(0),new Boolean(false)}, //10
 			{"Chance",new Integer(0),new Integer(0),new Boolean(false)} //11
 

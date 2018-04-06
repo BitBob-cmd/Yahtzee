@@ -18,6 +18,7 @@ public class PlayTable {
 	protected int wuerfelAnzahl;
 	protected ArrayList<Dices> dieWuerfel;
 	protected int wuerfelScore;
+	protected int spielerZug; // hät den Spaltenindex des Spieler der gerade dran ist
 
 
 	/**
@@ -27,7 +28,7 @@ public class PlayTable {
 	public PlayTable() {
 		this.wuerfelAnzahl = 5;
 		this.dieWuerfel = new ArrayList<Dices>();
-
+		this.spielerZug = 1;
 		int i = 0;
 		while (i <wuerfelAnzahl) {
 			dieWuerfel.add(new Dices(i));
@@ -101,5 +102,11 @@ public class PlayTable {
 		this.wuerfelScore = wuerfelScore;
 	}
 
+	public int getSpielerZug() {
+		return spielerZug;
+	}
 
+	public void setSpielerZug(int spielerZug) {
+		this.spielerZug = spielerZug;
+	}
 }
