@@ -151,7 +151,8 @@ public class ScoreTable extends Rules {
 					
 					if(getSpielerZug() ==1) {
 						
-						sumTable.setValueAt(bonus(), 1, 0);
+						
+						sumTable.setValueAt(bonus(), 0, 1);
 						sumTable.setValueAt(summeOben(), 1, 1);
 						sumTable.setValueAt(summeUnten(), 1, 2);
 					

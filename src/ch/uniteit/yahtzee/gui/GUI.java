@@ -73,6 +73,8 @@ public class GUI extends JFrame implements MouseListener {
 	private JLabel spieler2;
 	private Icon iconSpieler1;
 	private Icon iconSpieler2;
+	
+	private JLabel aktuellerSpieler;
 
 
 	// Attribut für Playtabel
@@ -166,6 +168,9 @@ public class GUI extends JFrame implements MouseListener {
 		this.iconSpieler2 = new ImageIcon(getClass().getResource("spieler2.png"));
 		this.spieler2 = new JLabel(iconSpieler2);
 		spieler2.setLayout(new FlowLayout());
+		
+		this.aktuellerSpieler = new JLabel("Legen Wir Loos!!");
+		aktuellerSpieler.setLayout(new FlowLayout());
 
 
 		this.buttons = new JPanel();
@@ -201,6 +206,7 @@ public class GUI extends JFrame implements MouseListener {
 
 
 		panelSouth.add(spieler2);
+		panelSouth.add(aktuellerSpieler);
 
 
 		panelCenter.add(panelTabelle);
@@ -263,8 +269,18 @@ public class GUI extends JFrame implements MouseListener {
 
 				} else {
 					((JButton) e.getSource()).setEnabled(false);
-					if (getSpielTisch().getSpielerZug() == 1) getSpielTisch().setSpielerZug(3);
-					else getSpielTisch().setSpielerZug(1);
+					if (getSpielTisch().getSpielerZug() == 1) {
+						
+						aktuellerSpieler.setText("Dein Gegner ist an der Reihe");
+						
+						getSpielTisch().setSpielerZug(3);
+						
+					} 
+					else {
+						getSpielTisch().setSpielerZug(1);
+						aktuellerSpieler.setText("Du bist an der Reihe");
+					}
+					
 					
 				}
 
