@@ -199,7 +199,7 @@ public class GUI extends JFrame implements MouseListener {
 		panelCenter.add(panelSouth, BorderLayout.SOUTH);
 
 
-		panelNorth.add(spieler1);
+
 		panelSouth.add(spieler2);
 
 
@@ -265,11 +265,12 @@ public class GUI extends JFrame implements MouseListener {
 					((JButton) e.getSource()).setEnabled(false);
 					if (getSpielTisch().getSpielerZug() == 1) getSpielTisch().setSpielerZug(3);
 					else getSpielTisch().setSpielerZug(1);
+					
 				}
 
 				for (Dices d : spielTisch.gibWuerfel()) {
 
-					//System.out.println(d.getRollScore());
+					
 					d.repaint();
 				}
 

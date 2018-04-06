@@ -4,6 +4,9 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.JTableHeader;
+
+import com.sun.nio.file.SensitivityWatchEventModifier;
+
 import java.awt.*;
 /*
  * Diese Klasse ist für das Auswerten und einfüllen der Tabelle zuständig
@@ -145,6 +148,21 @@ public class ScoreTable extends Rules {
 							punktzahl = 0;
 							break;
 					}
+					
+					if(getSpielerZug() ==1) {
+						
+						sumTable.setValueAt(bonus(), 1, 0);
+						sumTable.setValueAt(summeOben(), 1, 1);
+						sumTable.setValueAt(summeUnten(), 1, 2);
+					
+						
+					}
+					else {
+						sumTable.setValueAt(bonus(), 1, 1);
+						sumTable.setValueAt(summeOben(), 1, 2);
+						sumTable.setValueAt(summeUnten(), 1, 3);
+					}
+
 					System.out.println("Rules liefert " + punktzahl);
 					scoreTable.setValueAt(punktzahl, sr, sc);
 					String isLocked = (scoreTable.getValueAt(sr, getSpielerZug()).toString());
