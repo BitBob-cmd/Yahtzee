@@ -261,7 +261,7 @@ public class GUI extends JFrame implements MouseListener {
 			public void actionPerformed(ActionEvent e) {
 
 
-				if (counterAnzahlWuerfeln < 2) {
+				if (counterAnzahlWuerfeln < 100) {
 
 					spielTisch.alleWuerfeln();
 					spielTisch.berechneTisch();
