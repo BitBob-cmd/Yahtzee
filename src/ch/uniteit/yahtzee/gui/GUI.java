@@ -1,4 +1,6 @@
 package ch.uniteit.yahtzee.gui;
+
+import ch.uniteit.tests.Test1;
 import ch.uniteit.yahtzee.logic.*;
 
 import java.awt.*;
@@ -7,10 +9,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.MouseInputListener;
@@ -22,21 +29,27 @@ import javax.swing.event.MouseInputListener;
 
 public class GUI extends JFrame implements MouseListener {
 
+	// JFrame Attribute
+	
+	private JFrame mainFrame;
+	
 	// JPanel Attribute 
 	
 	private JPanel panelCenter;
 	private JPanel panelTabelle;
 	
+	private JPanel panelEastFrame;
 	private JPanel panelEast;
+	private JPanel  panelEastNorthplatzhalter;
 	private JPanel panelNorth;
 	private JPanel panelSouth;
-	
-	private JPanel panelSpielTisch;
 	
 	private JPanel[] panelWuerfelAktivFlow;
 	private JPanel[] panelWuerfelDeaktivFlow;
 	private JPanel panelWuerfelAktiv;
 	private JPanel panelWuerfelDeaktiv;
+	
+	private JPanel wuerfel;
 	private JPanel buttons;
 
 	// JButton Attribute
@@ -56,6 +69,11 @@ public class GUI extends JFrame implements MouseListener {
 	private JLabel spieler2;
 	private Icon iconSpieler1;
 	private Icon iconSpieler2;
+	
+
+	private JLabel spielTischlabel;
+	private Icon spielTischbkg;
+	
 
 
 	// Attribut für Playtabel
@@ -74,70 +92,90 @@ public class GUI extends JFrame implements MouseListener {
 	
 	
 
+	@SuppressWarnings("static-access")
 	public GUI() {
 		// Defaultkonstruktor für erst Initialiseriung
-
 		super("Yathzee");
+		
+
+		
 		this.setSize(1024, 768);
 		this.setLayout(new BorderLayout());
 		this.getContentPane().setBackground(new Color(28, 124, 11));
+		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		this.panelCenter = new JPanel();
+		this.panelCenter = new JPanel(); 
 		this.panelCenter.setLayout(new BorderLayout());
-		this.panelCenter.setBackground(new Color(28, 124, 11));
+		//this.panelCenter.setBackground(new Color(28, 124, 11));
+		
+		
+		this.panelEastFrame = new JPanel();
+		this.panelEastFrame.setLayout(new BorderLayout());
+		//this.panelEastFrame.setOpaque(false);
+		//this.panelEastFrame.setBackground(new Color(28, 124, 11));
+		
+		
 		
 		this.panelEast = new JPanel();
-		this.panelEast.setLayout(new BorderLayout());
-		this.panelEast.setBackground(new Color(28, 124, 11));
+		this.panelEast.setLayout(new FlowLayout());
+		this.panelEast.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+		this.panelEast.setBackground(new Color(98, 69, 11));
 		
-		this.panelSpielTisch = new JPanel();
-		this.panelSpielTisch.setLayout(new BorderLayout());
+		this.panelEastNorthplatzhalter = new JPanel();
+		this.panelEastNorthplatzhalter.setLayout(new FlowLayout());
+		this.panelEastNorthplatzhalter.setBackground(new Color(98, 69, 11));
+
+		
+		//panelEast.setLayout(new FlowLayout());
+		//panelEast.add(spielTischlabel);
 		
 		
 		this.panelNorth = new JPanel();
 		this.panelNorth.setLayout(new FlowLayout());
-		this.panelNorth.setBackground(new Color(28, 124, 11));
+		//this.panelNorth.setBackground(new Color(28, 124, 11));
 		
 		this.panelSouth = new JPanel();
 		this.panelSouth.setLayout(new FlowLayout());
-		this.panelSouth.setBackground(new Color(28, 124, 11));
+		//this.panelSouth.setBackground(new Color(28, 124, 11));
 		
 		
 		
 		this.panelTabelle = new JPanel();
 		this.panelTabelle.setLayout(new FlowLayout());
-		this.panelTabelle.setBackground(new Color(28, 124, 11));
+		//this.panelTabelle.setBackground(new Color(28, 124, 11));
 		
-
+		
+		this.wuerfel = new JPanel();
+		this.wuerfel.setLayout(new GridLayout(1, 2));
+		this.wuerfel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 
 		this.panelWuerfelAktiv = new JPanel();
 		this.panelWuerfelAktiv.setLayout(new GridLayout(5, 1));
-		this.panelWuerfelAktiv.setBackground(new Color(28, 124, 11));
+		//this.panelWuerfelAktiv.setBackground(new Color(28, 124, 11));
 
 		this.panelWuerfelAktivFlow = new JPanel[5];
 		this.panelWuerfelDeaktivFlow = new JPanel[5];
 
 		this.panelWuerfelDeaktiv = new JPanel();
 		this.panelWuerfelDeaktiv.setLayout(new GridLayout(5, 1));
-		this.panelWuerfelDeaktiv.setBackground(new Color(28,124,11));
+		//this.panelWuerfelDeaktiv.setBackground(new Color(28,124,11));
 		
 		this.iconSpieler1 = new ImageIcon(getClass().getResource("spieler1.png"));
 		this.spieler1 = new JLabel(iconSpieler1);
 		spieler1.setLayout(new FlowLayout());
-		spieler1.setSize(200,200);
+
 		
 		
 		this.iconSpieler2 = new ImageIcon(getClass().getResource("spieler2.png"));
 		this.spieler2 = new JLabel(iconSpieler2);
 		spieler2.setLayout(new FlowLayout());
-		spieler2.setSize(200,200);
-		
+
 
 		this.buttons = new JPanel();
 		this.buttons.setLayout(new GridLayout(3, 1));
-		this.buttons.setBackground(new Color(28, 124, 11));
+		this.buttons.setBackground(Color.GRAY);
 
 		this.wuerfeln = new JButton("Würfeln");
 		this.neuesSpiel = new JButton("Neues Spiel");
@@ -158,6 +196,8 @@ public class GUI extends JFrame implements MouseListener {
 		this.counterAnzahlWuerfeln = 0;
 
 		
+	
+		
 		initGui();
 
 		
@@ -170,8 +210,12 @@ public class GUI extends JFrame implements MouseListener {
 
 	public void initGui() {
 
-		this.add(panelCenter, BorderLayout.CENTER);
-		this.add(panelEast, BorderLayout.EAST);
+		
+		this	.add(panelCenter, BorderLayout.CENTER);
+		this.add(panelEastFrame, BorderLayout.EAST);
+
+		
+
 		
 		panelCenter.add(panelNorth, BorderLayout.NORTH);
 		panelCenter.add(panelSouth, BorderLayout.SOUTH);
@@ -183,11 +227,18 @@ public class GUI extends JFrame implements MouseListener {
 		panelTabelle.add(tabelle);
 		panelCenter.add(panelTabelle);
 		
+
+	
+		panelEastFrame.add(buttons, BorderLayout.SOUTH);
+		panelEastFrame.add(panelEastNorthplatzhalter, BorderLayout.NORTH);
+		panelEast.add(wuerfel);
+		panelEastFrame.add(panelEast, BorderLayout.EAST);
 		
-		panelEast.add(buttons, BorderLayout.SOUTH);
-		panelEast.add(panelSpielTisch, BorderLayout.CENTER);
-		panelSpielTisch.add(panelWuerfelAktiv, BorderLayout.WEST);
-		panelSpielTisch.add(panelWuerfelDeaktiv, BorderLayout.CENTER);
+		
+		
+		
+		wuerfel.add(panelWuerfelAktiv);
+		wuerfel.add(panelWuerfelDeaktiv);
 		
 
 		deaktivePanelErstellen();
@@ -371,14 +422,7 @@ public class GUI extends JFrame implements MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-	/*
-	 * Interne Klasse für die Instanzierung und Zeichnung der Würfel
-	 * 
-	 * 
-	 */
-
+	
 	
 
 	public static void main(String[] args) throws Exception {
