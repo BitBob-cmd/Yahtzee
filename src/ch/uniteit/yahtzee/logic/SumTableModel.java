@@ -8,7 +8,7 @@ public class SumTableModel extends AbstractTableModel {
 			"Du", "Gegner"};
 
 	private Object[][] data = {
-			{"Bonus erhalten (62)",new Integer(0),new Integer(0)},
+			{"Bonus erhalten (63)",new Integer(0),new Integer(0)},
 			{"Zwischensumme Oben",new Integer(0),new Integer(0)},
 			{"Zwischensumme Unten",new Integer(0),new Integer(0)},
 			{"Gesamtpunktzahl",new Integer(0),new Integer(0)}
