@@ -47,6 +47,7 @@ public class Dices extends Canvas {
 			this.onHold = false;
 			
 			
+			
 			setSize(this.width, this.height);
 			
 			
@@ -71,6 +72,7 @@ public class Dices extends Canvas {
 		setSize(this.width, this.height);
 
 		setBackground(Color.WHITE);
+		
 	}
 
 	// Würfeln

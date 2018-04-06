@@ -1,6 +1,5 @@
 package ch.uniteit.yahtzee.gui;
 
-
 import ch.uniteit.yahtzee.logic.*;
 
 import java.awt.*;
@@ -22,7 +21,6 @@ import javax.swing.event.MouseInputListener;
 
 import static java.awt.Font.BOLD;
 
-
 /*
  * Diese Klasse ist für die Visualisierung des spieles zuständig
  * @author Besnik Istrefi & Fernando Maniglio
@@ -34,7 +32,7 @@ public class GUI extends JFrame implements MouseListener {
 
 	private JFrame mainFrame;
 
-	// JPanel Attribute 
+	// JPanel Attribute
 
 	private JPanel panelCenter;
 	private JPanel panelTabelle;
@@ -73,11 +71,12 @@ public class GUI extends JFrame implements MouseListener {
 	private JLabel spieler2;
 	private Icon iconSpieler1;
 	private Icon iconSpieler2;
-	
-	private JLabel aktuellerSpieler;
-	
-	private JLabel klickCounter;
 
+	private JLabel aktuellerSpieler;
+
+	// Attribute für die Visualisierung der restliche Würfelmöglichkeiten
+	private JLabel klickCounter;
+	private JPanel wuerfelCount;
 
 	// Attribut für Playtabel
 
@@ -85,21 +84,25 @@ public class GUI extends JFrame implements MouseListener {
 
 	// Attribut für Würfel Counter
 
-
 	private int counterAnzahlWuerfeln;
-
+	private int counterZaehler;
+	private Dices diceZaheler;
 
 	public GUI() {
 		// Defaultkonstruktor für erst Initialiseriung
-		// GUI elemente und Buttons und Listener
+		// JFrame Attribute Setzen und instanzieren
+
 		super("Yathzee");
 		this.setSize(1024, 768);
 		this.setLayout(new BorderLayout());
 		this.getContentPane().setBackground(new Color(28, 124, 11));
-
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
+
+		// Spieltisch instanzieren
 		this.spielTisch = new ScoreTable();
+
+		// JPanel instanzieren und Layoutmanager festlegen
 
 		this.panelCenter = new JPanel();
 		this.panelCenter.setLayout(new BorderLayout());
@@ -110,7 +113,6 @@ public class GUI extends JFrame implements MouseListener {
 		this.panelCenter.setBackground(new Color(28, 124, 11));
 		this.panelCenter.setOpaque(true);
 
-
 		this.panelEast = new JPanel();
 		this.panelEast.setLayout(new FlowLayout());
 		this.panelEast.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
@@ -120,16 +122,14 @@ public class GUI extends JFrame implements MouseListener {
 		this.panelEastNorthplatzhalter.setLayout(new FlowLayout());
 		this.panelEastNorthplatzhalter.setBackground(new Color(98, 69, 11));
 
-
 		this.panelNorth = new JPanel();
 		this.panelNorth.setLayout(new FlowLayout());
-
 
 		this.panelSouth = new JPanel();
 		this.panelSouth.setLayout(new FlowLayout());
 
-
-
+		this.wuerfelCount = new JPanel();
+		wuerfelCount.setLayout(new FlowLayout());
 
 		this.panelTabelle = new JPanel();
 		this.panelTabelle.setLayout(new FlowLayout());
@@ -137,7 +137,6 @@ public class GUI extends JFrame implements MouseListener {
 		this.wuerfel = new JPanel();
 		this.wuerfel.setLayout(new GridLayout(1, 2));
 		this.wuerfel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
 
 		this.panelTabelle.setBackground(new Color(28, 124, 11));
 
@@ -151,7 +150,6 @@ public class GUI extends JFrame implements MouseListener {
 		this.rankTabelle.setFillsViewportHeight(true);
 		this.spRankTabelle = new JScrollPane(this.rankTabelle);
 
-
 		this.panelWuerfelAktiv = new JPanel();
 		this.panelWuerfelAktiv.setLayout(new GridLayout(5, 1));
 
@@ -161,21 +159,24 @@ public class GUI extends JFrame implements MouseListener {
 		this.panelWuerfelDeaktiv = new JPanel();
 		this.panelWuerfelDeaktiv.setLayout(new GridLayout(5, 1));
 
-
 		this.iconSpieler1 = new ImageIcon(getClass().getResource("spieler1.png"));
 		this.spieler1 = new JLabel(iconSpieler1);
 		spieler1.setLayout(new FlowLayout());
 
-
 		this.iconSpieler2 = new ImageIcon(getClass().getResource("spieler2.png"));
 		this.spieler2 = new JLabel(iconSpieler2);
 		spieler2.setLayout(new FlowLayout());
-		
+
+		this.counterAnzahlWuerfeln = 0;
+		this.counterZaehler = 3;
+
 		this.aktuellerSpieler = new JLabel("Legen Wir Loos!!");
 		aktuellerSpieler.setLayout(new FlowLayout());
-		
 
+		this.klickCounter = new JLabel();
+		this.klickCounter.setLayout(new FlowLayout());
 
+		this.diceZaheler = new Dices(counterZaehler);
 
 		this.buttons = new JPanel();
 		this.buttons.setLayout(new GridLayout(3, 1));
@@ -185,12 +186,8 @@ public class GUI extends JFrame implements MouseListener {
 		this.neuesSpiel = new JButton("Neues Spiel");
 		this.besteListe = new JButton("Bestenliste");
 
-
-		this.counterAnzahlWuerfeln = 0;
-
-
 		initGui();
-// top
+		// top
 
 		this.setVisible(true);
 
@@ -200,25 +197,24 @@ public class GUI extends JFrame implements MouseListener {
 
 	public void initGui() {
 
-
 		this.add(panelCenter, BorderLayout.CENTER);
 		this.add(panelEastFrame, BorderLayout.EAST);
 
 		panelCenter.add(panelNorth, BorderLayout.NORTH);
 		panelCenter.add(panelSouth, BorderLayout.SOUTH);
 
-
-
 		panelSouth.add(spieler2);
 		panelSouth.add(aktuellerSpieler);
+		panelSouth.add(klickCounter);
 
+		wuerfelCount.add(diceZaheler);
+		panelSouth.add(wuerfelCount);
+		diceZaheler.repaint();
 
 		panelCenter.add(panelTabelle);
 
-
 		panelEastNorthplatzhalter.add(spieler1);
 		panelEastFrame.add(panelEastNorthplatzhalter, BorderLayout.NORTH);
-
 
 		panelEastFrame.add(buttons, BorderLayout.SOUTH);
 		panelEast.add(wuerfel);
@@ -243,10 +239,8 @@ public class GUI extends JFrame implements MouseListener {
 		panelTabelle.add(jsp);
 		panelCenter.add(jsp);
 
-
 		wuerfel.add(panelWuerfelAktiv);
 		wuerfel.add(panelWuerfelDeaktiv);
-
 
 		deaktivePanelErstellen();
 		aktivePanelErstelle();
@@ -256,14 +250,23 @@ public class GUI extends JFrame implements MouseListener {
 		buttons.add(neuesSpiel);
 		buttons.add(besteListe);
 
-		//ActionListener für Buttons
-
+		// ActionListener für Buttons
 
 		wuerfeln.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+				aktuellerSpieler.setText("");
+				counterZaehler--;
+				diceZaheler.setRollScore(counterZaehler);
+
+				if (counterZaehler == 0) {
+
+					counterZaehler = 3;
+					diceZaheler.setRollScore(3);
+
+				}
 
 				if (counterAnzahlWuerfeln < 2) {
 
@@ -274,27 +277,27 @@ public class GUI extends JFrame implements MouseListener {
 				} else {
 					((JButton) e.getSource()).setEnabled(false);
 					if (getSpielTisch().getSpielerZug() == 1) {
-						
-						aktuellerSpieler.setText("Dein Gegner ist an der Reihe er hat noch "+counterAnzahlWuerfeln+"klicks");
-						
+
+						aktuellerSpieler.setText("Du bist an der Reihe ");
 						getSpielTisch().setSpielerZug(3);
-						
-					} 
-					else {
+
+					} else {
 						getSpielTisch().setSpielerZug(1);
-						aktuellerSpieler.setText("Du bist an der Reihe");
+						aktuellerSpieler.setText("Dein Gegner ist an der Reihe ");
+
 					}
-					
+
 					((JButton) e.getSource()).setEnabled(true);
 					counterAnzahlWuerfeln = 0;
+
 				}
 
 				for (Dices d : spielTisch.gibWuerfel()) {
 
-					
 					d.repaint();
 				}
 
+				diceZaheler.repaint();
 			}
 		});
 
@@ -304,12 +307,12 @@ public class GUI extends JFrame implements MouseListener {
 			public void actionPerformed(ActionEvent e) {
 
 				counterAnzahlWuerfeln = 0;
+
 				wuerfeln.setEnabled(true);
 				spielTisch.neuesSpiel();
 
 			}
 		});
-
 
 		besteListe.addActionListener(new ActionListener() {
 
@@ -318,7 +321,6 @@ public class GUI extends JFrame implements MouseListener {
 
 			}
 		});
-
 
 	}
 
@@ -331,10 +333,11 @@ public class GUI extends JFrame implements MouseListener {
 		}
 
 		// togle button enabled
-		if (this.wuerfeln.isEnabled()) this.wuerfeln.setEnabled(false);
-		else this.wuerfeln.setEnabled(true);
+		if (this.wuerfeln.isEnabled())
+			this.wuerfeln.setEnabled(false);
+		else
+			this.wuerfeln.setEnabled(true);
 	}
-
 
 	// Methode die den Aktiven Spieltisch retournieret
 
@@ -347,11 +350,9 @@ public class GUI extends JFrame implements MouseListener {
 		return null;
 	}
 
-
 	// Diese Methode erstellt neue JPanel für den Deaktiven Bereich der Würfel
 
 	public void deaktivePanelErstellen() {
-
 
 		for (int count = 0; count < panelWuerfelDeaktivFlow.length; count++) {
 
@@ -364,7 +365,6 @@ public class GUI extends JFrame implements MouseListener {
 		}
 
 	}
-
 
 	// Diese Methode erstellt neue JPanel für den Aktiven Bereich der Würfel
 
@@ -382,14 +382,12 @@ public class GUI extends JFrame implements MouseListener {
 
 	}
 
-	//  MouseListener Hinzufügen und Indexiieren 
+	// MouseListener Hinzufügen und Indexiieren
 
 	public void indexUndMouseListenerADD() {
 
-
 		int index = 0;
 		while (index < spielTisch.getWuerfelAnzahl()) {
-
 
 			panelWuerfelAktivFlow[index].add(spielTisch.gibWuerfel().get(index));
 
@@ -399,7 +397,6 @@ public class GUI extends JFrame implements MouseListener {
 		}
 
 	}
-
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -412,7 +409,6 @@ public class GUI extends JFrame implements MouseListener {
 				x.getParent().remove(x);
 				panelWuerfelDeaktivFlow[x.getFlowIndex()].add(x);
 				x.setHoldDice();
-
 
 			} else if (panelWuerfelDeaktivFlow[x.getFlowIndex()] == x.getParent()) {
 				x.getParent().remove(x);
@@ -446,14 +442,9 @@ public class GUI extends JFrame implements MouseListener {
 
 	}
 
-
 	public static void main(String[] args) throws Exception {
 
-		new GUI();
-
+		GUI n = new GUI();
 
 	}
 }
-
-	
-

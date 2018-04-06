@@ -54,6 +54,7 @@ public class ScoreTable extends Rules {
 
 	public void addSelectionListener() {
 
+		
 		this.cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
 
 
@@ -61,7 +62,7 @@ public class ScoreTable extends Rules {
 			public void valueChanged(ListSelectionEvent e) {
 
 				if (!e.getValueIsAdjusting()) {
-
+					
 					int sr = scoreTable.getSelectedRow();
 					//int sc = scoreTable.getSelectedColumn();
 					int sc = scoreTable.getSelectedColumn(); //
@@ -87,61 +88,72 @@ public class ScoreTable extends Rules {
 						case 1:
 
 							punktzahl = zweierPruefung();
+							System.out.println(getSpielerZug());
 							scoreTable.setValueAt(new Boolean(true), 1, getSpielerZug()+1);
 
 							break;
 						case 2:
 
 							punktzahl = dreierPruefung();
+							System.out.println(getSpielerZug());
 							scoreTable.setValueAt(new Boolean(true), 2, getSpielerZug()+1);
 
 							break;
 						case 3:
 
 							punktzahl = viererPruefung();
-
+							System.out.println(getSpielerZug());
 							scoreTable.setValueAt(new Boolean(true), 3, getSpielerZug()+1);
 
 							break;
 						case 4:
 
 							punktzahl = fuenferPruefung();
+							System.out.println(getSpielerZug());
 							scoreTable.setValueAt(new Boolean(true), 4, getSpielerZug()+1);
 
 							break;
 						case 5:
 
 							punktzahl = sechserPruefung();
+							System.out.println(getSpielerZug());
 							scoreTable.setValueAt(new Boolean(true), 5, getSpielerZug()+1);
 
 							break;
 						case 6:
 							punktzahl = ruleCheck("Dreierpasch");
+							System.out.println(getSpielerZug());
 							scoreTable.setValueAt(new Boolean(true), 6, getSpielerZug()+1);
 							break;
 						case 7:
 							punktzahl = ruleCheck("Vierpasch");
+							System.out.println(getSpielerZug());
 							scoreTable.setValueAt(new Boolean(true), 7, getSpielerZug()+1);
 							break;
 						case 8:
 							punktzahl = ruleCheck("FullHouse");
+							System.out.println(getSpielerZug());
 							scoreTable.setValueAt(new Boolean(true), 8, getSpielerZug()+1);
 							break;
 						case 9:
 							punktzahl = ruleCheck("KleineStrasse");
+							System.out.println(getSpielerZug());
 							scoreTable.setValueAt(new Boolean(true), 9, getSpielerZug()+1);
 							break;
 						case 10:
 							punktzahl = ruleCheck("GrosseStrasse");
+							System.out.println(getSpielerZug());
 							scoreTable.setValueAt(new Boolean(true), 10, getSpielerZug()+1);
 							break;
 						case 11:
 							punktzahl = ruleCheck("Kniffel");
+							System.out.println(getSpielerZug());
 							scoreTable.setValueAt(new Boolean(true), 11, getSpielerZug()+1);
 							break;
 							
 						case 12:
 							punktzahl =	ruleCheck("Chance");
+							System.out.println(getSpielerZug());
 							scoreTable.setValueAt(new Boolean(true), 12, getSpielerZug()+1);
 							break;
 						default:
@@ -157,6 +169,7 @@ public class ScoreTable extends Rules {
 						sumTable.setValueAt(bonus(), 0, 1);
 						sumTable.setValueAt(summeOben(), 1, 1);
 						sumTable.setValueAt(summeUnten(), 1, 2);
+						
 					
 						
 					}
@@ -180,9 +193,12 @@ public class ScoreTable extends Rules {
 
 					if(getSpielerZug() == 1) setSpielerZug(3);
 					else if(getSpielerZug() == 3) setSpielerZug(1);
+					
 				}
 
-			}
+				}
+
+			
 		});
 
 	}
