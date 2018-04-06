@@ -5,6 +5,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
+/*
+ * Diese Klasse ist für das Auswerten und einfüllen der Tabelle zuständig
+ */
 
 public class ScoreTable extends Rules {
 	

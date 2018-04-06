@@ -96,6 +96,7 @@ public class GUI extends JFrame implements MouseListener {
 	
 	public GUI() {
 		// Defaultkonstruktor für erst Initialiseriung
+		// GUI elemente und Buttons und Listener
 		super("Yathzee");
 		
 
