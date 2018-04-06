@@ -5,10 +5,10 @@ public class Rules extends PlayTable {
 
 	/**
 	 * Diese Klasse ist für die Überprüfung der Regel zuständig
-	 * 
+	 *
 	 * @author Besnik Istrefi & Fernando Maniglio
 	 * @version 1.0
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -28,10 +28,10 @@ public class Rules extends PlayTable {
 	private int fullHouseResultat;
 	private int kleineStrasseResultat;
 	private int grosseStrasseResultat;
-	
+
 	private int yathzeeKniffelResultat;
 	private boolean isYathzeeTwice;
-	
+
 	private int chanceResulat;
 	private int summeUnten;
 
@@ -39,16 +39,16 @@ public class Rules extends PlayTable {
 
 	private int counterWuerfelOnHoldDreierpasch;
 	private int counterWuerfelOnHoldViererpasch;
-	
+
 	//Attribut für Gesamtsumme und Bonus
-	
+
 	private int gesamtsumme;
 	private int bonus;
 
 	//Staticfield zu Testzwecke
-	
-	
-	
+
+
+
 	public Rules(){
 
 
@@ -75,224 +75,131 @@ public class Rules extends PlayTable {
 
 	}
 
-	
+
 
 	// Prüft ob die ausgewählten Würfel 1ner sind.
 
-	public boolean einerPruefung() {
+	public int einerPruefung() {
 
-		boolean x = false;
+		int[] x = new int[6];
+		x[0] = 0;
 
-		for (Dices d : gibWuerfel()) {
-			
-			if (d.getRollScore() == 1 && d.getOnHold() == true) {
+		for (Dices d : gibWuerfel()){
 
-				x = true;
-			}
+			if(d.getRollScore() == 1) {
 
-		}
-		return x;
-	}
-
-	// Liefert die Summer aller aktiven Würfel zurück nach der Prüfung.
-
-	public int einerResultat() {
-		System.out.println("EINER");
-		this.einerResultat = 0;
-
-
-		if (einerPruefung() == true) {
-
-			for (Dices d : gibWuerfel()) {
-
-				if (d.getOnHold() == true) {
-
-					this.einerResultat += d.getRollScore();
-				}
+				x[0] += d.getRollScore();
 			}
 		}
-		return this.einerResultat;
+		this.einerResultat = x[0];
+		return x[0];
+
 	}
+
+
+
 
 	// Prüft ob die ausgewählten Würfel 2er sind.
 
-	public boolean zweierPruefung() {
+	public int zweierPruefung() {
 
-		boolean x = false;
+		int[] x = new int[6];
+		x[1] = 0;
 
-		for (Dices d : gibWuerfel()) {
+		for (Dices d : gibWuerfel()){
 
-			if (d.getRollScore() == 2 && d.getOnHold() == true) {
+			if(d.getRollScore() == 2) {
 
-				x = true;
-			}
-
-		}
-		return x;
-	}
-
-	// Liefert die Summer aller aktiven Würfel zurück nach der Prüfung.
-
-	public int zweierResultat() {
-
-		this.zweierResultat = 0;
-
-		if (zweierPruefung() == true) {
-
-			for (Dices d : gibWuerfel()) {
-
-				if (d.getOnHold() == true) {
-
-					this.zweierResultat += d.getRollScore();
-				}
+				x[1] += d.getRollScore();
 			}
 		}
-		return this.zweierResultat;
+		this.zweierResultat = x[1];
+		return x[1];
+
 	}
+
+
 
 	// Prüft ob die ausgewählten Würfel 3er sind.
 
-	public boolean dreierPruefung() {
+	public int dreierPruefung() {
 
-		boolean x = false;
+		int[] x = new int[6];
 
-		for (Dices d : gibWuerfel()) {
+		x[2] = 0;
 
-			if (d.getRollScore() == 3 && d.getOnHold() == true) {
+		for (Dices d : gibWuerfel()){
 
-				x = true;
-			}
+			if(d.getRollScore() == 3) {
 
-		}
-		return x;
-	}
-
-	// Liefert die Summer aller aktiven Würfel zurück nach der Prüfung.
-
-	public int dreierResultat() {
-
-		this.dreierResultat = 0;
-
-		if (dreierPruefung() == true) {
-
-			for (Dices d : gibWuerfel()) {
-
-				if (d.getOnHold() == true) {
-
-					this.dreierResultat += d.getRollScore();
-				}
+				x[2] += d.getRollScore();
 			}
 		}
-		return this.dreierResultat;
+		this.dreierResultat = x[2];
+		return x[2];
+
 	}
+
 
 	// Prüft ob die ausgewählten Würfel 4er sind.
 
-	public boolean viererPruefung() {
+	public int viererPruefung() {
 
-		boolean x = false;
+		int[] x = new int[6];
 
-		for (Dices d : gibWuerfel()) {
+		x[3] = 0;
 
-			if (d.getRollScore() == 4 && d.getOnHold() == true) {
+		for (Dices d : gibWuerfel()){
 
-				x = true;
-			}
+			if(d.getRollScore() == 4) {
 
-		}
-		return x;
-	}
-
-	// Liefert die Summer aller aktiven Würfel zurück nach der Prüfung.
-
-	public int viererResultat() {
-
-		this.viererResultat = 0;
-
-		if (viererPruefung() == true) {
-
-			for (Dices d : gibWuerfel()) {
-
-				if (d.getOnHold() == true) {
-
-					this.viererResultat += d.getRollScore();
-				}
+				x[3] += d.getRollScore();
 			}
 		}
-		return this.viererResultat;
+		this.viererResultat = x[3];
+		return x[3];
+
 	}
 
 	// Prüft ob die ausgewählten Würfel 5er sind.
 
-	public boolean fuenferPruefung() {
+	public int fuenferPruefung() {
 
-		boolean x = false;
+		int[] x = new int[6];
 
-		for (Dices d : gibWuerfel()) {
+		x[4] = 0;
+		for (Dices d : gibWuerfel()){
 
-			if (d.getRollScore() == 5 && d.getOnHold() == true) {
+			if(d.getRollScore() == 5) {
 
-				x = true;
-			}
-
-		}
-		return x;
-	}
-
-	// Liefert die Summer aller aktiven Würfel zurück nach der Prüfung.
-
-	public int fuenferResultat() {
-
-		this.fuenferResultat = 0;
-
-		if (fuenferPruefung() == true) {
-
-			for (Dices d : gibWuerfel()) {
-
-				if (d.getOnHold() == true) {
-
-					this.fuenferResultat += d.getRollScore();
-				}
+				x[4] += d.getRollScore();
 			}
 		}
-		return this.fuenferResultat;
+		this.fuenferResultat = x[4];
+		return x[4];
+
 	}
 
 	// Prüft ob die ausgewählten Würfel 6er sind.
 
-	public boolean sechserPruefung() {
+	public int sechserPruefung() {
 
-		boolean x = false;
+		int[] x = new int[6];
 
-		for (Dices d : gibWuerfel()) {
+		x[5] = 0;
 
-			if (d.getRollScore() == 6 && d.getOnHold() == true) {
+		for (Dices d : gibWuerfel()){
 
-				x = true;
-			}
+			if(d.getRollScore() == 6) {
 
-		}
-		return x;
-	}
-
-	// Liefert die Summer aller aktiven Würfel zurück nach der Prüfung.
-
-	public int sechserResultat() {
-
-		this.secherResultat = 0;
-
-		if (sechserPruefung() == true) {
-
-			for (Dices d : gibWuerfel()) {
-
-				if (d.getOnHold() == true) {
-
-					this.secherResultat += d.getRollScore();
-				}
+				x[5] += d.getRollScore();
 			}
 		}
-		return this.secherResultat;
+		this.secherResultat = x[5];
+		return x[5];
+
 	}
+
 
 	// Summe oben addiert alle Resultate von 1-6 und liefert das Resultat als
 	// Integer zurück
@@ -303,16 +210,16 @@ public class Rules extends PlayTable {
 				+ secherResultat;
 		return summeOben;
 	}
-	
+
 	// Summe unten addiert alle Resultate ab dreierpasch und liefert das Resultat als Integer zurück
-	
+
 	public int summeUnten() {
-		
+
 		this.summeUnten = dreierPaschResultat+viererPaschResultat+fullHouseResultat+kleineStrasseResultat+grosseStrasseResultat+
 				yathzeeKniffelResultat+chanceResulat;
 		bonus();
 		return this.summeUnten;
-		
+
 	}
 
 	// Methode für den Bonus falls die Summe aller Resultate von 1-6 grösser ist als
@@ -320,12 +227,13 @@ public class Rules extends PlayTable {
 	public int bonus() {
 
 		if (this.summeOben >= 63) {
-			
+
 			this.bonus = 35;
 			return 35;
 		}
 		return 0;
 	}
+
 
 	public Object ruleCheck(){
 
@@ -350,10 +258,12 @@ public class Rules extends PlayTable {
 					break;
 				case 6:
 					dices[6] = d.getRollScore();
-					default:
-						dices[0] = d.getRollScore();
+				default:
+					dices[0] = d.getRollScore();
 			}
 		}
 		// check
+		return null;
 	}
+
 }
