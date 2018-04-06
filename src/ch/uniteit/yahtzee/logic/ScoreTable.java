@@ -119,7 +119,7 @@ public class ScoreTable extends Rules {
 						case 7:
 							punktzahl = viererPaschPruefung();
 							scoreTable.setValueAt(new Boolean(true), 7, getSpielerZug()+1);
-							break;
+							break;return 35;
 						case 8:
 							punktzahl = fullhousePrüfung();
 							scoreTable.setValueAt(new Boolean(true), 8, getSpielerZug()+1);
