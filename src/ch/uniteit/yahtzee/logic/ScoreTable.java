@@ -15,12 +15,9 @@ public class ScoreTable extends Rules {
 	protected JTable sumTable;
 	protected JTable rankTable;
 	private ListSelectionModel cellSelectionModel;
-	private Rules regeln;
 
 
 	public ScoreTable() {
-
-		//this.regeln = regeln;
 
 		ScoreTableModel tm = new ScoreTableModel();
 		this.scoreTable = new JTable(tm);
@@ -30,9 +27,6 @@ public class ScoreTable extends Rules {
 		addSelectionListener();
 
 		this.scoreTable.setFillsViewportHeight(true);
-
-		// für was isch das??
-		// this.scoreTable.setSelectionMode(1);
 
 		Dimension td = new Dimension(600, 300);
 		this.scoreTable.setPreferredSize(td);
@@ -66,13 +60,20 @@ public class ScoreTable extends Rules {
 				if (!e.getValueIsAdjusting()) {
 
 					int sr = scoreTable.getSelectedRow();
-					int sc = scoreTable.getSelectedColumn();
+					//int sc = scoreTable.getSelectedColumn();
+					int sc = getSpielerZug(); //
 					String selRule = scoreTable.getValueAt(sr, 0).toString();
-					String isLocked = (scoreTable.getValueAt(sr, 3)).toString();
+					String isLocked;
+					if(getSpielerZug() == 2) {isLocked = (scoreTable.getValueAt(sr, 1)).toString();}
+					else {isLocked = (scoreTable.getValueAt(sr, 4)).toString();}
+
+
+
 					//TODO entfernen ist nur für tests
 					System.out.println(isLocked + " " + sr + " " + sc + " " + selRule);
 					int punktzahl;
-					switch (sc) {
+					//einerPruefung();
+					switch (sr) {
 						case 0:
 							punktzahl = einerResultat();
 							break;
@@ -114,17 +115,17 @@ public class ScoreTable extends Rules {
 							break;
 					}
 					System.out.println("Rules liefert " + punktzahl);
-
+					scoreTable.setValueAt(punktzahl, sr, sc);
 
 					if (isLocked.equals("false")) {
-						// es tuet
 						scoreTable.setValueAt(punktzahl, sr, sc);
+						//scoreTable.setValueAt(new Boolean(true), getSpielerZug(), sc);
 
 					} else {
 						System.out.println(selRule + " ist gesperrt..");
 					}
 
-
+					setSpielerZug(3);
 				}
 
 			}
@@ -154,5 +155,19 @@ public class ScoreTable extends Rules {
 		else
 			return null;
 
+	}
+
+	// reset methode
+	public void neuesSpiel(){
+		int numRows = scoreTable.getRowCount()-1;
+		int numCols = scoreTable.getColumnCount()-1;
+		System.out.println(numRows);
+		while(numRows >= 0){
+			scoreTable.setValueAt(0, numRows, 1);
+			scoreTable.setValueAt(new Boolean(false), numRows, 2);
+			scoreTable.setValueAt(0, numRows, 3);
+			scoreTable.setValueAt(new Boolean(false), numRows, 4);
+			numRows--;
+		}
 	}
 }

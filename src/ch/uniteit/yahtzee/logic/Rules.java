@@ -97,7 +97,7 @@ public class Rules extends PlayTable {
 	// Liefert die Summer aller aktiven Würfel zurück nach der Prüfung.
 
 	public int einerResultat() {
-
+		System.out.println("EINER");
 		this.einerResultat = 0;
 
 		if (einerPruefung() == true) {
@@ -675,7 +675,4 @@ public class Rules extends PlayTable {
 		this.gesamtsumme = summeOben+summeUnten+bonus;
 		return this.gesamtsumme;
 	}
-	
-	
-
 }

@@ -298,6 +298,8 @@ public class GUI extends JFrame implements MouseListener {
 				}
 				else {
 					((JButton)e.getSource()).setEnabled(false);
+					if(getSpielTisch().getSpielerZug() == 1) getSpielTisch().setSpielerZug(2);
+					else getSpielTisch().setSpielerZug(1);
 				}
 				
 				for(Dices d : spielTisch.gibWuerfel()) {
@@ -308,8 +310,8 @@ public class GUI extends JFrame implements MouseListener {
 			
 			}
 		});
-	
-	
+
+
 	
 		neuesSpiel.addActionListener(new ActionListener() {
 			
@@ -318,6 +320,8 @@ public class GUI extends JFrame implements MouseListener {
 				
 				counterAnzahlWuerfeln = 0;
 				wuerfeln.setEnabled(true);
+				spielTisch.neuesSpiel();
+
 			}
 		});
 	
@@ -338,8 +342,15 @@ public class GUI extends JFrame implements MouseListener {
 		
 
 	}
-	
-	
+
+	public void wuerfelSchieben(){
+
+		for(Dices d: spielTisch.gibWuerfel()){
+			System.out.println(d.getFlowIndex());
+			panelWuerfelAktivFlow[d.getFlowIndex()].getParent().remove(d);
+			panelWuerfelDeaktivFlow[d.getFlowIndex()].getParent().add(d);
+		}
+	}
 	
 	// Methode die den Aktiven Spieltisch retournieret
 	
@@ -405,7 +416,7 @@ public class GUI extends JFrame implements MouseListener {
 		}
 
 	}
-		
+
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -426,8 +437,6 @@ public class GUI extends JFrame implements MouseListener {
 				panelWuerfelAktivFlow[x.getFlowIndex()].add(x);
 				x.setNoHoldDice();
 			}
-			
-			
 		}
 	}
 
