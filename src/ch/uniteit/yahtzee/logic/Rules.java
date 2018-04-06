@@ -100,6 +100,7 @@ public class Rules extends PlayTable {
 		System.out.println("EINER");
 		this.einerResultat = 0;
 
+
 		if (einerPruefung() == true) {
 
 			for (Dices d : gibWuerfel()) {
