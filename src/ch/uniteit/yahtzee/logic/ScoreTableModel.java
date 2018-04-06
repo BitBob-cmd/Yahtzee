@@ -24,8 +24,8 @@ public class ScoreTableModel extends AbstractTableModel {
 			{"Full-House",new Integer(0),new Integer(0),new Boolean(false)}, //8
 			{"Kleine Strasse",new Integer(0),new Integer(0),new Boolean(false)}, //9
 			{"Grosse Strasse",new Integer(0),new Integer(0),new Boolean(false)}, //10
-			{"Yahtzee",new Integer(0),new Integer(0),new Boolean(false)}, //10
-			{"Chance",new Integer(0),new Integer(0),new Boolean(false)} //11
+			{"Yahtzee",new Integer(0),new Integer(0),new Boolean(false)}, //11
+			{"Chance",new Integer(0),new Integer(0),new Boolean(false)} //12
 
 			/**,
 			{"Zwischensumme Unten",new Integer(0),new Integer(0)},

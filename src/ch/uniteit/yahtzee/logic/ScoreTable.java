@@ -113,28 +113,33 @@ public class ScoreTable extends Rules {
 
 							break;
 						case 6:
-							punktzahl = resultatViererPasch();
+							punktzahl = dreierPaschPruefung();
 							scoreTable.setValueAt(new Boolean(true), 6, getSpielerZug()+1);
 							break;
 						case 7:
-							punktzahl = fullhouseResultat();
+							punktzahl = viererPaschPruefung();
 							scoreTable.setValueAt(new Boolean(true), 7, getSpielerZug()+1);
 							break;
 						case 8:
-							punktzahl = kleineStrasseResultat();
+							punktzahl = fullhousePrüfung();
 							scoreTable.setValueAt(new Boolean(true), 8, getSpielerZug()+1);
 							break;
 						case 9:
-							punktzahl = grosseStrasseResultat();
+							punktzahl = kleineStrassePruefung();
 							scoreTable.setValueAt(new Boolean(true), 9, getSpielerZug()+1);
 							break;
 						case 10:
-							punktzahl = yathzeeKniffelResultat();
+							punktzahl = grosseStrassePruefung();
 							scoreTable.setValueAt(new Boolean(true), 10, getSpielerZug()+1);
 							break;
 						case 11:
-							punktzahl = resultatChance();
+							punktzahl = yathzeeKniffelPruefung();
 							scoreTable.setValueAt(new Boolean(true), 11, getSpielerZug()+1);
+							break;
+							
+						case 12:
+							punktzahl =	resultatChance();
+							scoreTable.setValueAt(new Boolean(true), 12, getSpielerZug()+1);
 							break;
 						default:
 							punktzahl = 0;
