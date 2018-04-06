@@ -112,7 +112,7 @@ public class ScoreTable extends Rules {
 							scoreTable.setValueAt(new Boolean(true), 5, getSpielerZug()+1);
 
 							break;
-						case 6:
+						/*case 6:
 							punktzahl = dreierPaschPruefung();
 							scoreTable.setValueAt(new Boolean(true), 6, getSpielerZug()+1);
 							break;
@@ -140,7 +140,7 @@ public class ScoreTable extends Rules {
 						case 12:
 							punktzahl =	resultatChance();
 							scoreTable.setValueAt(new Boolean(true), 12, getSpielerZug()+1);
-							break;
+							break;*/
 						default:
 							punktzahl = 0;
 							break;

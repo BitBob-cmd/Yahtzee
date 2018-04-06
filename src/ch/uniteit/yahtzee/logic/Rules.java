@@ -235,7 +235,7 @@ public class Rules extends PlayTable {
 	}
 
 
-	public Object ruleCheck(){
+	public Object ruleCheck(String prüfe){
 
 		int[] dices = new int[7];
 		for(Dices d: gibWuerfel()){
