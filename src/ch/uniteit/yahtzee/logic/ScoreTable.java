@@ -117,6 +117,7 @@ public class ScoreTable extends Rules {
 
 
 					if (isLocked.equals("false")) {
+						// es tuet
 						scoreTable.setValueAt(punktzahl, sr, sc);
 
 					} else {
