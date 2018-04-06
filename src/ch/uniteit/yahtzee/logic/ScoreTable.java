@@ -71,25 +71,25 @@ public class ScoreTable extends Rules {
 					String isLocked = (scoreTable.getValueAt(sr, 3)).toString();
 					//TODO entfernen ist nur für tests
 					System.out.println(isLocked + " " + sr + " " + sc + " " + selRule);
-					int punktzahl;
-					switch (sc) {
+					int punktzahl = 0;
+					switch (sr) {
 						case 0:
-							punktzahl = einerResultat();
+							punktzahl = einerPruefung();
 							break;
 						case 1:
-							punktzahl = zweierResultat();
+							punktzahl = zweierPruefung();
 							break;
 						case 2:
-							punktzahl = dreierResultat();
+							punktzahl = dreierPruefung();
 							break;
 						case 3:
-							punktzahl = viererResultat();
+							punktzahl = viererPruefung();
 							break;
 						case 4:
-							punktzahl = fuenferResultat();
+							punktzahl = fuenferPruefung();
 							break;
 						case 5:
-							punktzahl = sechserResultat();
+							punktzahl = sechserPruefung();
 							break;
 						case 6:
 							punktzahl = resultatViererPasch();

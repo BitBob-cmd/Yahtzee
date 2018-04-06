@@ -79,219 +79,127 @@ public class Rules extends PlayTable {
 
 	// Prüft ob die ausgewählten Würfel 1ner sind.
 
-	public boolean einerPruefung() {
+	public int einerPruefung() {
 
-		boolean x = false;
-
-		for (Dices d : gibWuerfel()) {
+		int[] x = new int[6];
+		x[0] = 0;
+		
+		for (Dices d : gibWuerfel()){
 			
-			if (d.getRollScore() == 1 && d.getOnHold() == true) {
-
-				x = true;
-			}
-
-		}
-		return x;
-	}
-
-	// Liefert die Summer aller aktiven Würfel zurück nach der Prüfung.
-
-	public int einerResultat() {
-
-		this.einerResultat = 0;
-
-		if (einerPruefung() == true) {
-
-			for (Dices d : gibWuerfel()) {
-
-				if (d.getOnHold() == true) {
-
-					this.einerResultat += d.getRollScore();
-				}
+			if(d.getRollScore() == 1) {
+				
+				x[0] += d.getRollScore();
 			}
 		}
-		return this.einerResultat;
+			this.einerResultat = x[0];
+			return x[0];
+			
 	}
+
+
+	
 
 	// Prüft ob die ausgewählten Würfel 2er sind.
 
-	public boolean zweierPruefung() {
+	public int zweierPruefung() {
 
-		boolean x = false;
-
-		for (Dices d : gibWuerfel()) {
-
-			if (d.getRollScore() == 2 && d.getOnHold() == true) {
-
-				x = true;
-			}
-
-		}
-		return x;
-	}
-
-	// Liefert die Summer aller aktiven Würfel zurück nach der Prüfung.
-
-	public int zweierResultat() {
-
-		this.zweierResultat = 0;
-
-		if (zweierPruefung() == true) {
-
-			for (Dices d : gibWuerfel()) {
-
-				if (d.getOnHold() == true) {
-
-					this.zweierResultat += d.getRollScore();
+			int[] x = new int[6];
+			x[1] = 0;
+			
+			for (Dices d : gibWuerfel()){
+				
+				if(d.getRollScore() == 2) {
+					
+					x[1] += d.getRollScore();
 				}
 			}
+				this.zweierResultat = x[1];
+				return x[1];
+				
 		}
-		return this.zweierResultat;
-	}
+	
+
 
 	// Prüft ob die ausgewählten Würfel 3er sind.
 
-	public boolean dreierPruefung() {
-
-		boolean x = false;
-
-		for (Dices d : gibWuerfel()) {
-
-			if (d.getRollScore() == 3 && d.getOnHold() == true) {
-
-				x = true;
-			}
-
-		}
-		return x;
-	}
-
-	// Liefert die Summer aller aktiven Würfel zurück nach der Prüfung.
-
-	public int dreierResultat() {
-
-		this.dreierResultat = 0;
-
-		if (dreierPruefung() == true) {
-
-			for (Dices d : gibWuerfel()) {
-
-				if (d.getOnHold() == true) {
-
-					this.dreierResultat += d.getRollScore();
-				}
+	public int dreierPruefung() {
+		
+		int[] x = new int[6];
+		
+		x[2] = 0;
+		
+		for (Dices d : gibWuerfel()){
+			
+			if(d.getRollScore() == 3) {
+				
+				x[2] += d.getRollScore();
 			}
 		}
-		return this.dreierResultat;
+			this.dreierResultat = x[2];
+			return x[2];
+			
 	}
+
 
 	// Prüft ob die ausgewählten Würfel 4er sind.
 
-	public boolean viererPruefung() {
+	public int viererPruefung() {
 
-		boolean x = false;
-
-		for (Dices d : gibWuerfel()) {
-
-			if (d.getRollScore() == 4 && d.getOnHold() == true) {
-
-				x = true;
-			}
-
-		}
-		return x;
-	}
-
-	// Liefert die Summer aller aktiven Würfel zurück nach der Prüfung.
-
-	public int viererResultat() {
-
-		this.viererResultat = 0;
-
-		if (viererPruefung() == true) {
-
-			for (Dices d : gibWuerfel()) {
-
-				if (d.getOnHold() == true) {
-
-					this.viererResultat += d.getRollScore();
-				}
+		int[] x = new int[6];
+		
+		x[3] = 0;
+		
+		for (Dices d : gibWuerfel()){
+			
+			if(d.getRollScore() == 4) {
+				
+				x[3] += d.getRollScore();
 			}
 		}
-		return this.viererResultat;
+			this.viererResultat = x[3];
+			return x[3];
+			
 	}
 
 	// Prüft ob die ausgewählten Würfel 5er sind.
 
-	public boolean fuenferPruefung() {
+	public int fuenferPruefung() {
 
-		boolean x = false;
-
-		for (Dices d : gibWuerfel()) {
-
-			if (d.getRollScore() == 5 && d.getOnHold() == true) {
-
-				x = true;
-			}
-
-		}
-		return x;
-	}
-
-	// Liefert die Summer aller aktiven Würfel zurück nach der Prüfung.
-
-	public int fuenferResultat() {
-
-		this.fuenferResultat = 0;
-
-		if (fuenferPruefung() == true) {
-
-			for (Dices d : gibWuerfel()) {
-
-				if (d.getOnHold() == true) {
-
-					this.fuenferResultat += d.getRollScore();
-				}
+		int[] x = new int[6];
+		
+		x[4] = 0;
+		for (Dices d : gibWuerfel()){
+			
+			if(d.getRollScore() == 5) {
+				
+				x[4] += d.getRollScore();
 			}
 		}
-		return this.fuenferResultat;
+			this.fuenferResultat = x[4];
+			return x[4];
+			
 	}
 
 	// Prüft ob die ausgewählten Würfel 6er sind.
 
-	public boolean sechserPruefung() {
+	public int sechserPruefung() {
 
-		boolean x = false;
-
-		for (Dices d : gibWuerfel()) {
-
-			if (d.getRollScore() == 6 && d.getOnHold() == true) {
-
-				x = true;
-			}
-
-		}
-		return x;
-	}
-
-	// Liefert die Summer aller aktiven Würfel zurück nach der Prüfung.
-
-	public int sechserResultat() {
-
-		this.secherResultat = 0;
-
-		if (sechserPruefung() == true) {
-
-			for (Dices d : gibWuerfel()) {
-
-				if (d.getOnHold() == true) {
-
-					this.secherResultat += d.getRollScore();
-				}
+		int[] x = new int[6];
+		
+		x[5] = 0;
+		
+		for (Dices d : gibWuerfel()){
+			
+			if(d.getRollScore() == 6) {
+				
+				x[5] += d.getRollScore();
 			}
 		}
-		return this.secherResultat;
+			this.secherResultat = x[5];
+			return x[5];
+			
 	}
+	
 
 	// Summe oben addiert alle Resultate von 1-6 und liefert das Resultat als
 	// Integer zurück
@@ -328,47 +236,36 @@ public class Rules extends PlayTable {
 
 	// Prüft ob es sich um ein Dreierpasch handelt.
 
-	public boolean dreierPaschPruefung() {
+	public int dreierPaschPruefung() {
 
-		boolean x = false;
-
+		int[] x = new int[6];
+		int counter = 0;
+		
 		for (Dices d : gibWuerfel()) {
-
-			int tempScore;
-
-			if (d.getOnHold() == true) {
-				counterWuerfelOnHoldDreierpasch++;
-				tempScore = d.getRollScore();
-
-				if (counterWuerfelOnHoldDreierpasch == 3 && d.getRollScore() == tempScore) {
-
-					x = true;
-				}
-
+			
+			if(x[counter] == d.getRollScore()) {
+				
+				x[counter]++;
+				counter++;
+				
+			
 			}
-
-		}
-		return x;
-	}
-
-	// Liefert das Resultat des DreierPaschs
-
-	public int resultatdreierPasch() {
-
-		int resultat = 0;
-
-		if (dreierPaschPruefung() == true) {
-
-			for (Dices d : gibWuerfel()) {
-
-				if (d.getOnHold() == true) {
-
-					this.dreierPaschResultat = resultat + d.getRollScore();
+			
+			for(int index = 0 ; index<x.length;index++) {
+				
+				if(x[index] == 3) {
+					
+					this.dreierPaschResultat = (x[index]+1)*3;
 				}
 			}
+			
+			
 		}
 		return this.dreierPaschResultat;
 	}
+
+
+
 
 	// Prüft ob es sich um ein Viererpasch handelt.
 
