@@ -356,7 +356,7 @@ public class Rules extends PlayTable {
 
 	// Liefert das Resultat des DreierPaschs
 
-	public int ResultatdreierPasch() {
+	public int resultatdreierPasch() {
 
 		int resultat = 0;
 
@@ -400,7 +400,7 @@ public class Rules extends PlayTable {
 
 	// Liefert das Resultat des Viererpaschs
 
-	public int ResultatViererPasch() {
+	public int resultatViererPasch() {
 
 		int resultat = 0;
 

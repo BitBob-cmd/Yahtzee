@@ -2,9 +2,11 @@ package ch.uniteit.yahtzee.gui;
 
 import ch.uniteit.tests.Test1;
 import ch.uniteit.yahtzee.logic.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -12,15 +14,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.MouseInputListener;
-
-import static java.awt.Font.BOLD;
-
 
 /*
  * Diese Klasse ist für die Visualisierung des spieles zuständig
@@ -61,11 +61,8 @@ public class GUI extends JFrame implements MouseListener {
 	// JTable Attribute
 
 	private JTable tabelle;
-	private JTable sumTabelle;
-	private JTable rankTabelle;
-	private JScrollPane spTabelle;
-	private JScrollPane spSumTabelle;
-	private JScrollPane spRankTabelle;
+	
+	
 	// JLabel Attribute für Bilder
 	
 	private JLabel spieler1;
@@ -102,11 +99,9 @@ public class GUI extends JFrame implements MouseListener {
 		this.getContentPane().setBackground(new Color(28, 124, 11));
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setResizable(false);
 
 		this.panelCenter = new JPanel(); 
 		this.panelCenter.setLayout(new BorderLayout());
-
 		//this.panelCenter.setBackground(new Color(28, 124, 11));
 		
 		
@@ -117,12 +112,6 @@ public class GUI extends JFrame implements MouseListener {
 		
 		
 		
-
-		this.panelCenter.setBackground(new Color(28, 124, 11));
-		this.panelCenter.setOpaque(true);
-
-
-
 		this.panelEast = new JPanel();
 		this.panelEast.setLayout(new FlowLayout());
 		this.panelEast.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
@@ -149,26 +138,12 @@ public class GUI extends JFrame implements MouseListener {
 		
 		this.panelTabelle = new JPanel();
 		this.panelTabelle.setLayout(new FlowLayout());
-
 		//this.panelTabelle.setBackground(new Color(28, 124, 11));
 		
 		
 		this.wuerfel = new JPanel();
 		this.wuerfel.setLayout(new GridLayout(1, 2));
 		this.wuerfel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-
-		this.panelTabelle.setBackground(new Color(28, 124, 11));
-
-		this.tabelle = new ScoreTable(this.spielTisch).gibScoreTable();
-		this.sumTabelle = new ScoreTable(this.spielTisch).gibSumTable();
-		this.rankTabelle = new ScoreTable(this.spielTisch).gibRankingTable();
-		this.tabelle.setFillsViewportHeight(true);
-		this.spTabelle = new JScrollPane(this.tabelle);
-		this.sumTabelle.setFillsViewportHeight(true);
-		this.spSumTabelle = new JScrollPane(this.sumTabelle);
-		this.rankTabelle.setFillsViewportHeight(true);
-		this.spRankTabelle = new JScrollPane(this.rankTabelle);
 
 
 		this.panelWuerfelAktiv = new JPanel();
@@ -195,7 +170,7 @@ public class GUI extends JFrame implements MouseListener {
 
 		this.buttons = new JPanel();
 		this.buttons.setLayout(new GridLayout(3, 1));
-		this.buttons.setBackground(new Color(98, 69, 11));
+		this.buttons.setBackground(Color.GRAY);
 
 		this.wuerfeln = new JButton("Würfeln");
 		this.neuesSpiel = new JButton("Neues Spiel");
@@ -207,8 +182,8 @@ public class GUI extends JFrame implements MouseListener {
 		
 		this.spielTisch = new Rules();
 		
-
-
+		// tabellen zeugs
+		this.tabelle = new ScoreTable(this.spielTisch).gibTabelle();
 
 
 
@@ -244,9 +219,8 @@ public class GUI extends JFrame implements MouseListener {
 		panelNorth.add(spieler1);
 		panelSouth.add(spieler2);
 		
-
+		panelTabelle.add(tabelle);
 		panelCenter.add(panelTabelle);
-
 		
 
 	
@@ -254,26 +228,6 @@ public class GUI extends JFrame implements MouseListener {
 		panelEastFrame.add(panelEastNorthplatzhalter, BorderLayout.NORTH);
 		panelEast.add(wuerfel);
 		panelEastFrame.add(panelEast, BorderLayout.EAST);
-
-		panelTabelle.setOpaque(true);
-		JSplitPane jspR = new JSplitPane(JSplitPane.VERTICAL_SPLIT,spSumTabelle,spRankTabelle);
-		JSplitPane jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, spTabelle,jspR);
-		spTabelle.setMinimumSize(new Dimension(500,350));
-		tabelle.setBackground(new Color(69, 165, 53));
-		tabelle.setForeground(Color.WHITE);
-		tabelle.setGridColor(Color.GREEN);
-		sumTabelle.setPreferredScrollableViewportSize(new Dimension(300,80));
-		jspR.setDividerLocation(180);
-		sumTabelle.setGridColor(Color.WHITE);
-		sumTabelle.setBackground(new Color(69, 165, 53));
-		rankTabelle.setBackground(new Color(69, 165, 53));
-		sumTabelle.setForeground(Color.WHITE);
-		rankTabelle.setForeground(Color.WHITE);
-		sumTabelle.setGridColor(Color.GREEN);
-		rankTabelle.setGridColor(Color.GREEN);
-		panelTabelle.add(jsp);
-		panelCenter.add(jsp);
-
 		
 		
 		

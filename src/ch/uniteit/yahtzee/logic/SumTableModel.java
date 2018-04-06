@@ -3,27 +3,13 @@ package ch.uniteit.yahtzee.logic;
 
 import javax.swing.table.AbstractTableModel;
 
-public class TableModel extends AbstractTableModel {
-	protected  String[] columnNames = {"Oberer Teil",
+public class SumTableModel extends AbstractTableModel {
+	private String[] columnNames = {"Spielpunkte",
 			"Du", "Gegner"};
 
-	protected  Object[][] data = {
-			{"","Spieler1","Spieler2"},
-			{"Einer",new Integer(0),new Integer(0)},
-			{"Zweier",new Integer(0),new Integer(0)},
-			{"Dreier",new Integer(0),new Integer(0)},
-			{"Vierer",new Integer(0),new Integer(0)},
-			{"Fünfer",new Integer(0),new Integer(0)},
-			{"Sechser",new Integer(0),new Integer(0)},
-			{"Bonus erreicht (62)","Nein","Nein"},
+	private Object[][] data = {
+			{"Bonus erhalten (62)",new Integer(0),new Integer(0)},
 			{"Zwischensumme Oben",new Integer(0),new Integer(0)},
-			{"-","-","-"},
-			{"Viererparsch",new Integer(0),new Integer(0)},
-			{"Full-House",new Integer(0),new Integer(0)},
-			{"Kleine Strasse",new Integer(0),new Integer(0)},
-			{"Grosse Strasse",new Integer(0),new Integer(0)},
-			{"Yahtzee",new Integer(0),new Integer(0)},
-			{"Chance",new Integer(0),new Integer(0)},
 			{"Zwischensumme Unten",new Integer(0),new Integer(0)},
 			{"Gesamtpunktzahl",new Integer(0),new Integer(0)}
 	};
