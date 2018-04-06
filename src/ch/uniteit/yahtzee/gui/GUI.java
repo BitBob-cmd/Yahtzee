@@ -69,12 +69,7 @@ public class GUI extends JFrame implements MouseListener {
 	private JLabel spieler2;
 	private Icon iconSpieler1;
 	private Icon iconSpieler2;
-	
-
-	private JLabel spielTischlabel;
-	private Icon spielTischbkg;
-	
-
+		
 
 	// Attribut für Playtabel
 	
@@ -92,7 +87,7 @@ public class GUI extends JFrame implements MouseListener {
 	
 	
 
-	@SuppressWarnings("static-access")
+	
 	public GUI() {
 		// Defaultkonstruktor für erst Initialiseriung
 		super("Yathzee");
