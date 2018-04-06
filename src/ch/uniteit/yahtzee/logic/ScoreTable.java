@@ -68,8 +68,8 @@ public class ScoreTable extends Rules {
 					int sr = scoreTable.getSelectedRow();
 					int sc = scoreTable.getSelectedColumn();
 					String selRule = scoreTable.getValueAt(sr, 0).toString();
-					Object isLocked = scoreTable.getValueAt(sr, 3);
-					System.out.println(isLocked.toString());
+					String isLocked = (scoreTable.getValueAt(sr, 3)).toString();
+					//TODO entfernen ist nur für tests
 					System.out.println(isLocked + " " + sr + " " + sc + " " + selRule);
 					int punktzahl;
 					switch (sc) {
@@ -114,16 +114,16 @@ public class ScoreTable extends Rules {
 							break;
 					}
 					System.out.println("Rules liefert " + punktzahl);
-					scoreTable.setValueAt(punktzahl, sr, sc);
-/**
-					if (isLocked != false) {
-						scoreTable.setValueAt(punktzahl, sr, 1);
+
+
+					if (isLocked.equals("false")) {
+						scoreTable.setValueAt(punktzahl, sr, sc);
 
 					} else {
 						System.out.println(selRule + " ist gesperrt..");
 					}
 
-*/
+
 				}
 
 			}
