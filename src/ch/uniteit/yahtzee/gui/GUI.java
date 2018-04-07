@@ -84,7 +84,7 @@ public class GUI extends JFrame implements MouseListener {
 
 	// Attribut für Würfel Counter
 
-	private int counterAnzahlWuerfeln;
+	private static int counterAnzahlWuerfeln;
 	private int counterZaehler;
 	private Dices diceZaheler;
 
@@ -249,7 +249,9 @@ public class GUI extends JFrame implements MouseListener {
 		buttons.add(wuerfeln);
 		buttons.add(neuesSpiel);
 		buttons.add(besteListe);
-
+		
+		
+		
 		// ActionListener für Buttons
 
 		wuerfeln.addActionListener(new ActionListener() {
@@ -268,29 +270,32 @@ public class GUI extends JFrame implements MouseListener {
 
 				}
 
-				if (counterAnzahlWuerfeln < 2) {
+				if (counterAnzahlWuerfeln < 2 ) {
 
 					spielTisch.alleWuerfeln();
 					spielTisch.berechneTisch();
-					counterAnzahlWuerfeln++;
+					
 
-				} else {
-					((JButton) e.getSource()).setEnabled(false);
-					if (getSpielTisch().getSpielerZug() == 1) {
+				} 
+				
+				if (getSpielTisch().getSpielerZug() == 1 && counterAnzahlWuerfeln < 2) {
 
 						aktuellerSpieler.setText("Du bist an der Reihe ");
-						getSpielTisch().setSpielerZug(3);
-
-					} else {
-						getSpielTisch().setSpielerZug(1);
-						aktuellerSpieler.setText("Dein Gegner ist an der Reihe ");
-
-					}
-
-					((JButton) e.getSource()).setEnabled(true);
-					counterAnzahlWuerfeln = 0;
-
+						counterAnzahlWuerfeln++;
+						
+						
 				}
+				else if (getSpielTisch().getSpielerZug() == 3 && counterAnzahlWuerfeln < 2 )  {
+						
+						aktuellerSpieler.setText("Dein Gegner ist an der Reihe ");
+						counterAnzahlWuerfeln++;
+				}	
+
+				if(counterAnzahlWuerfeln == 2) {
+					
+					counterAnzahlWuerfeln = 0;
+				}
+				
 
 				for (Dices d : spielTisch.gibWuerfel()) {
 
@@ -303,11 +308,11 @@ public class GUI extends JFrame implements MouseListener {
 
 		neuesSpiel.addActionListener(new ActionListener() {
 
-			@Override
+	@Override
 			public void actionPerformed(ActionEvent e) {
 
 				counterAnzahlWuerfeln = 0;
-
+				spielNeustarten();
 				wuerfeln.setEnabled(true);
 				spielTisch.neuesSpiel();
 
@@ -323,13 +328,21 @@ public class GUI extends JFrame implements MouseListener {
 		});
 
 	}
+	
+	 public static void resetCounterAnzahlWuerfel() {
+		
+		 counterAnzahlWuerfeln = 0;
+	}
+	
 
 	public void spielNeustarten() {
 
 		for (Dices d : spielTisch.gibWuerfel()) {
 			System.out.println(d.getFlowIndex());
-			panelWuerfelAktivFlow[d.getFlowIndex()].getParent().remove(d);
-			panelWuerfelDeaktivFlow[d.getFlowIndex()].getParent().add(d);
+
+			panelWuerfelDeaktivFlow[d.getFlowIndex()].remove(d);
+			panelWuerfelAktivFlow[d.getFlowIndex()].add(d);
+			d.repaint();
 		}
 
 		// togle button enabled

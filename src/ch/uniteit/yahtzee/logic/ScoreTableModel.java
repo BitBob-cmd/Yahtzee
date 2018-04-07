@@ -54,11 +54,11 @@ public class ScoreTableModel extends AbstractTableModel {
 	}
 	// definiert welche Spalten editiert werden dürfen
 	public boolean isCellEditable(int row, int col) {
-		/**if(col < 1){
-			return false;
-		}
-		else { return true; }
-		 */
+		//if(col < 1){
+			//return false;
+		//}
+		//else { return true; }
+		 
 		return false;
 	}
 	// Wert setzen in Tabelle
@@ -67,6 +67,7 @@ public class ScoreTableModel extends AbstractTableModel {
 		fireTableCellUpdated(row, col);
 	}
 	
+	 
 	
 }
 
