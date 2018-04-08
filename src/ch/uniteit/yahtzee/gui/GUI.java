@@ -80,7 +80,7 @@ public class GUI extends JFrame implements MouseListener {
 
 	// Attribut für Playtabel
 
-	private ScoreTable spielTisch;
+	private PlayTable spielTisch;
 
 	// Attribut für Würfel Counter
 
@@ -88,7 +88,7 @@ public class GUI extends JFrame implements MouseListener {
 	private int counterZaehler;
 	private Dices diceZaheler;
 
-	public GUI(ScoreTable pt) {
+	public GUI(PlayTable pt) {
 		// Defaultkonstruktor für erst Initialiseriung
 		// JFrame Attribute Setzen und instanzieren
 
@@ -292,7 +292,10 @@ public class GUI extends JFrame implements MouseListener {
 		
 		 counterAnzahlWuerfeln = 0;
 	}
-	
+
+
+
+
 /**
 	public void spielNeustarten() {
 
@@ -414,5 +417,9 @@ public class GUI extends JFrame implements MouseListener {
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public static void main(String[] args) {
+		new GUI(new PlayTable());
 	}
 }

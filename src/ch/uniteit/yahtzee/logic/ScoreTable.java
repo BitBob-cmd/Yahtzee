@@ -8,26 +8,26 @@ import javax.swing.event.ListSelectionListener;
 import ch.uniteit.yahtzee.gui.GUI;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 /*
  * Diese Klasse ist für das Auswerten und einfüllen der Tabelle zuständig
  */
 
-public class ScoreTable extends PlayTable implements ListSelectionListener{
+public class ScoreTable {
 
-	private JTable scoreTable;
-	private JTable sumTable;
-	private JTable rankTable;
-	private ListSelectionModel cellSelectionModel;
-	private int sr; // selected row
-	private int sc; // selected column
-
-	
-
+	protected JTable scoreTable;
+	protected JTable sumTable;
+	protected JTable rankTable;
+	protected ListSelectionModel cellSelectionModel;
+	protected int sr; // selected row
+	protected int sc; // selected column
+	protected Rules rl;
 
 
-	public ScoreTable() {
+	public ScoreTable(Rules rl) {
+		this.rl = rl;
 		ScoreTableModel tm = new ScoreTableModel();
-	
+
 		this.scoreTable = new JTable(tm);
 		this.scoreTable.setCellSelectionEnabled(true);
 		this.cellSelectionModel = scoreTable.getSelectionModel();
@@ -59,32 +59,25 @@ public class ScoreTable extends PlayTable implements ListSelectionListener{
 
 	public void addSelectionListener() {
 
-		
-		this.cellSelectionModel.addListSelectionListener(this); 
 
-
-	}
-	
+		this.cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-
-				if (!e.getValueIsAdjusting()) {
-
-					//sr = scoreTable.getSelectedRow();
-					//int sc = scoreTable.getSelectedColumn();
-					//sc = scoreTable.getSelectedColumn(); //
-					//String selRule = scoreTable.getValueAt(sr, 0).toString();
-					//String isLocked;
-					//isLocked = (scoreTable.getValueAt(sr, sc)).toString();
-					//getSelectedColumn();
-					//getSelectedRow();
-					wertEinfuellenTabelle(scoreTable.getSelectedRow());
-					
+			if (!e.getValueIsAdjusting()) {
+				sr = scoreTable.getSelectedRow();
+				//int sc = scoreTable.getSelected();
+				//sc = scoreTable.getSelectedColumn(); //
+				//String selRule = scoreTable.getValueAt(sr, 0).toString();
+				//String isLocked;
+				//isLocked = (scoreTable.getValueAt(sr, sc)).toString();
+				//getSelectedColumn();
+				//getSelectedRow();
+				//wertEinfuellenTabelle(getSelectedRow());
 				}
-
-
 			}
-	
+		});
+	}
+
 
 	public JTable gibScoreTable() {
 		if (scoreTable != null)
@@ -111,11 +104,11 @@ public class ScoreTable extends PlayTable implements ListSelectionListener{
 	}
 
 	// reset methode
-	public void neuesSpiel(){
-		int numRows = scoreTable.getRowCount()-1;
-		int numCols = scoreTable.getColumnCount()-1;
+	public void neuesSpiel() {
+		int numRows = scoreTable.getRowCount() - 1;
+		int numCols = scoreTable.getColumnCount() - 1;
 		System.out.println(numRows);
-		while(numRows >= 0){
+		while (numRows >= 0) {
 			scoreTable.setValueAt(0, numRows, 1);
 			scoreTable.setValueAt(new Boolean(false), numRows, 2);
 			scoreTable.setValueAt(0, numRows, 3);
@@ -124,5 +117,11 @@ public class ScoreTable extends PlayTable implements ListSelectionListener{
 		}
 	}
 
-	
+	public Rules gibRegeln() throws Exception{
+		if(rl != null) return this.rl;
+		else{
+			throw new Exception("Es konnte kein Rules-Objekt erstellt werden in der Klasse ScoreTable");
+		}
+	}
+
 }
