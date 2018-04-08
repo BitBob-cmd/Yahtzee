@@ -68,10 +68,9 @@ public class Rules {
 
 	// Prüft ob die ausgewählten Würfel 1ner sind.
 
-	public int einerPruefung() {
+	public int einerPruefung(ArrayList<Dices> dieWuerfel) {
 
-		return 1;
-		/*int[] x = new int[6];
+		int[] x = new int[6];
 		x[0] = 0;
 
 		for (Dices d : dieWuerfel) {
@@ -82,7 +81,7 @@ public class Rules {
 			}
 		}
 		this.einerResultat = x[0];
-		return x[0];*/
+		return x[0];
 
 	}
 

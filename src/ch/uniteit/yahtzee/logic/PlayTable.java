@@ -15,7 +15,6 @@ import ch.uniteit.yahtzee.gui.GUI;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
@@ -25,7 +24,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener{
 	private ArrayList<Dices> dieWuerfel;
 	private int wuerfelScore;
 	private int spielerZug; // hält den Spaltenindex des Spieler der gerade dran ist
-	private Rules regeln;
+	private Rules regelnScore;
+	private Rules localRules;
 	private JTable tabelle;
 
 	/**
@@ -33,7 +33,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener{
 	 * Setzt die Anzahl Würfel die im Spiel sind, und generiert diese in einem array..
 	 */
 	public PlayTable() {
-		super(new Rules());
+		super();
+		this.localRules = new Rules();
 		this.wuerfelAnzahl = 5;
 		this.dieWuerfel = new ArrayList<>();
 		this.spielerZug = 1;
@@ -43,7 +44,6 @@ public class PlayTable extends ScoreTable implements ListSelectionListener{
 			i++;
 		}
 		this.tabelle = scoreTable;
-		this.regeln = rl;
 		addSelectionListener();
 	}
 
@@ -54,7 +54,7 @@ public class PlayTable extends ScoreTable implements ListSelectionListener{
 	 * @param wuerfelAnzahl
 	 */
 	public PlayTable(int wuerfelAnzahl, int index) throws Exception {
-		super(new Rules());
+		super();
 
 		if (wuerfelAnzahl <= 0) {
 			//TODO GUI handling?
@@ -115,40 +115,45 @@ public class PlayTable extends ScoreTable implements ListSelectionListener{
 				//String isLocked;
 				//isLocked = (scoreTable.getValueAt(sr, sc)).toString();
 				//getSelectedColumn();
-				//getSelectedRow();
-				wertEinfuellenTabelle(tabelle.getSelectedRow());
+				
+				wertEinfuellenTabelle(tabelle.getSelectedRow(),tabelle.getSelectedColumn());
 				}
 			}
 
-	public void wertEinfuellenTabelle(int sr) {
+	public void wertEinfuellenTabelle(int sr, int sc) {
 
 
-		int punktzahl;
+
+		int punktzahl = 0;
 
 		switch (sr) {
 
 			case 0:
-				System.out.println("halloichbinderswitch");
-				punktzahl = regeln.einerPruefung();
+				
+				
+				punktzahl = rl.einerPruefung(dieWuerfel);
 
-				scoreTable.setValueAt(new Boolean(true), 0, this.spielerZug+1);
+				tabelle.setValueAt(new Boolean(true), sr,sc);
+				tabelle.setValueAt(punktzahl,sr,sc);
 				if (this.spielerZug == 1) spielerZug = 3;
 				else if (this.spielerZug == 3) spielerZug = 1;
 				GUI.resetCounterAnzahlWuerfel();
-				System.out.println(this.spielerZug);
 
-/*
+
+
 				break;
 			case 1:
 
-				punktzahl = regeln.zweierPruefung();
-				scoreTable.setValueAt(new Boolean(true), 1, this.spielerZug + 1);
-				if (this.spielerZug == 1) setSpielerZug(3);
-				else if (this.spielerZug == 3) setSpielerZug(1);
+				punktzahl = rl.zweierPruefung(dieWuerfel);
+
+				tabelle.setValueAt(new Boolean(true), sr,sc);
+				tabelle.setValueAt(punktzahl,sr,sc);
+				if (this.spielerZug == 1) spielerZug = 3;
+				else if (this.spielerZug == 3) spielerZug = 1;
 				GUI.resetCounterAnzahlWuerfel();
-				System.out.println(this.spielerZug);
 
 
+				/*
 				break;
 			case 2:
 

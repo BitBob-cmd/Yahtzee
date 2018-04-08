@@ -24,8 +24,8 @@ public class ScoreTable {
 	protected Rules rl;
 
 
-	public ScoreTable(Rules rl) {
-		this.rl = rl;
+	public ScoreTable() {
+		this.rl = new Rules();
 		ScoreTableModel tm = new ScoreTableModel();
 
 		this.scoreTable = new JTable(tm);
@@ -97,11 +97,8 @@ public class ScoreTable {
 		}
 	}
 
-	public Rules gibRegeln() throws Exception{
-		if(rl != null) return this.rl;
-		else{
-			throw new Exception("Es konnte kein Rules-Objekt erstellt werden in der Klasse ScoreTable");
-		}
+	public Rules gibRegeln(){
+		return this.rl;
 	}
 
 }
