@@ -34,10 +34,6 @@ public class Rules extends PlayTable {
 	private int chanceResulat;
 	private int summeUnten;
 
-	// Attribute counter für Dreier und Viererpasch
-
-	private int counterWuerfelOnHoldDreierpasch;
-	private int counterWuerfelOnHoldViererpasch;
 
 	// Attribut für Gesamtsumme und Bonus
 
@@ -66,8 +62,6 @@ public class Rules extends PlayTable {
 		this.bonus = 0;
 		this.chanceResulat = 0;
 		this.summeUnten = 0;
-		this.counterWuerfelOnHoldDreierpasch = 0;
-		this.counterWuerfelOnHoldViererpasch = 0;
 
 	}
 
@@ -348,9 +342,14 @@ public class Rules extends PlayTable {
 				if (d != ref)
 					chk = false;
 			}
-			if (chk == true)
+			if (chk == true && isYathzeeTwice == false)
 				return 50;
-			else
+				this.isYathzeeTwice = true;
+				
+			if(chk == true && isYathzeeTwice == true ) {
+				
+				return 150;
+			}
 				return 0;
 		}
 
