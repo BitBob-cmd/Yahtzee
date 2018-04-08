@@ -48,8 +48,9 @@ public class GUI extends JFrame implements MouseListener {
 	private JPanel wuerfel;
 	private JPanel buttons;
 
-	// JButton Attribute
-
+	// JButton Attribute & Label Spieler
+	
+	private static JLabel aktuellerSpieler;
 	private JButton wuerfeln;
 	private JButton neuesSpiel;
 	private JButton besteListe;
@@ -69,7 +70,7 @@ public class GUI extends JFrame implements MouseListener {
 	private Icon iconSpieler1;
 	private Icon iconSpieler2;
 
-	private JLabel aktuellerSpieler;
+	
 
 	// Attribute für die Visualisierung der restliche Würfelmöglichkeiten
 	private JLabel klickCounter;
@@ -170,13 +171,13 @@ public class GUI extends JFrame implements MouseListener {
 		this.counterAnzahlWuerfeln = 0;
 		this.counterZaehler = 3;
 
-		this.aktuellerSpieler = new JLabel("Legen Wir Loos!!");
+		this.aktuellerSpieler = new JLabel("Spieler 1 ist an der Reihe");
 		aktuellerSpieler.setLayout(new FlowLayout());
 
 		this.klickCounter = new JLabel();
 		this.klickCounter.setLayout(new FlowLayout());
 
-		this.diceZaheler = new Dices(counterZaehler);
+		this.diceZaheler = new Dices(counterAnzahlWuerfeln);
 		
 		this.falscheSpalte = new JOptionPane();
 		
@@ -262,8 +263,14 @@ public class GUI extends JFrame implements MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				spielTisch.alleWuerfeln();
-				
+				if(counterAnzahlWuerfeln<3) {
+					
+					
+					counterAnzahlWuerfeln++;
+					diceZaheler.setRollScore(counterAnzahlWuerfeln);
+					diceZaheler.repaint();
+					spielTisch.alleWuerfeln();
+				}
 				
 
 			}
@@ -285,20 +292,26 @@ public class GUI extends JFrame implements MouseListener {
 
 	}
 	
-	public void spieler1Aktiv() {
+	public static void spieler1Aktiv() {
 		
+		aktuellerSpieler.setText("Spieler 1 ist an der Reihe");
 		
 	}
 	
-	public void spieler2Aktiv() {
+	public static void spieler2Aktiv() {
 		
-		
+		aktuellerSpieler.setText("Spieler 2 ist an der Reihe");
 	}
 	
 	 public static void resetCounterAnzahlWuerfel() {
 		
 		 counterAnzahlWuerfeln = 0;
 	}
+	 
+	 public static int getCounterAnzahlWuerfel() {
+		 
+		 return counterAnzahlWuerfeln;
+	 }
 
 
 	 public void showDialogWrongInput() {
