@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 
 //TODO würfeln und befüllen und so
-public class PlayTable extends ScoreTable {
+public class PlayTable extends ScoreTable implements ListSelectionListener{
 	private int wuerfelAnzahl;
 	private ArrayList<Dices> dieWuerfel;
 	private int wuerfelScore;
@@ -44,6 +44,7 @@ public class PlayTable extends ScoreTable {
 		}
 		this.tabelle = scoreTable;
 		this.regeln = rl;
+		addSelectionListener();
 	}
 
 	/**
@@ -98,6 +99,26 @@ public class PlayTable extends ScoreTable {
 
 	}
 
+	public void addSelectionListener() {
+
+
+		this.cellSelectionModel.addListSelectionListener(this);
+		
+	}
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+			
+				if (!e.getValueIsAdjusting()) {
+				//int sc = scoreTable.getSelected();
+				//sc = scoreTable.getSelectedColumn(); //
+				//String selRule = scoreTable.getValueAt(sr, 0).toString();
+				//String isLocked;
+				//isLocked = (scoreTable.getValueAt(sr, sc)).toString();
+				//getSelectedColumn();
+				//getSelectedRow();
+				wertEinfuellenTabelle(tabelle.getSelectedRow());
+				}
+			}
 
 	public void wertEinfuellenTabelle(int sr) {
 
