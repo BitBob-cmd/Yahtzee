@@ -3,9 +3,7 @@ package ch.uniteit.yahtzee.logic;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.JTableHeader;
 
-import com.sun.nio.file.SensitivityWatchEventModifier;
 
 import ch.uniteit.yahtzee.gui.GUI;
 
@@ -14,18 +12,20 @@ import java.awt.*;
  * Diese Klasse ist für das Auswerten und einfüllen der Tabelle zuständig
  */
 
-public class ScoreTable extends Rules {
+public class ScoreTable extends PlayTable{
 
-	protected JTable scoreTable;
-	protected JTable sumTable;
-	protected JTable rankTable;
+	private JTable scoreTable;
+	private JTable sumTable;
+	private JTable rankTable;
 	private ListSelectionModel cellSelectionModel;
+	private int sr; // selected row
+	private int sc; // selected column
+
 	
 
 
 
 	public ScoreTable() {
-		
 		ScoreTableModel tm = new ScoreTableModel();
 	
 		this.scoreTable = new JTable(tm);
@@ -67,13 +67,14 @@ public class ScoreTable extends Rules {
 			public void valueChanged(ListSelectionEvent e) {
 
 				if (!e.getValueIsAdjusting()) {
-					
-					int sr = scoreTable.getSelectedRow();
+
+					sr = scoreTable.getSelectedRow();
 					//int sc = scoreTable.getSelectedColumn();
-					int sc = scoreTable.getSelectedColumn(); //
+					sc = scoreTable.getSelectedColumn(); //
 					//String selRule = scoreTable.getValueAt(sr, 0).toString();
 					//String isLocked;
 					//isLocked = (scoreTable.getValueAt(sr, sc)).toString();
+
 
 					//TODO entfernen ist nur für tests
 					//System.out.println(isLocked + " " + sr + " " + sc + " " + selRule);
@@ -244,13 +245,23 @@ public class ScoreTable extends Rules {
 					//if(getSpielerZug() == 1) setSpielerZug(3);
 					//else if(getSpielerZug() == 3) setSpielerZug(1);
 					
-				}
+
+					getSelectedColumn();
+					getSelectedRow();
 
 				}
 
-			
+
+			}
 		});
 
+	}
+	public int getSelectedRow() {
+		return sr;
+	}
+
+	public int getSelectedColumn() {
+		return sc;
 	}
 
 	public JTable gibScoreTable() {
@@ -276,10 +287,6 @@ public class ScoreTable extends Rules {
 			return null;
 
 	}
-	
-	
-	
-
 
 	// reset methode
 	public void neuesSpiel(){

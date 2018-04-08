@@ -88,7 +88,7 @@ public class GUI extends JFrame implements MouseListener {
 	private int counterZaehler;
 	private Dices diceZaheler;
 
-	public GUI() {
+	public GUI(ScoreTable pt) {
 		// Defaultkonstruktor für erst Initialiseriung
 		// JFrame Attribute Setzen und instanzieren
 
@@ -100,7 +100,7 @@ public class GUI extends JFrame implements MouseListener {
 		this.setResizable(false);
 
 		// Spieltisch instanzieren
-		this.spielTisch = new ScoreTable();
+		this.spielTisch = pt;
 
 		// JPanel instanzieren und Layoutmanager festlegen
 
@@ -244,7 +244,7 @@ public class GUI extends JFrame implements MouseListener {
 
 		deaktivePanelErstellen();
 		aktivePanelErstelle();
-		indexUndMouseListenerADD();
+		//indexUndMouseListenerADD();
 
 		buttons.add(wuerfeln);
 		buttons.add(neuesSpiel);
@@ -259,50 +259,7 @@ public class GUI extends JFrame implements MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				aktuellerSpieler.setText("");
-				counterZaehler--;
-				diceZaheler.setRollScore(counterZaehler);
 
-				if (counterZaehler == 0) {
-
-					counterZaehler = 3;
-					diceZaheler.setRollScore(3);
-
-				}
-
-				if (counterAnzahlWuerfeln < 2 ) {
-
-					spielTisch.alleWuerfeln();
-					spielTisch.berechneTisch();
-					
-
-				} 
-				
-				if (getSpielTisch().getSpielerZug() == 1 && counterAnzahlWuerfeln < 2) {
-
-						aktuellerSpieler.setText("Du bist an der Reihe ");
-						counterAnzahlWuerfeln++;
-						
-						
-				}
-				else if (getSpielTisch().getSpielerZug() == 3 && counterAnzahlWuerfeln < 2 )  {
-						
-						aktuellerSpieler.setText("Dein Gegner ist an der Reihe ");
-						counterAnzahlWuerfeln++;
-				}	
-
-				if(counterAnzahlWuerfeln == 2) {
-					
-					counterAnzahlWuerfeln = 0;
-				}
-				
-
-				for (Dices d : spielTisch.gibWuerfel()) {
-
-					d.repaint();
-				}
-
-				diceZaheler.repaint();
 			}
 		});
 
@@ -312,7 +269,7 @@ public class GUI extends JFrame implements MouseListener {
 			public void actionPerformed(ActionEvent e) {
 
 				counterAnzahlWuerfeln = 0;
-				spielNeustarten();
+				//spielNeustarten();
 				wuerfeln.setEnabled(true);
 				spielTisch.neuesSpiel();
 
@@ -334,7 +291,7 @@ public class GUI extends JFrame implements MouseListener {
 		 counterAnzahlWuerfeln = 0;
 	}
 	
-
+/**
 	public void spielNeustarten() {
 
 		for (Dices d : spielTisch.gibWuerfel()) {
@@ -351,7 +308,7 @@ public class GUI extends JFrame implements MouseListener {
 		else
 			this.wuerfeln.setEnabled(true);
 	}
-
+*/
 	// Methode die den Aktiven Spieltisch retournieret
 
 	public PlayTable getSpielTisch() {
@@ -396,7 +353,7 @@ public class GUI extends JFrame implements MouseListener {
 	}
 
 	// MouseListener Hinzufügen und Indexiieren
-
+/**
 	public void indexUndMouseListenerADD() {
 
 		int index = 0;
@@ -409,7 +366,7 @@ public class GUI extends JFrame implements MouseListener {
 			index++;
 		}
 
-	}
+	} */
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -454,10 +411,5 @@ public class GUI extends JFrame implements MouseListener {
 		// TODO Auto-generated method stub
 
 	}
-
-	public static void main(String[] args) throws Exception {
-
-		GUI n = new GUI();
-
-	}
 }
+
