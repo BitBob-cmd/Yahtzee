@@ -68,10 +68,9 @@ public class Rules {
 
 	// Prüft ob die ausgewählten Würfel 1ner sind.
 
-	public int einerPruefung() {
+	public int einerPruefung(ArrayList<Dices> dieWuerfel) {
 
-		return 1;
-		/*int[] x = new int[6];
+		int[] x = new int[6];
 		x[0] = 0;
 
 		for (Dices d : dieWuerfel) {
@@ -82,7 +81,7 @@ public class Rules {
 			}
 		}
 		this.einerResultat = x[0];
-		return x[0];*/
+		return x[0];
 
 	}
 
@@ -121,7 +120,7 @@ public class Rules {
 			}
 		}
 		this.dreierResultat = x[2];
-		return this.zweierResultat;
+		return this.dreierPaschResultat;
 
 	}
 
@@ -226,27 +225,27 @@ public class Rules {
 		for (Dices d : dieWuerfel) {
 
 			int score = d.getRollScore();
-
+			System.out.println(d.getRollScore());
 			switch (score) {
 			case 1:
-				dices[0] = dices[1]++;
+				dices[0]++;
 				break;
 			case 2:
-				dices[1] = dices[2]++;
+				dices[1]++;
 				break;
 			case 3:
-				dices[2] = dices[3]++;
+				dices[2]++;
 				break;
 			case 4:
-				dices[3] = dices[4]++;
+				dices[3]++;
 				break;
 			case 5:
-				dices[4] = dices[5]++;
+				dices[4]++;
 				break;
 			case 6:
-				dices[5] = dices[6]++;
+				dices[5]++;
 			default:
-				dices[7] = 0;
+				dices[6]++;
 				break;
 
 			}
