@@ -110,7 +110,7 @@ public class PlayTable extends ScoreTable {
 				System.out.println("halloichbinderswitch");
 				punktzahl = regeln.einerPruefung();
 
-				//scoreTable.getSpielTisch().gibScoreTable().setValueAt(new Boolean(true), 0, getSpielerZug()+1);
+				scoreTable.setValueAt(new Boolean(true), 0, this.spielerZug+1);
 				if (this.spielerZug == 1) spielerZug = 3;
 				else if (this.spielerZug == 3) spielerZug = 1;
 				GUI.resetCounterAnzahlWuerfel();
