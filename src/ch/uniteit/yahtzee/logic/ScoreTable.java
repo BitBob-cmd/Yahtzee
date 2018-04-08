@@ -179,16 +179,16 @@ public class ScoreTable extends Rules {
 						case 10:
 							punktzahl = ruleCheck("GrosseStrasse");
 							scoreTable.setValueAt(new Boolean(true), 10, getSpielerZug()+1);
-							if(getSpielerZug() == 1) setSpielerZug(3);
-							else if(getSpielerZug() == 3) setSpielerZug(1);
+							//if(getSpielerZug() == 1) setSpielerZug(3);
+							//else if(getSpielerZug() == 3) setSpielerZug(1);
 							GUI.resetCounterAnzahlWuerfel();
 							System.out.println(getSpielerZug());
 							break;
 						case 11:
 							punktzahl = ruleCheck("Kniffel");
 							scoreTable.setValueAt(new Boolean(true), 11, getSpielerZug()+1);
-							if(getSpielerZug() == 1) setSpielerZug(3);
-							else if(getSpielerZug() == 3) setSpielerZug(1);
+							//if(getSpielerZug() == 1) setSpielerZug(3);
+							//else if(getSpielerZug() == 3) setSpielerZug(1);
 							GUI.resetCounterAnzahlWuerfel();
 							System.out.println(getSpielerZug());
 							break;
@@ -196,8 +196,8 @@ public class ScoreTable extends Rules {
 						case 12:
 							punktzahl =	ruleCheck("Chance");
 							scoreTable.setValueAt(new Boolean(true), 12, getSpielerZug()+1);
-							if(getSpielerZug() == 1) setSpielerZug(3);
-							else if(getSpielerZug() == 3) setSpielerZug(1);
+							//if(getSpielerZug() == 1) setSpielerZug(3);
+							//else if(getSpielerZug() == 3) setSpielerZug(1);
 							GUI.resetCounterAnzahlWuerfel();
 							System.out.println(getSpielerZug());
 							break;

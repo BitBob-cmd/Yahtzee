@@ -75,14 +75,14 @@ public class PlayTable {
 	}
 
 	// Rechnet alle Würfel zusammen
-	public void berechneTisch() {
+	public int berechneTisch() {
 		for (Dices d : dieWuerfel) {
-			if (d.getOnHold() == true) {
+
 				this.wuerfelScore = this.wuerfelScore + d.getRollScore();
-
-			}
+				
+			
 		}
-
+		return this.wuerfelScore;
 	}
 
 	// commong methods and functions
