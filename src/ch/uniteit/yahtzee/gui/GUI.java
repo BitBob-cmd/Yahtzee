@@ -129,7 +129,7 @@ public class GUI extends JFrame implements MouseListener {
 		this.panelSouth.setLayout(new FlowLayout());
 
 		this.wuerfelCount = new JPanel();
-		wuerfelCount.setLayout(new FlowLayout());
+		this.wuerfelCount.setLayout(new FlowLayout());
 
 		this.panelTabelle = new JPanel();
 		this.panelTabelle.setLayout(new FlowLayout());
