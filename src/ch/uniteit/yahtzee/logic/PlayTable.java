@@ -120,6 +120,9 @@ public class PlayTable extends ScoreTable implements ListSelectionListener{
 				}
 			}
 
+			
+	// werte der Tabelle setzten und Regeln überprüfen
+		
 	public void wertEinfuellenTabelle(int sr, int sc) {
 
 
