@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
  * Diese Klasse ist für das Auswerten und einfüllen der Tabelle zuständig
  */
 
-public class ScoreTable {
+public class ScoreTable implements ListSelectionListener{
 
 	protected JTable scoreTable;
 	protected JTable sumTable;
@@ -60,10 +60,13 @@ public class ScoreTable {
 	public void addSelectionListener() {
 
 
-		this.cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
+		this.cellSelectionModel.addListSelectionListener(this);
+		
+	}
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-			if (!e.getValueIsAdjusting()) {
+			
+				if (!e.getValueIsAdjusting()) {
 				sr = scoreTable.getSelectedRow();
 				//int sc = scoreTable.getSelected();
 				//sc = scoreTable.getSelectedColumn(); //
@@ -75,9 +78,8 @@ public class ScoreTable {
 				//wertEinfuellenTabelle(getSelectedRow());
 				}
 			}
-		});
-	}
-
+	
+		
 
 	public JTable gibScoreTable() {
 		if (scoreTable != null)
