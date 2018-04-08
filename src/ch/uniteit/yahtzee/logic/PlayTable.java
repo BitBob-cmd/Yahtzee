@@ -112,12 +112,7 @@ public class PlayTable extends ScoreTable implements ListSelectionListener{
 				if (!e.getValueIsAdjusting()) {
 				this.sc = tabelle.getSelectedColumn();
 				this.sr = tabelle.getSelectedRow();
-				//sc = scoreTable.getSelectedColumn(); //
-				//String selRule = scoreTable.getValueAt(sr, 0).toString();
-				//String isLocked;
-				//isLocked = (scoreTable.getValueAt(sr, sc)).toString();
-				//getSelectedColumn();
-				//getSelectedRow();
+
 				wertEinfuellenTabelle(tabelle.getSelectedRow());
 				}
 			}
