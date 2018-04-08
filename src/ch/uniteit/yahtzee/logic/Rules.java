@@ -1,7 +1,9 @@
 package ch.uniteit.yahtzee.logic;
 
 
-public class Rules extends PlayTable {
+import java.util.ArrayList;
+
+public class Rules {
 
 	/**
 	 * Diese Klasse ist für die Überprüfung der Regel zuständig
@@ -79,12 +81,12 @@ public class Rules extends PlayTable {
 
 	// Prüft ob die ausgewählten Würfel 1ner sind.
 
-	public int einerPruefung() {
+	public int einerPruefung(ArrayList<Dices> dieWuerfel) {
 
 		int[] x = new int[6];
 		x[0] = 0;
 
-		for (Dices d : gibWuerfel()){
+		for (Dices d : dieWuerfel){
 
 			if(d.getRollScore() == 1) {
 
@@ -101,12 +103,12 @@ public class Rules extends PlayTable {
 
 	// Prüft ob die ausgewählten Würfel 2er sind.
 
-	public int zweierPruefung() {
+	public int zweierPruefung(ArrayList<Dices> dieWuerfel) {
 
 		int[] x = new int[6];
 		x[1] = 0;
 
-		for (Dices d : gibWuerfel()){
+		for (Dices d : dieWuerfel){
 
 			if(d.getRollScore() == 2) {
 
@@ -114,7 +116,7 @@ public class Rules extends PlayTable {
 			}
 		}
 		this.zweierResultat = x[1];
-		return x[1];
+		return this.zweierResultat;
 
 	}
 
@@ -122,13 +124,13 @@ public class Rules extends PlayTable {
 
 	// Prüft ob die ausgewählten Würfel 3er sind.
 
-	public int dreierPruefung() {
+	public int dreierPruefung(ArrayList<Dices> dieWuerfel) {
 
 		int[] x = new int[6];
 
 		x[2] = 0;
 
-		for (Dices d : gibWuerfel()){
+		for (Dices d : dieWuerfel){
 
 			if(d.getRollScore() == 3) {
 
@@ -136,20 +138,20 @@ public class Rules extends PlayTable {
 			}
 		}
 		this.dreierResultat = x[2];
-		return x[2];
+		return this.zweierResultat;
 
 	}
 
 
 	// Prüft ob die ausgewählten Würfel 4er sind.
 
-	public int viererPruefung() {
+	public int viererPruefung(ArrayList<Dices> dieWuerfel) {
 
 		int[] x = new int[6];
 
 		x[3] = 0;
 
-		for (Dices d : gibWuerfel()){
+		for (Dices d : dieWuerfel){
 
 			if(d.getRollScore() == 4) {
 
@@ -163,12 +165,12 @@ public class Rules extends PlayTable {
 
 	// Prüft ob die ausgewählten Würfel 5er sind.
 
-	public int fuenferPruefung() {
+	public int fuenferPruefung(ArrayList<Dices> dieWuerfel) {
 
 		int[] x = new int[6];
 
 		x[4] = 0;
-		for (Dices d : gibWuerfel()){
+		for (Dices d : dieWuerfel){
 
 			if(d.getRollScore() == 5) {
 
@@ -182,13 +184,13 @@ public class Rules extends PlayTable {
 
 	// Prüft ob die ausgewählten Würfel 6er sind.
 
-	public int sechserPruefung() {
+	public int sechserPruefung(ArrayList<Dices> dieWuerfel) {
 
 		int[] x = new int[6];
 
 		x[5] = 0;
 
-		for (Dices d : gibWuerfel()){
+		for (Dices d : dieWuerfel){
 
 			if(d.getRollScore() == 6) {
 
@@ -235,89 +237,151 @@ public class Rules extends PlayTable {
 	}
 
 
-	public int ruleCheck(String prüfe){
+	public int ruleCheck(String prüfe, ArrayList<Dices> dieWuerfel){
 
 		int[] dices = new int[7];
-		for(Dices d: gibWuerfel()){
+		for(Dices d: dieWuerfel){
 			int score = d.getRollScore();
 			switch (score){
 				case 1:
-					dices[1] = dices[1]++;
+					dices[0] = dices[1]++;
 					break;
 				case 2:
-					dices[2] = dices[2]++;
+					dices[1] = dices[2]++;
 					break;
 				case 3:
-					dices[3] = dices[3]++;
+					dices[2] = dices[3]++;
 					break;
 				case 4:
-					dices[4] = dices[4]++;
+					dices[3] = dices[4]++;
 					break;
 				case 5:
-					dices[5] = dices[5]++;
+					dices[4] = dices[5]++;
 					break;
 				case 6:
-					dices[6] = dices[6]++;
+					dices[5] = dices[6]++;
 				default:
-					dices[0] = 0;
+					dices[7] = 0;
 					break;
 			}
 		}
 		// prüfe die verschiednen Spezialfälle sie equals String für ref.
-		if(prüfe.equals("Dreierpasch")){
-			if(dices[3] == 3) return 3*3;
-			return 0;
+		if (prüfe.equals("Dreierpasch")) {
+
+			int temp1 = 0;
+			int temp2 = 0;
+
+			for (int counter = 0; counter < dices.length; counter++) {
+
+
+				if (dices[counter] == 3) {
+
+					temp1 = dices[counter] * 3;
+				}
+				if (dices[counter] != 3) {
+
+					temp2 += dices[counter];
+				}
+
+			}
+
+			this.dreierPaschResultat = temp1 + temp2;
+			return this.dreierPaschResultat;
 		}
-		if(prüfe.equals("Vierpasch")){
-			if(dices[4] ==4) return 4*4;
-			return 0;
+
+		if (prüfe.equals("Vierpasch")) {
+
+
+
+			int temp1 = 0;
+			int temp2 = 0;
+
+			for (int counter = 0; counter < dices.length; counter++) {
+
+
+				if (dices[counter] == 4) {
+
+					temp1 = dices[counter] * 4;
+				}
+				if (dices[counter] != 4) {
+
+					temp2 += dices[counter];
+				}
+
+			}
+
+			this.viererPaschResultat = temp1 + temp2;
+			return this.viererPaschResultat;
+
 		}
+
 		boolean two = false;
 		boolean three = false;
-		if(prüfe.equals("FullHouse")){
-			for(int d: dices){
-				if(d == 2) two = true;
-				if(d == 3) three = true;
+
+
+
+		if (prüfe.equals("FullHouse")) {
+			for (int d : dices) {
+				if (d == 2)
+					two = true;
+				if (d == 3)
+					three = true;
 			}
-			if(two == true && three == true) return 25;
-			else return 0;
+			if (two == true && three == true)
+				return 25;
+			else
+				return 0;
 		}
 		int str = 0;
-		if(prüfe.equals("KleineStrasse")){
-			for(int d: dices) {
-				if(d != 0) str++;
+		if (prüfe.equals("KleineStrasse")) {
+			for (int d : dices) {
+				if (d != 0)
+					str++;
 			}
-			if(str == 4) return 30;
-			else return 0;
+			if (str == 4)
+				return 30;
+			else
+				return 0;
 		}
 
-		int str5 = 0;
-		if(prüfe.equals("GrosseStrasse")){
-			for(int d: dices) {
-				if(d != 0) str++;
+		int str2 = 0;
+		if (prüfe.equals("GrosseStrasse")) {
+			for (int d : dices) {
+				if (d != 0)
+					str2++;
 			}
-			if(str == 5) return 40;
-			else return 0;
+			if (str2 == 5)
+				return 40;
+			else
+				return 0;
 		}
 
-		if(prüfe.equals("Kniffel")){
+		if (prüfe.equals("Kniffel")) {
 			int ref = dices[1];
 			boolean chk = true;
-			for(int d: dices){
-				if(d != ref) chk = false;
+			for (int d : dices) {
+				if (d != ref)
+					chk = false;
 			}
-			if(chk == true) return 50;
-			else return 0;
+			if (chk == true && isYathzeeTwice == false)
+				return 50;
+			this.isYathzeeTwice = true;
+
+			if(chk == true && isYathzeeTwice == true ) {
+
+				return 150;
+			}
+			return 0;
 		}
 
-		if(prüfe.equals("Chance")){
-			int c = 0;
-			for(int d: dices){
-				c += d;
-			}
+		if (prüfe.equals("Chance")) {
+
+			int c = 0;//berechneTisch();
 			return c;
 		}
+
 		return 0;
 	}
+
 
 }

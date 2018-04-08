@@ -3,9 +3,7 @@ package ch.uniteit.yahtzee.logic;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.JTableHeader;
 
-import com.sun.nio.file.SensitivityWatchEventModifier;
 
 import ch.uniteit.yahtzee.gui.GUI;
 
@@ -14,18 +12,20 @@ import java.awt.*;
  * Diese Klasse ist für das Auswerten und einfüllen der Tabelle zuständig
  */
 
-public class ScoreTable extends Rules {
+public class ScoreTable extends PlayTable{
 
-	protected JTable scoreTable;
-	protected JTable sumTable;
-	protected JTable rankTable;
+	private JTable scoreTable;
+	private JTable sumTable;
+	private JTable rankTable;
 	private ListSelectionModel cellSelectionModel;
+	private int sr; // selected row
+	private int sc; // selected column
+
 	
 
 
 
 	public ScoreTable() {
-		
 		ScoreTableModel tm = new ScoreTableModel();
 	
 		this.scoreTable = new JTable(tm);
@@ -67,190 +67,28 @@ public class ScoreTable extends Rules {
 			public void valueChanged(ListSelectionEvent e) {
 
 				if (!e.getValueIsAdjusting()) {
-					
-					int sr = scoreTable.getSelectedRow();
+
+					sr = scoreTable.getSelectedRow();
 					//int sc = scoreTable.getSelectedColumn();
-					int sc = scoreTable.getSelectedColumn(); //
+					sc = scoreTable.getSelectedColumn(); //
 					//String selRule = scoreTable.getValueAt(sr, 0).toString();
 					//String isLocked;
 					//isLocked = (scoreTable.getValueAt(sr, sc)).toString();
-
-					//TODO entfernen ist nur für tests
-					//System.out.println(isLocked + " " + sr + " " + sc + " " + selRule);
-
-					//System.out.println(isLocked + " " + sr + " " + sc + " " + selRule);
-					int punktzahl;
-
-					switch (sr) {
-						case 0:
-							
-							punktzahl = einerPruefung();
-							scoreTable.setValueAt(new Boolean(true), 0, getSpielerZug()+1);
-							if(getSpielerZug() == 1) setSpielerZug(3);
-							else if(getSpielerZug() == 3) setSpielerZug(1);
-							GUI.resetCounterAnzahlWuerfel();
-							System.out.println(getSpielerZug());
-
-							break;
-						case 1:
-
-							punktzahl = zweierPruefung();
-							scoreTable.setValueAt(new Boolean(true), 1, getSpielerZug()+1);
-							if(getSpielerZug() == 1) setSpielerZug(3);
-							else if(getSpielerZug() == 3) setSpielerZug(1);
-							GUI.resetCounterAnzahlWuerfel();
-							System.out.println(getSpielerZug());
-							
-
-							break;
-						case 2:
-
-							punktzahl = dreierPruefung();
-							scoreTable.setValueAt(new Boolean(true), 2, getSpielerZug()+1);
-							if(getSpielerZug() == 1) setSpielerZug(3);
-							else if(getSpielerZug() == 3) setSpielerZug(1);
-							GUI.resetCounterAnzahlWuerfel();
-							System.out.println(getSpielerZug());
-
-							break;
-						case 3:
-
-							punktzahl = viererPruefung();
-							scoreTable.setValueAt(new Boolean(true), 3, getSpielerZug()+1);
-							if(getSpielerZug() == 1) setSpielerZug(3);
-							else if(getSpielerZug() == 3) setSpielerZug(1);
-							GUI.resetCounterAnzahlWuerfel();
-							System.out.println(getSpielerZug());
-
-							break;
-						case 4:
-
-							punktzahl = fuenferPruefung();
-							scoreTable.setValueAt(new Boolean(true), 4, getSpielerZug()+1);
-							if(getSpielerZug() == 1) setSpielerZug(3);
-							else if(getSpielerZug() == 3) setSpielerZug(1);
-							GUI.resetCounterAnzahlWuerfel();
-							System.out.println(getSpielerZug());
-
-							break;
-						case 5:
-
-							punktzahl = sechserPruefung();
-							scoreTable.setValueAt(new Boolean(true), 5, getSpielerZug()+1);
-							if(getSpielerZug() == 1) setSpielerZug(3);
-							else if(getSpielerZug() == 3) setSpielerZug(1);
-							GUI.resetCounterAnzahlWuerfel();
-							System.out.println(getSpielerZug());
-
-							break;
-						case 6:
-							punktzahl = ruleCheck("Dreierpasch");
-							scoreTable.setValueAt(new Boolean(true), 6, getSpielerZug()+1);
-							if(getSpielerZug() == 1) setSpielerZug(3);
-							else if(getSpielerZug() == 3) setSpielerZug(1);
-							GUI.resetCounterAnzahlWuerfel();
-							System.out.println(getSpielerZug());
-							break;
-						case 7:
-							punktzahl = ruleCheck("Vierpasch");
-							scoreTable.setValueAt(new Boolean(true), 7, getSpielerZug()+1);
-							if(getSpielerZug() == 1) setSpielerZug(3);
-							else if(getSpielerZug() == 3) setSpielerZug(1);
-							GUI.resetCounterAnzahlWuerfel();
-							System.out.println(getSpielerZug());
-							break;
-						case 8:
-							punktzahl = ruleCheck("FullHouse");
-							scoreTable.setValueAt(new Boolean(true), 8, getSpielerZug()+1);
-							if(getSpielerZug() == 1) setSpielerZug(3);
-							else if(getSpielerZug() == 3) setSpielerZug(1);
-							GUI.resetCounterAnzahlWuerfel();
-							System.out.println(getSpielerZug());
-							break;
-						case 9:
-							punktzahl = ruleCheck("KleineStrasse");
-							scoreTable.setValueAt(new Boolean(true), 9, getSpielerZug()+1);
-							if(getSpielerZug() == 1) setSpielerZug(3);
-							else if(getSpielerZug() == 3) setSpielerZug(1);
-							GUI.resetCounterAnzahlWuerfel();
-							System.out.println(getSpielerZug());
-
-							break;
-						case 10:
-							punktzahl = ruleCheck("GrosseStrasse");
-							scoreTable.setValueAt(new Boolean(true), 10, getSpielerZug()+1);
-							if(getSpielerZug() == 1) setSpielerZug(3);
-							else if(getSpielerZug() == 3) setSpielerZug(1);
-							GUI.resetCounterAnzahlWuerfel();
-							System.out.println(getSpielerZug());
-							break;
-						case 11:
-							punktzahl = ruleCheck("Kniffel");
-							scoreTable.setValueAt(new Boolean(true), 11, getSpielerZug()+1);
-							if(getSpielerZug() == 1) setSpielerZug(3);
-							else if(getSpielerZug() == 3) setSpielerZug(1);
-							GUI.resetCounterAnzahlWuerfel();
-							System.out.println(getSpielerZug());
-							break;
-							
-						case 12:
-							punktzahl =	ruleCheck("Chance");
-							scoreTable.setValueAt(new Boolean(true), 12, getSpielerZug()+1);
-							if(getSpielerZug() == 1) setSpielerZug(3);
-							else if(getSpielerZug() == 3) setSpielerZug(1);
-							GUI.resetCounterAnzahlWuerfel();
-							System.out.println(getSpielerZug());
-							break;
-						default:
-							punktzahl = 0;
-							break;
-					}
-					
-				
-					
-					if(getSpielerZug() ==1) {
-						
-						
-						sumTable.setValueAt(bonus(), 0, 1);
-						sumTable.setValueAt(summeOben(), 1, 1);
-						sumTable.setValueAt(summeUnten(), 1, 2);
-						
-					
-						
-					}
-					else {
-						sumTable.setValueAt(bonus(), 1, 1);
-						sumTable.setValueAt(summeOben(), 1, 2);
-						sumTable.setValueAt(summeUnten(), 1, 3);
-					}
-
-					System.out.println("Rules liefert " + punktzahl);
-					
-					
-					if(sc != 0) {
-						scoreTable.setValueAt(punktzahl, sr, sc);
-					}
-					
-					String isLocked = (scoreTable.getValueAt(sr, getSpielerZug()).toString());
-					String selRule = (scoreTable.getValueAt(sr, 0)).toString();
-					if (isLocked.equals("false")) {
-						scoreTable.setValueAt(punktzahl, sr, sc);
-						//scoreTable.setValueAt(new Boolean(true), getSpielerZug(), sc);
-
-					} else {
-						System.out.println(selRule + " ist gesperrt..");
-					}
-
-					//if(getSpielerZug() == 1) setSpielerZug(3);
-					//else if(getSpielerZug() == 3) setSpielerZug(1);
-					
+					getSelectedColumn();
+					getSelectedRow();
 				}
 
-				}
 
-			
+			}
 		});
 
+	}
+	public int getSelectedRow() {
+		return sr;
+	}
+
+	public int getSelectedColumn() {
+		return sc;
 	}
 
 	public JTable gibScoreTable() {
@@ -276,10 +114,6 @@ public class ScoreTable extends Rules {
 			return null;
 
 	}
-	
-	
-	
-
 
 	// reset methode
 	public void neuesSpiel(){

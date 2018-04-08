@@ -10,16 +10,19 @@
 package ch.uniteit.yahtzee.logic;
 
 
+import ch.uniteit.yahtzee.gui.GUI;
+
 import java.util.ArrayList;
 
 
 //TODO würfeln und befüllen und so
 public class PlayTable {
-	protected int wuerfelAnzahl;
-	protected ArrayList<Dices> dieWuerfel;
-	protected int wuerfelScore;
-	protected int spielerZug; // hät den Spaltenindex des Spieler der gerade dran ist
-
+	private int wuerfelAnzahl;
+	private ArrayList<Dices> dieWuerfel;
+	private int wuerfelScore;
+	private int spielerZug; // hält den Spaltenindex des Spieler der gerade dran ist
+	private Rules regeln;
+	private GUI scoreTable;
 
 	/**
 	 * Konstruktor default.
@@ -27,13 +30,15 @@ public class PlayTable {
 	 */
 	public PlayTable() {
 		this.wuerfelAnzahl = 5;
-		this.dieWuerfel = new ArrayList<Dices>();
+		this.dieWuerfel = new ArrayList<>();
 		this.spielerZug = 1;
 		int i = 0;
 		while (i <wuerfelAnzahl) {
 			dieWuerfel.add(new Dices(i));
 			i++;
 		}
+		this.regeln = new Rules();
+		//this.scoreTable = new GUI();
 	}
 
 	/**
@@ -77,6 +82,16 @@ public class PlayTable {
 	// Rechnet alle Würfel zusammen
 	public void berechneTisch() {
 		for (Dices d : dieWuerfel) {
+
+
+
+
+
+
+
+
+
+
 			if (d.getOnHold() == true) {
 				this.wuerfelScore = this.wuerfelScore + d.getRollScore();
 
@@ -84,6 +99,7 @@ public class PlayTable {
 		}
 
 	}
+
 
 	// commong methods and functions
 	public int getWuerfelAnzahl() {
@@ -108,5 +124,9 @@ public class PlayTable {
 
 	public void setSpielerZug(int spielerZug) {
 		this.spielerZug = spielerZug;
+	}
+
+	public static void main(String[] args) {
+		new GUI(new ScoreTable());
 	}
 }
