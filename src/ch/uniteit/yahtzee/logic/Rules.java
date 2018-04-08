@@ -120,7 +120,7 @@ public class Rules {
 			}
 		}
 		this.dreierResultat = x[2];
-		return this.dreierResultat;
+		return this.dreierPaschResultat;
 
 	}
 
@@ -224,9 +224,8 @@ public class Rules {
 
 		for (Dices d : dieWuerfel) {
 
-			System.out.println(d.getRollScore());
 			int score = d.getRollScore();
-
+			System.out.println(d.getRollScore());
 			switch (score) {
 			case 1:
 				dices[0]++;
@@ -246,7 +245,7 @@ public class Rules {
 			case 6:
 				dices[5]++;
 			default:
-				dices[6] = 0;
+				dices[6]++;
 				break;
 
 			}

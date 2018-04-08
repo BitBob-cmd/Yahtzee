@@ -40,10 +40,10 @@ public class GUI extends JFrame implements MouseListener {
 	private JPanel panelNorth;
 	private JPanel panelSouth;
 
-	private JPanel[] panelWuerfelAktivFlow;
-	private JPanel[] panelWuerfelDeaktivFlow;
-	private JPanel panelWuerfelAktiv;
-	private JPanel panelWuerfelDeaktiv;
+	protected JPanel[] panelWuerfelAktivFlow;
+	protected JPanel[] panelWuerfelDeaktivFlow;
+	protected JPanel panelWuerfelAktiv;
+	protected JPanel panelWuerfelDeaktiv;
 
 	private JPanel wuerfel;
 	private JPanel buttons;
