@@ -12,7 +12,7 @@ import java.awt.*;
  * Diese Klasse ist für das Auswerten und einfüllen der Tabelle zuständig
  */
 
-public class ScoreTable extends PlayTable{
+public class ScoreTable extends PlayTable implements ListSelectionListener{
 
 	private JTable scoreTable;
 	private JTable sumTable;
@@ -60,36 +60,31 @@ public class ScoreTable extends PlayTable{
 	public void addSelectionListener() {
 
 		
-		this.cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
+		this.cellSelectionModel.addListSelectionListener(this); 
 
 
+	}
+	
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 
 				if (!e.getValueIsAdjusting()) {
 
-					sr = scoreTable.getSelectedRow();
+					//sr = scoreTable.getSelectedRow();
 					//int sc = scoreTable.getSelectedColumn();
-					sc = scoreTable.getSelectedColumn(); //
+					//sc = scoreTable.getSelectedColumn(); //
 					//String selRule = scoreTable.getValueAt(sr, 0).toString();
 					//String isLocked;
 					//isLocked = (scoreTable.getValueAt(sr, sc)).toString();
-					getSelectedColumn();
-					getSelectedRow();
+					//getSelectedColumn();
+					//getSelectedRow();
+					wertEinfuellenTabelle(scoreTable.getSelectedRow());
+					
 				}
 
 
 			}
-		});
-
-	}
-	public int getSelectedRow() {
-		return sr;
-	}
-
-	public int getSelectedColumn() {
-		return sc;
-	}
+	
 
 	public JTable gibScoreTable() {
 		if (scoreTable != null)
@@ -128,4 +123,6 @@ public class ScoreTable extends PlayTable{
 			numRows--;
 		}
 	}
+
+	
 }

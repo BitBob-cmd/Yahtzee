@@ -244,7 +244,7 @@ public class GUI extends JFrame implements MouseListener {
 
 		deaktivePanelErstellen();
 		aktivePanelErstelle();
-		indexUndMouseListenerADD();
+		addWuerfelundMousListener();
 
 		buttons.add(wuerfeln);
 		buttons.add(neuesSpiel);
@@ -259,6 +259,8 @@ public class GUI extends JFrame implements MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+				spielTisch.alleWuerfeln();
+				
 
 			}
 		});
@@ -311,7 +313,7 @@ public class GUI extends JFrame implements MouseListener {
 */
 	// Methode die den Aktiven Spieltisch retournieret
 
-	public PlayTable getSpielTisch() {
+	public ScoreTable getSpielTisch() {
 
 		if (spielTisch != null) {
 
@@ -319,6 +321,8 @@ public class GUI extends JFrame implements MouseListener {
 		}
 		return null;
 	}
+	
+	
 
 	// Diese Methode erstellt neue JPanel für den Deaktiven Bereich der Würfel
 
@@ -354,7 +358,7 @@ public class GUI extends JFrame implements MouseListener {
 
 	// MouseListener Hinzufügen und Indexiieren
 
-	public void indexUndMouseListenerADD() {
+	public void addWuerfelundMousListener() {
 
 		int index = 0;
 		while (index < spielTisch.getWuerfelAnzahl()) {
