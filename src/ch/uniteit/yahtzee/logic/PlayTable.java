@@ -103,7 +103,7 @@ public class PlayTable {
 		case 0:
 				
 				punktzahl = regeln.einerPruefung();
-				scoreTable.getSpielTisch().gibScoreTable().setValueAt(new Boolean(true), 0, 1);
+				scoreTable.getSpielTisch().gibScoreTable().setValueAt(aValue, row, column);;
 				//scoreTable.getSpielTisch().gibScoreTable().setValueAt(new Boolean(true), 0, getSpielerZug()+1);
 				if(getSpielerZug() == 1) setSpielerZug(3);
 				else if(getSpielerZug() == 3) setSpielerZug(1);
