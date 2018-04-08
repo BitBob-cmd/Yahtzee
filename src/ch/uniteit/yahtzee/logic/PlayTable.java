@@ -245,6 +245,11 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 				punktzahl = 0;
 				break;
 		}
+		
+		for(Dices d : gibWuerfel()) {
+			
+			d.setRollScore(0);
+		}
 
 	}
 
