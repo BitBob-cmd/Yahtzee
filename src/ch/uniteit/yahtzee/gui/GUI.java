@@ -285,6 +285,16 @@ public class GUI extends JFrame implements MouseListener {
 
 	}
 	
+	public void spieler1Aktiv() {
+		
+		
+	}
+	
+	public void spieler2Aktiv() {
+		
+		
+	}
+	
 	 public static void resetCounterAnzahlWuerfel() {
 		
 		 counterAnzahlWuerfeln = 0;
