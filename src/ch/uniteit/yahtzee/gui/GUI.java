@@ -28,9 +28,6 @@ import static java.awt.Font.BOLD;
 
 public class GUI extends JFrame implements MouseListener {
 
-	// JFrame Attribute
-
-	private JFrame mainFrame;
 
 	// JPanel Attribute
 
@@ -87,6 +84,9 @@ public class GUI extends JFrame implements MouseListener {
 	private static int counterAnzahlWuerfeln;
 	private int counterZaehler;
 	private Dices diceZaheler;
+	
+	
+	private JOptionPane falscheSpalte;
 
 	public GUI(PlayTable pt) {
 		// Defaultkonstruktor für erst Initialiseriung
@@ -177,7 +177,10 @@ public class GUI extends JFrame implements MouseListener {
 		this.klickCounter.setLayout(new FlowLayout());
 
 		this.diceZaheler = new Dices(counterZaehler);
-
+		
+		this.falscheSpalte = new JOptionPane();
+		
+		
 		this.buttons = new JPanel();
 		this.buttons.setLayout(new GridLayout(3, 1));
 		this.buttons.setBackground(new Color(98, 69, 11));
@@ -248,7 +251,7 @@ public class GUI extends JFrame implements MouseListener {
 
 		buttons.add(wuerfeln);
 		buttons.add(neuesSpiel);
-		buttons.add(besteListe);
+
 		
 		
 		
@@ -278,14 +281,7 @@ public class GUI extends JFrame implements MouseListener {
 
 			}
 		});
-
-		besteListe.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
+		
 
 	}
 	
@@ -295,6 +291,11 @@ public class GUI extends JFrame implements MouseListener {
 	}
 
 
+	 public void showDialogWrongInput() {
+		 
+		 
+		 falscheSpalte.showMessageDialog(this, "Prüfen Sie Ihre Eingabe");
+	 }
 
 
 /**
