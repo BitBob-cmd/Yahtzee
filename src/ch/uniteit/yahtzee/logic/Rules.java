@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Rules {
 
-
 	/**
 	 * Diese Klasse ist für die Überprüfung der Regel zuständig
 	 *
@@ -36,7 +35,6 @@ public class Rules {
 
 	private int chanceResulat;
 	private int summeUnten;
-
 
 	// Attribut für Gesamtsumme und Bonus
 
@@ -75,9 +73,7 @@ public class Rules {
 		int[] x = new int[6];
 		x[0] = 0;
 
-
-
-		for (Dices d : dieWuerfel){
+		for (Dices d : dieWuerfel) {
 
 			if (d.getRollScore() == 1) {
 
@@ -96,9 +92,7 @@ public class Rules {
 		int[] x = new int[6];
 		x[1] = 0;
 
-
-		for (Dices d : dieWuerfel){
-
+		for (Dices d : dieWuerfel) {
 
 			if (d.getRollScore() == 2) {
 
@@ -118,9 +112,7 @@ public class Rules {
 
 		x[2] = 0;
 
-
-		for (Dices d : dieWuerfel){
-
+		for (Dices d : dieWuerfel) {
 
 			if (d.getRollScore() == 3) {
 
@@ -140,9 +132,7 @@ public class Rules {
 
 		x[3] = 0;
 
-
-		for (Dices d : dieWuerfel){
-
+		for (Dices d : dieWuerfel) {
 
 			if (d.getRollScore() == 4) {
 
@@ -162,8 +152,7 @@ public class Rules {
 
 		x[4] = 0;
 
-		for (Dices d : dieWuerfel){
-
+		for (Dices d : dieWuerfel) {
 
 			if (d.getRollScore() == 5) {
 
@@ -183,9 +172,7 @@ public class Rules {
 
 		x[5] = 0;
 
-
-		for (Dices d : dieWuerfel){
-
+		for (Dices d : dieWuerfel) {
 
 			if (d.getRollScore() == 6) {
 
@@ -231,39 +218,35 @@ public class Rules {
 		return 0;
 	}
 
-
-
-	public int ruleCheck(String prüfe, ArrayList<Dices> dieWuerfel){
-
+	public int ruleCheck(String prüfe, ArrayList<Dices> dieWuerfel) {
 
 		int[] dices = new int[7];
 
-		for(Dices d: dieWuerfel){
+		for (Dices d : dieWuerfel) {
 
 			int score = d.getRollScore();
 
-	
-			switch (score){
-				case 1:
-					dices[0] = dices[1]++;
-					break;
-				case 2:
-					dices[1] = dices[2]++;
-					break;
-				case 3:
-					dices[2] = dices[3]++;
-					break;
-				case 4:
-					dices[3] = dices[4]++;
-					break;
-				case 5:
-					dices[4] = dices[5]++;
-					break;
-				case 6:
-					dices[5] = dices[6]++;
-				default:
-					dices[7] = 0;
-					break;
+			switch (score) {
+			case 1:
+				dices[0] = dices[1]++;
+				break;
+			case 2:
+				dices[1] = dices[2]++;
+				break;
+			case 3:
+				dices[2] = dices[3]++;
+				break;
+			case 4:
+				dices[3] = dices[4]++;
+				break;
+			case 5:
+				dices[4] = dices[5]++;
+				break;
+			case 6:
+				dices[5] = dices[6]++;
+			default:
+				dices[7] = 0;
+				break;
 
 			}
 		}
@@ -275,7 +258,6 @@ public class Rules {
 
 			for (int counter = 0; counter < dices.length; counter++) {
 
-
 				if (dices[counter] == 3) {
 
 					temp1 = dices[counter] * 3;
@@ -285,7 +267,6 @@ public class Rules {
 					temp2 += dices[counter];
 				}
 
-
 			}
 
 			this.dreierPaschResultat = temp1 + temp2;
@@ -294,14 +275,10 @@ public class Rules {
 
 		if (prüfe.equals("Vierpasch")) {
 
-
-
-
 			int temp1 = 0;
 			int temp2 = 0;
 
 			for (int counter = 0; counter < dices.length; counter++) {
-
 
 				if (dices[counter] == 4) {
 
@@ -318,7 +295,6 @@ public class Rules {
 			return this.viererPaschResultat;
 
 		}
-
 
 		boolean two = false;
 		boolean three = false;
@@ -369,42 +345,28 @@ public class Rules {
 			if (chk == true && isYathzeeTwice == false)
 				return 50;
 
-				this.isYathzeeTwice = true;
-				
-			if(chk == true && isYathzeeTwice == true ) {
-				
-				return 150;
-			}
-				return 0;
-
 			this.isYathzeeTwice = true;
 
-			if(chk == true && isYathzeeTwice == true ) {
+			if (chk == true && isYathzeeTwice == true) {
 
 				return 150;
 			}
 			return 0;
 
+
 		}
 
 		if (prüfe.equals("Chance")) {
 
-			
-			int c =// berechneTisch();
+			// int c =// berechneTisch();
 
+			// int c = 0;//berechneTisch();
 
-			int c = 0;//berechneTisch();
+			return 0;
 
-			return c;
-
-			}
-			
-
-	}
-
+		}
 
 		return 0;
 	}
-
 
 }

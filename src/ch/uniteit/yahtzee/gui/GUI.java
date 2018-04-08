@@ -244,7 +244,7 @@ public class GUI extends JFrame implements MouseListener {
 
 		deaktivePanelErstellen();
 		aktivePanelErstelle();
-		//indexUndMouseListenerADD();
+		indexUndMouseListenerADD();
 
 		buttons.add(wuerfeln);
 		buttons.add(neuesSpiel);
@@ -353,7 +353,7 @@ public class GUI extends JFrame implements MouseListener {
 	}
 
 	// MouseListener Hinzufügen und Indexiieren
-/**
+
 	public void indexUndMouseListenerADD() {
 
 		int index = 0;
@@ -366,7 +366,7 @@ public class GUI extends JFrame implements MouseListener {
 			index++;
 		}
 
-	} */
+	} 
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -412,4 +412,3 @@ public class GUI extends JFrame implements MouseListener {
 
 	}
 }
-
