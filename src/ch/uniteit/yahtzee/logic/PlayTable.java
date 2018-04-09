@@ -27,10 +27,17 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 	private Rules regelnScore;
 	private Rules localRules;
 	private JTable tabelle;
+	private JTable spielpunkteTabelle;
+	private JTable rankingTabelle;
 	private int sr;
 	private int sc;
+
 	private boolean wuerfelAktiv;
 	private boolean wuerfelDeaktiv;
+
+	private int pg1; // player1 gesamtsumme vom
+	private int pg2;
+
 
 	/**
 	 * Konstruktor default.
@@ -48,6 +55,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 			i++;
 		}
 		this.tabelle = scoreTable;
+		this.spielpunkteTabelle = sumTable;
+		this.rankingTabelle = rankTable;
 		addSelectionListener();
 	}
 
@@ -145,6 +154,7 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					spielerZug = 3;
 					GUI.spieler2Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
+					wurfSummeRechnen(punktzahl);
 				} 
 				else if (this.spielerZug == 3) {
 					
@@ -152,7 +162,7 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.spieler1Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
 					
-				} 
+				}
 
 				
 				break;
@@ -167,7 +177,6 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					spielerZug = 3;
 					GUI.spieler2Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
-					
 				} 
 				else if (this.spielerZug == 3) {
 					
@@ -175,8 +184,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.spieler1Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
 					
-				} 
-
+				}
+				wurfSummeRechnen(punktzahl);
 
 
 				break;
@@ -196,9 +205,9 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.spieler1Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
 					
-				} 
+				}
 
-
+				wurfSummeRechnen(punktzahl);
 
 				break;
 			case 3:
@@ -217,9 +226,9 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.spieler1Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
 					
-				} 
+				}
 
-
+				wurfSummeRechnen(punktzahl);
 
 				break;
 			case 4:
@@ -239,9 +248,9 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.spieler1Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
 					
-				} 
+				}
 
-
+				wurfSummeRechnen(punktzahl);
 				break;
 			case 5:
 				System.out.println("regel 6er");
@@ -259,9 +268,9 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.spieler1Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
 					
-				} 
-	
+				}
 
+				wurfSummeRechnen(punktzahl);
 				break;
 			case 6:
 				System.out.println("regel Dreierpasch");
@@ -279,8 +288,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.spieler1Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
 					
-				} 
-				
+				}
+				wurfSummeRechnen(punktzahl);
 				break;
 			case 7:
 				System.out.println("Rergel Vierpasch");
@@ -298,8 +307,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.spieler1Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
 					
-				} 
-				
+				}
+				wurfSummeRechnen(punktzahl);
 				break;
 			case 8:
 				System.out.println("Regel FullHouse");
@@ -317,8 +326,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.spieler1Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
 					
-				} 
-				
+				}
+				wurfSummeRechnen(punktzahl);
 				break;
 			case 9:
 				System.out.println("Regel KleineStrasse");
@@ -336,8 +345,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.spieler1Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
 					
-				} 
-				
+				}
+				wurfSummeRechnen(punktzahl);
 				break;
 			case 10:
 				System.out.println("Regel GrosseStrasse");
@@ -355,8 +364,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.spieler1Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
 					
-				} 
-				
+				}
+				wurfSummeRechnen(punktzahl);
 				break;
 			case 11:
 				System.out.println("Regel Kniffel/Yahtzee");
@@ -375,7 +384,7 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.resetCounterAnzahlWuerfel();
 					
 				}
-				
+
 				break;
 			case 12:
 				System.out.println("Regel Chance");
@@ -393,8 +402,7 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.spieler1Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
 					
-				} 
-				
+				}
 				break;
 			default:
 				punktzahl = 0;
@@ -406,6 +414,20 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 			d.setRollScore(0);
 		}
 
+	}
+
+	// gesamtsummen rechner für den wurf
+	public void wurfSummeRechnen(int punktzahl){
+		if(this.spielerZug != 3) {
+			int current = (int) spielpunkteTabelle.getValueAt(3, 1);
+			spielpunkteTabelle.setValueAt((current+punktzahl), 3, 1);
+		}
+		else {
+			this.pg2 += punktzahl;
+			// setze in tabelle
+			int current = (int) spielpunkteTabelle.getValueAt(3, 2);
+			spielpunkteTabelle.setValueAt(current+punktzahl, 3, 2);
+		}
 	}
 
 	// commong methods and functions

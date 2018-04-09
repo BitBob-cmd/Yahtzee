@@ -260,14 +260,16 @@ public class Rules {
 
 				if (dices[counter] == 3) {
 
-					temp1 = dices[counter] * 3;
+					temp1 += dices[counter] * 3;
 				}
-				if (dices[counter] != 3) {
+				else if (dices[counter] != 3) {
 
 					temp2 += dices[counter];
 				}
+				else { }
 
 			}
+
 
 			this.dreierPaschResultat = temp1 + temp2;
 			return this.dreierPaschResultat;
