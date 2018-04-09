@@ -28,7 +28,6 @@ import static java.awt.Font.BOLD;
 
 public class GUI extends JFrame implements MouseListener {
 
-
 	// JPanel Attribute
 
 	private JPanel panelCenter;
@@ -49,7 +48,7 @@ public class GUI extends JFrame implements MouseListener {
 	private JPanel buttons;
 
 	// JButton Attribute & Label Spieler
-	
+
 	private static JLabel aktuellerSpieler;
 	private JButton wuerfeln;
 	private JButton neuesSpiel;
@@ -70,8 +69,6 @@ public class GUI extends JFrame implements MouseListener {
 	private Icon iconSpieler1;
 	private Icon iconSpieler2;
 
-	
-
 	// Attribute für die Visualisierung der restliche Würfelmöglichkeiten
 	private JLabel klickCounter;
 	private JPanel wuerfelCount;
@@ -80,13 +77,12 @@ public class GUI extends JFrame implements MouseListener {
 
 	private PlayTable spielTisch;
 
-	// Attribut für Würfel Counter
+	// Attribut für Counter und Würfeldarstellung
 
 	private static int counterAnzahlWuerfeln;
-	private int counterZaehler;
 	private Dices diceZaheler;
 	
-	
+	// Attribut für Dialoge
 	private JOptionPane falscheSpalte;
 
 	public GUI(PlayTable pt) {
@@ -168,9 +164,6 @@ public class GUI extends JFrame implements MouseListener {
 		this.spieler2 = new JLabel(iconSpieler2);
 		spieler2.setLayout(new FlowLayout());
 
-		this.counterAnzahlWuerfeln = 0;
-		this.counterZaehler = 3;
-
 		this.aktuellerSpieler = new JLabel("Spieler 1 ist an der Reihe");
 		aktuellerSpieler.setLayout(new FlowLayout());
 
@@ -178,10 +171,10 @@ public class GUI extends JFrame implements MouseListener {
 		this.klickCounter.setLayout(new FlowLayout());
 
 		this.diceZaheler = new Dices(counterAnzahlWuerfeln);
-		
+
+
 		this.falscheSpalte = new JOptionPane();
-		
-		
+
 		this.buttons = new JPanel();
 		this.buttons.setLayout(new GridLayout(3, 1));
 		this.buttons.setBackground(new Color(98, 69, 11));
@@ -253,9 +246,6 @@ public class GUI extends JFrame implements MouseListener {
 		buttons.add(wuerfeln);
 		buttons.add(neuesSpiel);
 
-		
-		
-		
 		// ActionListener für Buttons
 
 		wuerfeln.addActionListener(new ActionListener() {
@@ -263,82 +253,75 @@ public class GUI extends JFrame implements MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				if(counterAnzahlWuerfeln<3) {
-					
-					
+				if (counterAnzahlWuerfeln < 3) {
+
 					counterAnzahlWuerfeln++;
 					diceZaheler.setRollScore(counterAnzahlWuerfeln);
 					diceZaheler.repaint();
 					spielTisch.alleWuerfeln();
 				}
-				
 
 			}
 		});
 
 		neuesSpiel.addActionListener(new ActionListener() {
 
-	@Override
+			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				counterAnzahlWuerfeln = 0;
-				//spielNeustarten();
+				// spielNeustarten();
 				wuerfeln.setEnabled(true);
 				spielTisch.neuesSpiel();
 
 			}
 		});
-		
 
 	}
-	
+
 	public static void spieler1Aktiv() {
-		
+
 		aktuellerSpieler.setText("Spieler 1 ist an der Reihe");
-		
+
 	}
-	
+
 	public static void spieler2Aktiv() {
-		
+
 		aktuellerSpieler.setText("Spieler 2 ist an der Reihe");
 	}
+
+	public static void resetCounterAnzahlWuerfel() {
+
+		counterAnzahlWuerfeln = 0;
+	}
+
+	public static int getCounterAnzahlWuerfel() {
+
+		return counterAnzahlWuerfeln;
+	}
+
+	public void showDialogWrongInput() {
+
+		falscheSpalte.showMessageDialog(this, "Prüfen Sie Ihre Eingabe");
+	}
+
 	
-	 public static void resetCounterAnzahlWuerfel() {
-		
-		 counterAnzahlWuerfeln = 0;
-	}
-	 
-	 public static int getCounterAnzahlWuerfel() {
-		 
-		 return counterAnzahlWuerfeln;
-	 }
+
+	
 
 
-	 public void showDialogWrongInput() {
-		 
-		 
-		 falscheSpalte.showMessageDialog(this, "Prüfen Sie Ihre Eingabe");
-	 }
-
-
-/**
-	public void spielNeustarten() {
-
-		for (Dices d : spielTisch.gibWuerfel()) {
-			System.out.println(d.getFlowIndex());
-
-			panelWuerfelDeaktivFlow[d.getFlowIndex()].remove(d);
-			panelWuerfelAktivFlow[d.getFlowIndex()].add(d);
-			d.repaint();
-		}
-
-		// togle button enabled
-		if (this.wuerfeln.isEnabled())
-			this.wuerfeln.setEnabled(false);
-		else
-			this.wuerfeln.setEnabled(true);
-	}
-*/
+	/**
+	 * public void spielNeustarten() {
+	 * 
+	 * for (Dices d : spielTisch.gibWuerfel()) {
+	 * System.out.println(d.getFlowIndex());
+	 * 
+	 * panelWuerfelDeaktivFlow[d.getFlowIndex()].remove(d);
+	 * panelWuerfelAktivFlow[d.getFlowIndex()].add(d); d.repaint(); }
+	 * 
+	 * // togle button enabled if (this.wuerfeln.isEnabled())
+	 * this.wuerfeln.setEnabled(false); else this.wuerfeln.setEnabled(true); }
+	 */
 	// Methode die den Aktiven Spieltisch retournieret
 
 	public ScoreTable getSpielTisch() {
@@ -349,8 +332,6 @@ public class GUI extends JFrame implements MouseListener {
 		}
 		return null;
 	}
-	
-	
 
 	// Diese Methode erstellt neue JPanel für den Deaktiven Bereich der Würfel
 
@@ -398,7 +379,7 @@ public class GUI extends JFrame implements MouseListener {
 			index++;
 		}
 
-	} 
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -417,6 +398,9 @@ public class GUI extends JFrame implements MouseListener {
 				panelWuerfelAktivFlow[x.getFlowIndex()].add(x);
 				x.setNoHoldDice();
 			}
+		}
+		else if(counterAnzahlWuerfeln == 0) {
+			
 		}
 	}
 
