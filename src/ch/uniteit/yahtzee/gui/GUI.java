@@ -81,8 +81,8 @@ public class GUI extends JFrame implements MouseListener {
 
 	private static int counterAnzahlWuerfeln;
 	private Dices diceZaheler;
+	private JButton wuerfelReset;
 	
-
 	// Attribut für Dialoge
 	private JOptionPane falscheSpalte;
 
@@ -135,6 +135,8 @@ public class GUI extends JFrame implements MouseListener {
 		this.wuerfel = new JPanel();
 		this.wuerfel.setLayout(new GridLayout(1, 2));
 		this.wuerfel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		this.wuerfelReset = new JButton();
 
 		this.panelTabelle.setBackground(new Color(28, 124, 11));
 
@@ -181,7 +183,7 @@ public class GUI extends JFrame implements MouseListener {
 
 		this.wuerfeln = new JButton("Würfeln");
 		this.neuesSpiel = new JButton("Neues Spiel");
-		this.besteListe = new JButton("Bestenliste");
+		this.wuerfelReset = new JButton("Wurfel Reset");
 
 		initGui();
 		// top
@@ -244,7 +246,9 @@ public class GUI extends JFrame implements MouseListener {
 		addWuerfelundMousListener();
 
 		buttons.add(wuerfeln);
+		buttons.add(wuerfelReset);
 		buttons.add(neuesSpiel);
+		
 
 		// ActionListener für Buttons
 
@@ -259,8 +263,8 @@ public class GUI extends JFrame implements MouseListener {
 					diceZaheler.setRollScore(counterAnzahlWuerfeln);
 					diceZaheler.repaint();
 					spielTisch.alleWuerfeln();
-				} 
-				else if(counterAnzahlWuerfeln == 3){
+				}
+				if(counterAnzahlWuerfeln == 3) {
 					
 					for (Dices d : spielTisch.gibWuerfel()) {
 
@@ -268,12 +272,14 @@ public class GUI extends JFrame implements MouseListener {
 							d.getParent().remove(d);
 							panelWuerfelAktivFlow[d.getFlowIndex()].add(d);
 							d.setNoHoldDice();
+							
 
-						
 						}
 
 					}
 				}
+
+
 			}
 		});
 
@@ -289,31 +295,51 @@ public class GUI extends JFrame implements MouseListener {
 
 			}
 		});
+		
+		
+		wuerfelReset.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			
+
+					for (Dices d : spielTisch.gibWuerfel()) {
+
+						if (d.getOnHold() == true) {
+							d.getParent().remove(d);
+							panelWuerfelAktivFlow[d.getFlowIndex()].add(d);
+							d.setNoHoldDice();
+							
+
+						}
+
+					}
+				}
+				
+			
+		});
 
 	}
+	
 
 	public static void spieler1Aktiv() {
 
 		aktuellerSpieler.setText("Spieler 1 ist an der Reihe");
 
 	}
-	
 
 	public static void spieler2Aktiv() {
 
 		aktuellerSpieler.setText("Spieler 2 ist an der Reihe");
 	}
-	
-
 
 	public static void resetCounterAnzahlWuerfel() {
 
 		counterAnzahlWuerfeln = 0;
-		
+
 	}
-	
-	
-	
+
 	public static int getCounterAnzahlWuerfel() {
 
 		return counterAnzahlWuerfeln;

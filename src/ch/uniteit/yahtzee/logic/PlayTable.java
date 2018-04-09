@@ -32,8 +32,7 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 	private int sr;
 	private int sc;
 
-	private boolean wuerfelAktiv;
-	private boolean wuerfelDeaktiv;
+
 
 	private int pg1; // player1 gesamtsumme vom
 	private int pg2;
@@ -58,6 +57,7 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 		this.spielpunkteTabelle = sumTable;
 		this.rankingTabelle = rankTable;
 		addSelectionListener();
+		
 	}
 
 	/**
@@ -155,12 +155,14 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.spieler2Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
 					wurfSummeRechnen(punktzahl);
+					
 				} 
 				else if (this.spielerZug == 3) {
 					
 					spielerZug = 1;
 					GUI.spieler1Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
+					
 					
 				}
 
@@ -455,11 +457,6 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 		this.spielerZug = spielerZug;
 	}
 
-	
-	public boolean getWuerfelAktiv() {
-		
-		return this.wuerfelAktiv;
-	}
 	
 	
 }
