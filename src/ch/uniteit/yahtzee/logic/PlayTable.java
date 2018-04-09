@@ -165,6 +165,7 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					spielerZug = 3;
 					GUI.spieler2Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
+
 				} 
 				else if (this.spielerZug == 3) {
 					
