@@ -154,9 +154,13 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					spielerZug = 3;
 					GUI.spieler2Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
+
 					wurfSummeRechnen(punktzahl);
 					
-				} 
+
+					punkteUpdateTrigger(punktzahl);
+					zwischenSummeObenRechner(punktzahl);
+				}
 				else if (this.spielerZug == 3) {
 					
 					spielerZug = 1;
@@ -187,8 +191,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.resetCounterAnzahlWuerfel();
 					
 				}
-				wurfSummeRechnen(punktzahl);
-
+				punkteUpdateTrigger(punktzahl);
+				zwischenSummeObenRechner(punktzahl);
 
 				break;
 			case 2:
@@ -209,8 +213,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					
 				}
 
-				wurfSummeRechnen(punktzahl);
-
+				punkteUpdateTrigger(punktzahl);
+				zwischenSummeObenRechner(punktzahl);
 				break;
 			case 3:
 				System.out.println("regel 4er");
@@ -230,8 +234,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					
 				}
 
-				wurfSummeRechnen(punktzahl);
-
+				punkteUpdateTrigger(punktzahl);
+				zwischenSummeObenRechner(punktzahl);
 				break;
 			case 4:
 				System.out.println("regel 5er");
@@ -252,7 +256,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					
 				}
 
-				wurfSummeRechnen(punktzahl);
+				punkteUpdateTrigger(punktzahl);
+				zwischenSummeObenRechner(punktzahl);
 				break;
 			case 5:
 				System.out.println("regel 6er");
@@ -272,7 +277,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					
 				}
 
-				wurfSummeRechnen(punktzahl);
+				punkteUpdateTrigger(punktzahl);
+				zwischenSummeObenRechner(punktzahl);
 				break;
 			case 6:
 				System.out.println("regel Dreierpasch");
@@ -291,7 +297,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.resetCounterAnzahlWuerfel();
 					
 				}
-				wurfSummeRechnen(punktzahl);
+				punkteUpdateTrigger(punktzahl);
+				zwischenSummeUntenRechner(punktzahl);
 				break;
 			case 7:
 				System.out.println("Rergel Vierpasch");
@@ -310,7 +317,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.resetCounterAnzahlWuerfel();
 					
 				}
-				wurfSummeRechnen(punktzahl);
+				punkteUpdateTrigger(punktzahl);
+				zwischenSummeUntenRechner(punktzahl);
 				break;
 			case 8:
 				System.out.println("Regel FullHouse");
@@ -329,7 +337,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.resetCounterAnzahlWuerfel();
 					
 				}
-				wurfSummeRechnen(punktzahl);
+				punkteUpdateTrigger(punktzahl);
+				zwischenSummeUntenRechner(punktzahl);
 				break;
 			case 9:
 				System.out.println("Regel KleineStrasse");
@@ -348,7 +357,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.resetCounterAnzahlWuerfel();
 					
 				}
-				wurfSummeRechnen(punktzahl);
+				punkteUpdateTrigger(punktzahl);
+				zwischenSummeUntenRechner(punktzahl);
 				break;
 			case 10:
 				System.out.println("Regel GrosseStrasse");
@@ -367,7 +377,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.resetCounterAnzahlWuerfel();
 					
 				}
-				wurfSummeRechnen(punktzahl);
+				punkteUpdateTrigger(punktzahl);
+				zwischenSummeUntenRechner(punktzahl);
 				break;
 			case 11:
 				System.out.println("Regel Kniffel/Yahtzee");
@@ -387,6 +398,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					
 				}
 
+				punkteUpdateTrigger(punktzahl);
+
 				break;
 			case 12:
 				System.out.println("Regel Chance");
@@ -405,6 +418,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.resetCounterAnzahlWuerfel();
 					
 				}
+				punkteUpdateTrigger(punktzahl);
+				zwischenSummeUntenRechner(punktzahl);
 				break;
 			default:
 				punktzahl = 0;
@@ -420,16 +435,54 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 
 	// gesamtsummen rechner für den wurf
 	public void wurfSummeRechnen(int punktzahl){
-		if(this.spielerZug != 3) {
-			int current = (int) spielpunkteTabelle.getValueAt(3, 1);
-			spielpunkteTabelle.setValueAt((current+punktzahl), 3, 1);
+		if(this.spielerZug == 3) {
+			int qry = (int) spielpunkteTabelle.getValueAt(3, 1);
+			spielpunkteTabelle.setValueAt((qry+punktzahl), 3, 1);
 		}
-		else {
-			this.pg2 += punktzahl;
+		else if(this.spielerZug ==1){
 			// setze in tabelle
 			int current = (int) spielpunkteTabelle.getValueAt(3, 2);
 			spielpunkteTabelle.setValueAt(current+punktzahl, 3, 2);
 		}
+	}
+
+	public void zwischenSummeObenRechner(int punktzahl){
+		if(this.spielerZug == 3) {
+			int qry = (int) spielpunkteTabelle.getValueAt(1, 1);
+			spielpunkteTabelle.setValueAt((qry+punktzahl), 1, 1);
+		}
+		else if(this.spielerZug ==1){
+			// setze in tabelle
+			int current = (int) spielpunkteTabelle.getValueAt(1, 2);
+			spielpunkteTabelle.setValueAt(current+punktzahl, 1, 2);
+		}
+	}
+
+	public void zwischenSummeUntenRechner(int punktzahl){
+		if(this.spielerZug == 3) {
+			int qry = (int) spielpunkteTabelle.getValueAt(2, 1);
+			spielpunkteTabelle.setValueAt((qry+punktzahl), 2, 1);
+		}
+		else if(this.spielerZug ==1){
+			// setze in tabelle
+			int current = (int) spielpunkteTabelle.getValueAt(2, 2);
+			spielpunkteTabelle.setValueAt(current+punktzahl, 2, 2);
+		}
+	}
+
+	public void bonusRechner(){
+		if(this.spielerZug == 3) {
+			int zso = (int) spielpunkteTabelle.getValueAt(1, 1);
+			if(zso >= 63){
+				spielpunkteTabelle.setValueAt(35, 0, 1);
+				spielpunkteTabelle.setValueAt((zso+35), 1, 1);
+			}
+		}
+	}
+
+	public void punkteUpdateTrigger(int punktzahl){
+		bonusRechner();
+		wurfSummeRechnen(punktzahl);
 	}
 
 	// commong methods and functions
