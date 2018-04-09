@@ -82,6 +82,7 @@ public class GUI extends JFrame implements MouseListener {
 	private static int counterAnzahlWuerfeln;
 	private Dices diceZaheler;
 	
+
 	// Attribut für Dialoge
 	private JOptionPane falscheSpalte;
 
@@ -172,7 +173,6 @@ public class GUI extends JFrame implements MouseListener {
 
 		this.diceZaheler = new Dices(counterAnzahlWuerfeln);
 
-
 		this.falscheSpalte = new JOptionPane();
 
 		this.buttons = new JPanel();
@@ -259,8 +259,21 @@ public class GUI extends JFrame implements MouseListener {
 					diceZaheler.setRollScore(counterAnzahlWuerfeln);
 					diceZaheler.repaint();
 					spielTisch.alleWuerfeln();
-				}
+				} 
+				else if(counterAnzahlWuerfeln == 3){
+					
+					for (Dices d : spielTisch.gibWuerfel()) {
 
+						if (d.getOnHold() == true) {
+							d.getParent().remove(d);
+							panelWuerfelAktivFlow[d.getFlowIndex()].add(d);
+							d.setNoHoldDice();
+
+						
+						}
+
+					}
+				}
 			}
 		});
 
@@ -284,17 +297,23 @@ public class GUI extends JFrame implements MouseListener {
 		aktuellerSpieler.setText("Spieler 1 ist an der Reihe");
 
 	}
+	
 
 	public static void spieler2Aktiv() {
 
 		aktuellerSpieler.setText("Spieler 2 ist an der Reihe");
 	}
+	
+
 
 	public static void resetCounterAnzahlWuerfel() {
 
 		counterAnzahlWuerfeln = 0;
+		
 	}
-
+	
+	
+	
 	public static int getCounterAnzahlWuerfel() {
 
 		return counterAnzahlWuerfeln;
@@ -304,11 +323,6 @@ public class GUI extends JFrame implements MouseListener {
 
 		falscheSpalte.showMessageDialog(this, "Prüfen Sie Ihre Eingabe");
 	}
-
-	
-
-	
-
 
 	/**
 	 * public void spielNeustarten() {
@@ -399,9 +413,7 @@ public class GUI extends JFrame implements MouseListener {
 				x.setNoHoldDice();
 			}
 		}
-		else if(counterAnzahlWuerfeln == 0) {
-			
-		}
+
 	}
 
 	@Override

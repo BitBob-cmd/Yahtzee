@@ -29,6 +29,8 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 	private JTable tabelle;
 	private int sr;
 	private int sc;
+	private boolean wuerfelAktiv;
+	private boolean wuerfelDeaktiv;
 
 	/**
 	 * Konstruktor default.
@@ -165,6 +167,7 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					spielerZug = 3;
 					GUI.spieler2Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
+					
 				} 
 				else if (this.spielerZug == 3) {
 					
@@ -371,7 +374,7 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 					GUI.spieler1Aktiv();
 					GUI.resetCounterAnzahlWuerfel();
 					
-				} 
+				}
 				
 				break;
 			case 12:
@@ -429,4 +432,12 @@ public class PlayTable extends ScoreTable implements ListSelectionListener {
 	public void setSpielerZug(int spieler) {
 		this.spielerZug = spielerZug;
 	}
+
+	
+	public boolean getWuerfelAktiv() {
+		
+		return this.wuerfelAktiv;
+	}
+	
+	
 }
